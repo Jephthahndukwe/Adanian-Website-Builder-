@@ -12,7 +12,7 @@ import fidelity from '../assets/images/fidelity.png'
 import afyaRekod from '../assets/images/afyaRekod.png'
 import mtn from '../assets/images/mtn.png'
 import ayoba from '../assets/images/ayoba.png' 
-import Instruct from "./instruct"
+import Instruct from "./Instruct"
 import Template from "./Template"
 import Steps from "./Steps"
 import Enhance from "./Enhance"
