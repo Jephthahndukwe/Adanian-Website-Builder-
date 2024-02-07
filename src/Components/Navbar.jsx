@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className='lg:flex gap-auto justify-between items-center'>
            <div className='flex justify-between items-center'>
               <Link to='/'><img src={Logo} className='xs:w-[80%] lg:w-[100%]' /></Link>
-              <FaBarsStaggered onClick={() => setShowNav(true)} className='text-[#fff] text-[30px] lg:hidden xs:block hover:text-[#FB9613]'/>
+              <FaBarsStaggered onClick={() => setShowNav(true)} className='text-[#00AABC] text-[30px] lg:hidden xs:block hover:text-[#FB9613]'/>
            </div>
            <div className='lg:flex xs:hidden justify-between items-center gap-[120px] lg:bg-transparent xs:bg-[#000] lg:p-0 xs:p-[20px] xs:absolute lg:relative left-0 top-0 lg:w-auto xs:w-[100%] text-center'>
                 <ul className='lg:flex items-center gap-[40px] xs:pt-[4rem] lg:pt-0'>
