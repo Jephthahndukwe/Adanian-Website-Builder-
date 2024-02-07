@@ -30,7 +30,7 @@ const Navbar = () => {
               </div> 
            {
             showNav ?  
-             <div className='lg:bg-transparent xs:bg-[#000] lg:p-0 xs:p-[20px] xs:absolute lg:relative left-0 top-0 lg:w-auto xs:w-[100%]'>
+             <div className='lg:bg-transparent xs:bg-[#000] lg:p-0 xs:p-[20px] xs:absolute lg:relative left-0 top-0 lg:w-auto xs:w-[100%] lg:h-auto xs:h-[100vh]'>
                 <FaTimes onClick={() => setShowNav(false)} className='text-[#fff] text-[30px] flex justify-end items-end hover:text-[#FB9613]' />
                <div className='lg:flex justify-between items-center gap-[120px] text-center'>
                 <ul className='lg:flex items-center gap-[40px] xs:pt-[2rem] lg:pt-0'>

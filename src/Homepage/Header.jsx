@@ -23,8 +23,8 @@ const Header = () => {
     <div style={{background: `linear-gradient(115deg, #00041B 0%, #030515 25%, #16161A 50%, #10121D 75%, #050505 100%)`}}>
         <Navbar/>
         
-    <div className="pt-[53px]">
-        <h1 className="text-center text-[#fff] lg:text-[70px] xs:text-[50px] font-[400] lg:leading-[100px]">Build your website <br className="xs:hidden lg:block" /> with <span className="text-[#00AABC] font-[700]">zero code</span></h1>
+    <div className="pt-[53px] px-[10px]">
+        <h1 className="text-center text-[#fff] lg:text-[70px] xs:text-[45px] font-[400] lg:leading-[100px]">Build your website <br className="xs:hidden lg:block" /> with <span className="text-[#00AABC] font-[700]">zero code</span></h1>
         <h4 className="text-[#fff] text-center lg:text-[20px] font-[400] lg:leading-[36px] lg:mt-[48px] xs:mt-[30px]">What kind of website would you like to create?</h4>
         <div className="flex justify-center ">
             <div>
