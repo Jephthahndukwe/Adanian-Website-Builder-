@@ -1,3 +1,4 @@
+import { useState  } from 'react'
 import Logo from '../assets/images/ADANIAN LOGO 1.png'
 import Google1 from '../assets/icons/google.svg'
 import facebook from '../assets/icons/facebook.svg'
@@ -6,6 +7,42 @@ import img from '../assets/images/loginImg.png'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Check if passwords match
+    if (password === confirmPassword) {
+      // Passwords match, you can proceed with submission or other actions
+      alert('Passwords match!');
+    } else {
+      // Passwords do not match, handle accordingly
+      setPasswordsMatch(false);
+    }
+  };
+
   return (
     <div className='flex justify-center items-center'>
         <div className='lg:flex'>
@@ -17,13 +54,24 @@ const Login = () => {
             <div className='lg:p-[37px] lg:flex gap-[37px] mt-[40px]'> 
                 <div>
                     <h2 className='text-[#333] text-center text-[24px] font-[500]'>Sign up</h2>
-                    <form className='mt-5'>
+                    <form className='mt-5' onSubmit={handleSubmit}>
                         <label htmlFor='email' className='text-[#666] text-[16px] font-[400]'>Email address</label><br/>
                         <input type='email' style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'/>
-                        <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Password <span>Hide</span></label>
-                        <input type="password" style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' /><br/>
-                        <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Confirm Password <span>Hide</span></label>
-                        <input type="password" style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' /><br/>
+                        <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Password <span onClick={toggleShowPassword} className='cursor-pointer'>{showPassword ? 'Hide' : 'Show'}</span></label>
+                        <input 
+                          style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
+                          className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'
+                          type={showPassword ? 'text' : 'password'}
+                          value={password}
+                          onChange={handlePasswordChange} /><br/>
+                        <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Confirm Password <span onClick={toggleShowConfirmPassword} className='cursor-pointer'>{showConfirmPassword ? 'Hide' : 'Show'}</span></label>
+                        <input 
+                          style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
+                          className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          value={confirmPassword}
+                          onChange={handleConfirmPasswordChange} /><br/>
+                        {!passwordsMatch && <p style={{ color: 'red' }} className='mt-[10px] text-[14px] font-[400] leading-[16px]'>Passwords do not match</p>}
                         <button type='submit' className='bg-[#666] mt-4 rounded-[32px] w-[354px] h-[50px] py-[12px]flex justify-center items-center text-[#fff] text-center text-[18px] font-[500]'>Log in</button>
                     </form>
                 </div>
