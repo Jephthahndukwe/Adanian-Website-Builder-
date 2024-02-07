@@ -4,7 +4,7 @@ const QuestionFour = () => {
   return (
     <div className="mt-[70px] mb-[5rem] px-[10px]">
         <h1 className="text-[#000] text-center text-[25px] font-[500] leading-[16px]">Sponsorship</h1>
-        <h3 className="text-[#000] text-center text-[18px] font-[400] leading-[16px] mt-[2rem]">Are you under enlisted for a sponsorship plan</h3>
+        <h3 className="text-[#000] text-center text-[18px] font-[400] leading-[22px] mt-[2rem]">Are you under enlisted for a sponsorship plan</h3>
         <div className="lg:flex justify-center mt-[2rem]">
             <form>
                 <label htmlFor="Name" className="text-[#000] text-[12px] font-[400]">Name</label><br/>

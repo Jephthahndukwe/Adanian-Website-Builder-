@@ -46,16 +46,18 @@ function App() {
     <div className='mt-[119px] px-[10px] lg:mb-0 xs:mb-[3rem]'>
       <h1 className="text-[#000] text-[18px] font-[500] leading-[16px] text-center">Who do you want to build websites for?</h1>
       <h3 className="text-[#000] text-[14px] font-[400] leading-[16px] text-center mt-[12px]">Select all the options that apply to you</h3>
-    <div className='lg:flex justify-center gap-[20px] items-center mt-[1rem]'>
-      {templates.map((template, index) => (
-        <ImageComponent
-          key={index}
-          src={template.src}
-          title={template.title}
-          isActive={index === activeIndex} 
-          onClick={() => handleClick(index)}
-        />
-      ))}
+    <div className='flex justify-center'>
+      <div className='lg:flex justify-center gap-[20px] items-center mt-[1rem]'>
+        {templates.map((template, index) => (
+          <ImageComponent
+            key={index}
+            src={template.src}
+            title={template.title}
+            isActive={index === activeIndex} 
+            onClick={() => handleClick(index)}
+          />
+        ))}
+      </div>
     </div>
     <div className="mt-[67px] flex justify-center">
       <button type="submit" className="bg-[#00AABC] rounded-[100px] w-[120px] h-[40px] py-[12px] px-0 flex justify-center items-center text-center text-[#fff] text-[18px] font-[400] leading-[16px]" style={{ boxShadow: `0px 0.5px 0.5px 0px rgba(255, 255, 255, 0.20) inset, 0px 29px 23px -16px rgba(255, 255, 255, 0.04) inset, 0px 0.5px 1px 0px rgba(0, 0, 0, 0.25)` }}><Link to='/questionthree'>Continue</Link></button>

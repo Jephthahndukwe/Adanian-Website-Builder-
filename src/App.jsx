@@ -7,6 +7,7 @@ import QuestionOne from './Auth/AuthQues/QuestionOne'
 import QuestionTwo from './Auth/AuthQues/QuestionTwo'
 import QuestionThree from './Auth/AuthQues/QuestionThree'
 import QuestionFour from './Auth/AuthQues/QuestionFour'
+import QuestionFive from './Auth/AuthQues/QuestionFive'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='questiontwo' element={ <QuestionTwo/> } />
           <Route path='questionthree' element={ <QuestionThree/> } />
           <Route path='questionfour' element={ <QuestionFour/> } />
+          <Route path='questionfive' element={ <QuestionFive/> } />
         </Routes>
       </Router>
     </>
