@@ -38,7 +38,7 @@ const Login = () => {
             </div>
               <div className='lg:mt-[10px] xs:mt-[3rem] lg:mb-0 xs:mb-[2rem]'>
                 <p className='text-center'><a href='#' className='text-[#111] text-[16px] font-[500]'><Link to='/signup'>Can&apos;t log in?</Link></a></p>
-                <p className='mt-[10px] text-[#666] text-center text-[14px] font-[400]'>Secure Login with reCAPTCHA subject to <br/> Google <Link to='/' className='text-[#333] underline'>Terms</Link> & <Link to='/' className='text-[#333] underline'>Privacy</Link></p>
+                <p className='mt-[10px] text-[#666] text-center text-[14px] font-[400]'>Secure Login with reCAPTCHA subject to <br/> Google <Link to='/' className='text-[#333] underline'>Terms</Link> & <Link to='/questionone' className='text-[#333] underline'>Privacy</Link></p>
               </div>
        </div>
        <div className='xs:hidden lg:block'>
