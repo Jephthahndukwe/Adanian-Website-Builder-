@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Instruct = () => {
   return (
-    <div style={{background: `var(--Main-colour, #FB9613)`}} className="py-[103px] lg:px-[70px] xs:px-[20px] mt-5">
+    <div style={{background: `#FB9613`}} className="py-[103px] lg:px-[70px] xs:px-[20px] mt-5">
         <div className="lg:flex gap-[70px] items-center">
             <div>
                 <h1 className="text-[#000] text-[56px] font-[400] leading-[76.8px] text-start">You Instruct, <br/> We Work</h1>

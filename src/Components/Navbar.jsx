@@ -3,7 +3,7 @@ import Logo from '../assets/images/ADANIAN LOGO 1.png'
 
 const Navbar = () => {
   return (
-    <div className='px-[90px] py-[20px]'>
+    <div className='px-[90px] py-[20px] xs:hidden lg:block'>
         <nav className='lg:flex gap-auto justify-between items-center'>
            <Link to='/'><img src={Logo} /></Link>
             <ul className='flex items-center gap-[40px]'>
