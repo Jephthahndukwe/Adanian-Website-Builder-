@@ -1,11 +1,11 @@
-import tablet from '../assets/images/Tablet login 1.png'
+import africa from '../assets/images/africa-cruise-safari.png'
 
 const Steps = () => {
   return (
     <div style={{background: `var(--Main-colour, #FB9613)`}} className="lg:ps-[30px] lg:pr-[90px] lg:px-0 xs:px-[20px] py-[40px] mt-[7rem]">
         <div className="flex flex-wrap gap-auto items-center justify-between">
             <div>
-                <img src={tablet} width='500px' height='500px' />
+                <img src={africa} width='500px' height='500px' />
             </div>
             <div>
                 <h1 className='text-[#000] lg:text-[56px] xs:text-[40px] font-[400] leading-[60px]'>Steps to create a website</h1>
