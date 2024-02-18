@@ -8,6 +8,7 @@ import QuestionTwo from './Auth/AuthQues/QuestionTwo'
 import QuestionThree from './Auth/AuthQues/QuestionThree'
 import QuestionFour from './Auth/AuthQues/QuestionFour'
 import QuestionFive from './Auth/AuthQues/QuestionFive'
+import Dashboard from './Dashboard/Dashboard'
 
 function App() {
 
@@ -23,6 +24,11 @@ function App() {
           <Route path='questionthree' element={ <QuestionThree/> } />
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
+
+
+
+          {/* DASHBOARD ROUTES */}
+          <Route path='dashboard' element={ <Dashboard/> } />
         </Routes>
       </Router>
     </>
