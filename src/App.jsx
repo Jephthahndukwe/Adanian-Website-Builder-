@@ -10,6 +10,10 @@ import QuestionFour from './Auth/AuthQues/QuestionFour'
 import QuestionFive from './Auth/AuthQues/QuestionFive'
 import Dashboard from './Dashboard/Dashboard'
 
+// TEMPLATES
+import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
+import Testing from './Dashboard/testing'
+
 function App() {
 
   return (
@@ -25,10 +29,13 @@ function App() {
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
 
-
+          <Route path='testing' element={ <Testing/> } />
 
           {/* DASHBOARD ROUTES */}
           <Route path='dashboard' element={ <Dashboard/> } />
+
+          {/* TEMPLATES */}
+          <Route path='AyobaTemplate' element={ <Homepage/> } />
         </Routes>
       </Router>
     </>

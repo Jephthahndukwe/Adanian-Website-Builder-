@@ -43,7 +43,7 @@ const Header = () => {
                 </div>
                 </div>
             </div>
-        <h3 className="mt-[42px] flex justify-center pb-5"><Link to='/login' className="text-center bg-[#fff] lg:w-[276px] xs:w-[200px] h-[60px] lg:py-[12px] lg:px-[39px] xs:py-[10px] px-[25px] text-[#000] lg:text-[23.625px] xs:text-[19px] flex items-center justify-center font-[400] rounded-[100px] hover:bg-[#FB9613] hover:text-[#fff]">Create Website</Link></h3>
+        <h3 className="mt-[42px] flex justify-center pb-5"><Link to='/dashboard' className="text-center bg-[#fff] lg:w-[276px] xs:w-[200px] h-[60px] lg:py-[12px] lg:px-[39px] xs:py-[10px] px-[25px] text-[#000] lg:text-[23.625px] xs:text-[19px] flex items-center justify-center font-[400] rounded-[100px] hover:bg-[#FB9613] hover:text-[#fff]">Create Website</Link></h3>
         </div>
         <div className="lg:flex md:flex md:flex-wrap xs:grid xs:grid-cols-2 lg:gap-[138px] xs:gap-[3rem] items-center mt-[49px] px-[60px]">
             <img src={fidelity} />
