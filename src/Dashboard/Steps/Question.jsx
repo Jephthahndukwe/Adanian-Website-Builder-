@@ -9,7 +9,7 @@ const Question = ({ show, setShow }) => {
         {
             show ?
                 <div className="flex justify-center items-center">
-                    <div className="bg-[#fff] w-[600px] h-[200px] border-[#999] border-[1px] border-solid rounded-[10px] p-[50px] absolute top-[28%]">
+                    <div className="bg-[#fff] lg:w-[600px] xs:w-[90%] h-[200px] border-[#999] border-[1px] border-solid rounded-[10px] lg:p-[50px] xs:p-[30px] absolute top-[28%]">
                     <h1 className="text-[25px] font-[500] text-[#000] text-center">Do you want to edit this template?</h1>
                         <div className="flex justify-center mt-[25px]">
                             <div className="flex gap-[16px] items-center">
