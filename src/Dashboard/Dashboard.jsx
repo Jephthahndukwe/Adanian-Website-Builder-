@@ -1,7 +1,7 @@
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 // import Step1 from "./Steps/Step1"
-import { Step2 } from "./Steps/Step2"
+import Step1  from "./Steps/Step1"
 
 const Dashboard = () => {
   return (
@@ -35,8 +35,8 @@ const Dashboard = () => {
                         <p className="text-[#1E4830] text-[14px] font-[400] mt-[5px]">Our intuitive, user-friendly interface turns your vision into reality, no tech expertise required.</p>
                     </div>
                     
-                    {/* <Step1/> */}
-                    <Step2/>
+                    <Step1/>
+                    {/* <Step2/> */}
 
                 </div>
             </div>

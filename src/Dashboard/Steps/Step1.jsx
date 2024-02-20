@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
 import TemplateMap from "../TemplateMap"
+import Question from "./Question";
 
 const Step1 = () => {
+    const [show, setShow] = useState(false);
+
   return (
     <div>
         <form>
@@ -34,8 +38,8 @@ const Step1 = () => {
                             {
                                 TemplateMap.map((index) => (
                                     <div key={index.id}>
-                                        <div className="mt-[2rem]">
-                                            <img src={index.Image} className="w-[317px] h-[218.75px]" />
+                                        <div className="mt-[2rem] cursor-pointer" onClick={() => setShow(true)}>
+                                            <img src={index.Image} className="w-[317px] h-[218.75px] object-fill" />
                                             <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{index.heading}</h2>
                                             <h3 className="text-[#000] text-[11px] font-[400] mt-[16px] w-[317px]">{index.text}</h3>
                                         </div>
@@ -43,6 +47,9 @@ const Step1 = () => {
                                 ))
                             }
                         </div>
+                        {
+                            show ? <Question show={show} setShow={setShow} /> : null
+                        }
                     </div>
     </div>
   )
