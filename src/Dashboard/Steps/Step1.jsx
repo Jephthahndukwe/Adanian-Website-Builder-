@@ -9,11 +9,11 @@ const Step1 = () => {
   return (
     <div>
         <form>
-                        <div style={{ boxShadow: `4px 4px 20px 0px rgba(128, 128, 128, 0.15)`}} className="bg-[#fff] rounded-[24px] w-[1020px] py-[32px] ps-[24px] pr-[52px] mt-[36px]">
-                            <h1 className="text-[#000] text-[20px] font-[600]">What kind of website  are you building?</h1>
-                            <input type="text" placeholder="Answer" required className="mt-[15px] font-[400] text-[12px] w-[940px] h-[1px] py-[10px] outline-none pb-[25px]" style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}/>
-                            <input type="text" placeholder="Domain name/.com" required className="mt-[15px] font-[400] text-[12px] w-[940px] h-[1px] py-[10px] outline-none pb-[25px]" style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}/>
-                            <div className="flex gap-[44px] ms-[10px] mt-[5px]">
+                        <div style={{ boxShadow: `4px 4px 20px 0px rgba(128, 128, 128, 0.15)`}} className="bg-[#fff] rounded-[24px] lg:w-[1020px] xs:w-[100%] py-[32px] lg:ps-[24px] xs:ps-[10px] xs:pr-[10px] lg:pr-[52px] mt-[36px]">
+                            <h1 className="text-[#000] lg:text-[20px] xs:text-[17px] font-[600]">What kind of website  are you building?</h1>
+                            <input type="text" placeholder="Answer" required className="mt-[15px] font-[400] text-[12px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px]" style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}/>
+                            <input type="text" placeholder="Domain name/.com" required className="mt-[15px] font-[400] text-[12px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px]" style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}/>
+                            <div className="flex gap-[25px] ms-[10px] mt-[5px]">
                                 <h2 className="text-[#000] text-[16px] font-[400]">.com</h2>
                                 <h2 className="text-[#000] text-[16px] font-[400]">.blog</h2>
                                 <h2 className="text-[#000] text-[16px] font-[400]">.shop</h2>

@@ -10,7 +10,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 const Navbar = () => {
   return (
-    <div className='flex items-center gap-auto justify-between px-[24px] py-[12px]'>
+    <div className='lg:flex items-center gap-auto justify-between px-[24px] py-[12px] xs:hidden'>
         <div>
             <Link to='/'><img src={Logo} /></Link>
         </div>

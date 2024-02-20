@@ -15,7 +15,7 @@ import group from '../assets/icons/group.svg'
 
 const Sidebar = () => {
   return (
-    <div className="grid gap-[24px] overflow-auto overflow-y-scroll bg-[#ECECEC] w-[271px] h-[100%] pt-[32px] pb-[24px] px-[9px]"  style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
+    <div className="lg:grid xs:hidden gap-[24px] overflow-auto overflow-y-scroll bg-[#ECECEC] w-[271px] h-[100%] pt-[32px] pb-[24px] px-[9px]"  style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
         <div>
             <div>
                 <h1 className="text-[14px] font-[600] text-[#000] flex items-center gap-3">Finish setting up your website <MdOutlineKeyboardArrowRight className="text-[18px]"/></h1>
