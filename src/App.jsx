@@ -33,7 +33,7 @@ function App() {
           <Route path='dashboard' element={ <Dashboard/> } />
 
           {/* TEMPLATES */}
-          <Route path='AyobaTemplate' element={ <Homepage/> } />
+          <Route path='ayobatemplate' element={ <Homepage/> } />
         </Routes>
       </Router>
     </>

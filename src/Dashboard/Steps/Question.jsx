@@ -14,7 +14,7 @@ const Question = ({ show, setShow }) => {
                         <div className="flex justify-center mt-[25px]">
                             <div className="flex gap-[16px] items-center">
                                 <p style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#0AADBF] text-[12px] font-[400] cursor-pointer" onClick={() => setShow(false)}>No</p>
-                                <Link to='/AyobaTemplate' target="_blank" className="bg-[#00AABC] rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#fff] text-[12px] font-[400]" onClick={() => setShow(false)}>Yes</Link>
+                                <Link to='/ayobatemplate' className="bg-[#00AABC] rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#fff] text-[12px] font-[400]" onClick={() => setShow(false)}>Yes</Link>
                             </div>
                         </div>
                     </div>
