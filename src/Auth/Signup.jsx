@@ -5,14 +5,20 @@ import facebook from '../assets/icons/facebook.svg'
 import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-const Login = () => {
+const Signup = () => {
 
+  const [email, setEmail] = useState(''); // Add state for email
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value); // Update email state as the user types
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -30,13 +36,36 @@ const Login = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+     // Log the email and password before making the POST request
+      console.log('Email:', email);
+      console.log('Password:', password);
 
     // Check if passwords match
     if (password === confirmPassword) {
-      // Passwords match, you can proceed with submission or other actions
-      alert('Passwords match!');
+      try {
+        // Send signup data to backend
+        const response = await axios.post('http://51.159.4.169/api/user/signup', {
+          email,
+          password,
+        });
+
+        // Handle successful signup (e.g., show success message)
+        console.log(response.data);
+        alert('Signup successful!'); // Example: Show an alert message
+
+        // Redirect user to login page or any other page
+        // You can use React Router's history object for this purpose
+        // history.push('/login'); // Example: Redirect to login page after successful signup
+
+      } catch (error) {
+        // Handle signup error (e.g., show error message)
+        // Handle signup error (e.g., show error message)
+        console.error('Signup failed:', error.response.data);
+        alert('Signup failed. Please try again.'); // Example: Show an alert message
+      }
     } else {
       // Passwords do not match, handle accordingly
       setPasswordsMatch(false);
@@ -56,14 +85,21 @@ const Login = () => {
                     <h2 className='text-[#333] text-center text-[24px] font-[500]'>Sign up</h2>
                     <form className='mt-5' onSubmit={handleSubmit}>
                         <label htmlFor='email' className='text-[#666] text-[16px] font-[400]'>Email address</label><br/>
-                        <input type='email' style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'/>
+                        <input 
+                          type='email' 
+                          value={email}
+                          onChange={handleEmailChange}
+                          style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
+                          className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' 
+                        />
                         <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Password <span onClick={toggleShowPassword} className='cursor-pointer'>{showPassword ? 'Hide' : 'Show'}</span></label>
                         <input 
                           style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
                           className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'
                           type={showPassword ? 'text' : 'password'}
                           value={password}
-                          onChange={handlePasswordChange} /><br/>
+                          onChange={handlePasswordChange}
+                        /><br/>
                         <label htmlFor='password'  className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Confirm Password <span onClick={toggleShowConfirmPassword} className='cursor-pointer'>{showConfirmPassword ? 'Hide' : 'Show'}</span></label>
                         <input 
                           style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
@@ -72,7 +108,7 @@ const Login = () => {
                           value={confirmPassword}
                           onChange={handleConfirmPasswordChange} /><br/>
                         {!passwordsMatch && <p style={{ color: 'red' }} className='mt-[10px] text-[14px] font-[400] leading-[16px]'>Passwords do not match</p>}
-                        <button type='submit' className='bg-[#666] mt-4 rounded-[32px] w-[354px] h-[50px] py-[12px]flex justify-center items-center text-[#fff] text-center text-[18px] font-[500]'>Log in</button>
+                        <button type='submit' className='bg-[#666] mt-4 rounded-[32px] w-[354px] h-[50px] py-[12px]flex justify-center items-center text-[#fff] text-center text-[18px] font-[500]'>Sign Up</button>
                     </form>
                 </div>
                 <div className='lg:mt-[-1rem] xs:mt-[1rem] xs:flex xs:gap-3 xs:items-center xs:justify-center lg:block'>
@@ -98,4 +134,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

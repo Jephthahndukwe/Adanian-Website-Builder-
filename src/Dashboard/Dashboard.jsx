@@ -11,33 +11,9 @@ const Dashboard = () => {
             <div className="relative w-[100vw] h-[95vh] flex items-center justify-center overflow-hidden">
                 <Sidebar className='xs:hidden lg:block'/>
 
-                <div className="h-[100%] lg:p-[2rem] xs:p-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
-                   <h1 className="">Welcome back, User Y</h1>
-                   <div className="flex  gap-[12px] mt-[13px]">
-                    <div className='bg-[#00AABC] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]'>
-                            <h1>1</h1>
-                        </div>
-                        <div className='bg-[#ECECEC] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]'>
-                            <h1>2</h1>
-                        </div>
-                        <div className='bg-[#ECECEC] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]'>
-                            <h1>3</h1>
-                        </div>
-                        <div className='bg-[#ECECEC] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]'>
-                            <h1>4</h1>
-                        </div>
-                        <div className='bg-[#ECECEC] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]'>
-                            <h1>5</h1>
-                        </div>
-                    </div>
-                    <div>
-                        <h1 className="text-[#1E4830] text-[16px] font-[600] mt-[5px]">Step by Step Creation</h1>
-                        <p className="text-[#1E4830] lg:text-[14px] xs:text-[12px] font-[400] mt-[5px]">Our intuitive, user-friendly interface turns your vision into reality, no tech expertise required.</p>
-                    </div>
-                    
+                <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
+                   <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                    
                     <Step1/>
-                    {/* <Step2/> */}
-
                 </div>
             </div>
         </div>

@@ -12,6 +12,8 @@ import Dashboard from './Dashboard/Dashboard'
 
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
+import TestingSteps from './Dashboard/TestingSteps'
+import TestingStep2 from './Dashboard/TestingStep2'
 
 function App() {
 
@@ -28,6 +30,8 @@ function App() {
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
 
+          <Route path='/testingstep' element={ <TestingSteps/> } />
+          <Route path='/testingstep2' element={  <TestingStep2/> } />
 
           {/* DASHBOARD ROUTES */}
           <Route path='dashboard' element={ <Dashboard/> } />

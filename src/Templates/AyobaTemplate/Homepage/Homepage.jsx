@@ -1,20 +1,19 @@
-import { useState, useEffect } from "react"
-import Footer from "../Component/Footer"
-import Navbar from "../Component/Navbar"
-import ayoba from '../assets/ayoba 2.png'
-import woman from '../assets/women_chopped.png'
-import rectangle from '../assets/Rectangle 1.png'
-import Gain from "./Gain"
-import { Link } from "react-router-dom"
-import Sponsors from "./Sponsors"
-import '../TemplateOne.css'
-// import group from '../assets/Group 48 (1).png'
+import { useState, useEffect } from "react";
+import Footer from "../Component/Footer";
+import Navbar from "../Component/Navbar";
+import ayoba from '../assets/ayoba 2.png';
+import woman from '../assets/women_chopped.png';
+import rectangle from '../assets/Rectangle 1.png';
+import Gain from "./Gain";
+import { Link } from "react-router-dom";
+// import Sponsors from "./Sponsors";
+import '../TemplateOne.css';
 import { Editor } from '@tinymce/tinymce-react';
 
 
 const Homepage = () => {
-    const [showSponsorBox, setShowSponsorBox] = useState(true); // Set to true by default
-    const [showExhibitorBox, setShowExhibitorBox] = useState(false);
+    // const [showSponsorBox, setShowSponsorBox] = useState(true); 
+    // const [showExhibitorBox, setShowExhibitorBox] = useState(false);
 
     const [editableElement, setEditableElement] = useState(null);
     const [editorContent, setEditorContent] = useState('');
@@ -61,8 +60,6 @@ const Homepage = () => {
   return (
     <div>
         <Navbar
-             setShowSponsorBox={setShowSponsorBox}
-             setShowExhibitorBox={setShowExhibitorBox}
              handleElementClick={handleElementClick}
         />
         <div className="font">
@@ -92,13 +89,13 @@ const Homepage = () => {
                     <img src={rectangle} className="lg:block w-[100%] xs:hidden" />
                 </div>
         </div>
-        <Sponsors
+        {/* <Sponsors
              showSponsorBox={showSponsorBox}
              showExhibitorBox={showExhibitorBox} 
              setShowSponsorBox={setShowSponsorBox}
              setShowExhibitorBox={setShowExhibitorBox}
              handleElementClick={handleElementClick}
-        />
+        /> */}
         <Gain handleElementClick={handleElementClick}/>
         <Footer handleElementClick={handleElementClick}/>
 
