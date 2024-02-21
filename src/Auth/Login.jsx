@@ -4,10 +4,12 @@ import Google from '../assets/icons/google.svg'
 import facebook from '../assets/icons/facebook.svg'
 import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
 
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,6 +20,37 @@ const Login = () => {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Send login data to backend
+      const response = await axios.post('http://51.159.4.169/api/user/login', {
+        email,
+        password,
+      });
+
+      // Handle successful login
+      console.log('Login successful:', response.data);
+      alert('Login successful!');
+
+      // Redirect user to dashboard
+      navigate('/dashboard');
+    } catch (error) {
+      // Handle login error
+      console.error('Login failed:', error);
+      alert('Login failed. Please try again.');
+    }
+  };
+
 
   return (
     <div className='flex justify-center items-center'>
@@ -30,9 +63,10 @@ const Login = () => {
             <div className='lg:p-[37px] lg:flex gap-[37px] mt-[40px]'> 
                 <div>
                     <h2 className='text-[#333] text-center text-[24px] font-[500]'>Log in</h2>
-                    <form className='mt-5'>
+                    <form className='mt-5' onSubmit={handleSubmit}>
                         <label htmlFor='email' className='text-[#666] text-[16px] font-[400]'>Email address</label><br/>
-                        <input type='email' style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none'/>
+                        <input type='email' style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' value={email}
+                        onChange={handleEmailChange}/>
                         <label htmlFor='password' className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Password <span onClick={toggleShowPassword} className='cursor-pointer'>{showPassword ? 'Hide' : 'Show'}</span></label>
                         <input 
                           type={showPassword ? 'text' : 'password'}
