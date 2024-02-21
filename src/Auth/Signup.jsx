@@ -4,10 +4,12 @@ import Google1 from '../assets/icons/google.svg'
 import facebook from '../assets/icons/facebook.svg'
 import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Signup = () => {
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState(''); // Add state for email
   const [password, setPassword] = useState('');
@@ -55,6 +57,8 @@ const Signup = () => {
         // Handle successful signup (e.g., show success message)
         console.log(response.data);
         alert('Signup successful!'); // Example: Show an alert message
+        // Redirect user to dashboard
+        navigate('/dashboard');
 
         // Redirect user to login page or any other page
         // You can use React Router's history object for this purpose
