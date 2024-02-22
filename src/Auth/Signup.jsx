@@ -120,10 +120,9 @@ const Signup = () => {
                     <h2 className='mt-[23px] mb-[23px] text-[#333] text-[16px] font-[100]'>OR</h2>
                     <div className='lg:h-[170px] lg:w-[2px] xs:h-[2px] xs:w-[150px] lg:ms-2 bg-[#666]' style={{background: `rgba(102, 102, 102, 0.25)`}}/>
                 </div>
-                <div className='lg:mt-0 xs:mt-[-4rem]'>
+                <div className='lg:mt-[3rem] xs:mt-[-4rem]'>
                     <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'><img src={Google1} /> Continue with Google</button>
                     <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[24px] text-[#333] text-[16px] font-[400]'><img src={facebook} /> Continue with Facebook</button>
-                    <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[24px] text-[#333] text-[16px] font-[400]'><img src={mail} /> Sign up with email</button>
                 </div>     
             </div>
               <div className='lg:mt-[25px] xs:mt-[3rem] lg:mb-0 xs:mb-[2rem]'>
