@@ -1,0 +1,7 @@
+{
+    "redirects": [
+      { "source": "/old-page", "destination": "/new-page", "statusCode": 301 },
+      { "source": "/another-old-page", "destination": "/new-page", "statusCode": 301 }
+    ]
+  }
+  
