@@ -49,7 +49,7 @@ const Signup = () => {
     if (password === confirmPassword) {
       try {
         // Send signup data to backend
-        const response = await axios.post('http://51.159.4.169/api/user/signup', {
+        const response = await axios.post('https://ayoba.adanianlabs.io/api/user/signup', {
           email,
           password,
         });

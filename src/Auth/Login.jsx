@@ -33,7 +33,7 @@ const Login = () => {
 
     try {
       // Send login data to backend
-      const response = await axios.post('http://51.159.4.169/api/user/login', {
+      const response = await axios.post('https://ayoba.adanianlabs.io/api/user/login', {
         email,
         password,
       });
