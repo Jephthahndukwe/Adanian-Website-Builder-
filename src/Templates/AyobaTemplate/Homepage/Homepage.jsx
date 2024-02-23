@@ -6,7 +6,6 @@ import woman from '../assets/women_chopped.png';
 import rectangle from '../assets/Rectangle 1.png';
 import Gain from "./Gain";
 import { Link } from "react-router-dom";
-// import Sponsors from "./Sponsors";
 import '../TemplateOne.css';
 import { Editor } from '@tinymce/tinymce-react';
 
@@ -81,7 +80,7 @@ const Homepage = () => {
                            <p className="lg:mt-[8rem] xs:mt-[3rem] relative"><Link to='/' className="bg-[#0161A2] lg:w-[400px] xs:w-[50px] text-[#fff] lg:text-[24px] xs:text-[14px] font-[400] h-[77px] rounded-[8px] lg:p-[20px] xs:p-[12px]">Download Concept Note</Link></p>
                         </div>
                         <div>
-                            <img src={woman} className="lg:absolute lg:w-[387px] lg:h-[650px] lg:ms-[-23rem] lg:mt-[-1.7rem] xs:mt-[5rem] " />
+                            <img src={woman} className="lg:absolute lg:w-[387px] lg:h-[650px] lg:ms-[-23rem] lg:mt-[-1.7rem] xs:mt-[5rem]"  />
                         </div>
                     </div>
                 </div>
@@ -89,13 +88,6 @@ const Homepage = () => {
                     <img src={rectangle} className="lg:block w-[100%] xs:hidden" />
                 </div>
         </div>
-        {/* <Sponsors
-             showSponsorBox={showSponsorBox}
-             showExhibitorBox={showExhibitorBox} 
-             setShowSponsorBox={setShowSponsorBox}
-             setShowExhibitorBox={setShowExhibitorBox}
-             handleElementClick={handleElementClick}
-        /> */}
         <Gain handleElementClick={handleElementClick}/>
         <Footer handleElementClick={handleElementClick}/>
 

@@ -8,7 +8,11 @@ import QuestionTwo from './Auth/AuthQues/QuestionTwo'
 import QuestionThree from './Auth/AuthQues/QuestionThree'
 import QuestionFour from './Auth/AuthQues/QuestionFour'
 import QuestionFive from './Auth/AuthQues/QuestionFive'
+
+// DASHBOARD
 import Dashboard from './Dashboard/Dashboard'
+import AppPlugins from './Dashboard/pages/AppPlugins'
+
 
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
@@ -35,6 +39,7 @@ function App() {
 
           {/* DASHBOARD ROUTES */}
           <Route path='dashboard' element={ <Dashboard/> } />
+          <Route path='appplugins' element={ <AppPlugins/> } />
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />
