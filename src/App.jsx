@@ -12,12 +12,12 @@ import QuestionFive from './Auth/AuthQues/QuestionFive'
 // DASHBOARD
 import Dashboard from './Dashboard/Dashboard'
 import AppPlugins from './Dashboard/pages/AppPlugins'
-
+import Website from './Dashboard/pages/Website'
 
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
-import TestingSteps from './Dashboard/TestingSteps'
-import TestingStep2 from './Dashboard/TestingStep2'
+import Templates from './Templates/TemplateDashboard/Templates'
+
 
 function App() {
 
@@ -34,12 +34,12 @@ function App() {
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
 
-          <Route path='/testingstep' element={ <TestingSteps/> } />
-          <Route path='/testingstep2' element={  <TestingStep2/> } />
 
           {/* DASHBOARD ROUTES */}
           <Route path='dashboard' element={ <Dashboard/> } />
           <Route path='appplugins' element={ <AppPlugins/> } />
+          <Route path='website' element={ <Website/> } />
+          <Route path='website/templates' element={ <Templates/> } />
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />
