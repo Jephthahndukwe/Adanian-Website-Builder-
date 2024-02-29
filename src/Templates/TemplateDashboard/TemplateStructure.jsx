@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
-import template1 from '../../assets/images/template1.png';
+import OnlineStore1 from '../../assets/images/onlinestore1.png'
+import OnlineStore2 from '../../assets/images/onlinestore2.png'
+import OnlineStore3 from '../../assets/images/onlinestore3.png'
+import OnlineStore4 from '../../assets/images/onlinestore4.png'
+import OnlineStore5 from '../../assets/images/onlinestore5.png'
+import OnlineStore6 from '../../assets/images/onlinestore6.png'
+import Portfolio1 from '../../assets/images/Portfolio1.png'
+import Portfolio2 from '../../assets/images/Portfolio2.png'
+import Portfolio3 from '../../assets/images/Portfolio3.png'
+import Portfolio4 from '../../assets/images/Portfolio4.png'
+import Portfolio5 from '../../assets/images/Portfolio5.png'
+import Blog1 from '../../assets/images/blog1.png'
+import Blog2 from '../../assets/images/blog2.png'
+import Blog3 from '../../assets/images/blog3.png'
+import Educational1 from '../../assets/images/educational1.png'
+import Educational2 from '../../assets/images/educational2.png'
+import Educational3 from '../../assets/images/educational3.png'
 import template2 from '../../assets/images/template2.png';
 import template3 from '../../assets/images/template3.png';
 import PropTypes from 'prop-types';
@@ -7,20 +23,32 @@ import PropTypes from 'prop-types';
 
 const imageData = {
   'Online Store': [
-    { src: template1 },
-    { src: template2 },
+    { src: OnlineStore1 },
+    { src: OnlineStore2 },
+    { src: OnlineStore3 },
+    { src: OnlineStore4 },
+    { src: OnlineStore5 },
+    { src: OnlineStore6 },
     // Add more online store images
   ],
   'Portfolio': [
-    { src: template3 },
+    { src: Portfolio1 },
+    { src: Portfolio2 },
+    { src: Portfolio3 },
+    { src: Portfolio4 },
+    { src: Portfolio5 },
     // Add more Portfolio images
   ],
   'Blog': [
-    { src: template3 },
+    { src: Blog1 },
+    { src: Blog2 },
+    { src: Blog3 },
     // Add more Blog images
   ],
   'Educational': [
-    { src: template3 },
+    { src: Educational1 },
+    { src: Educational2 },
+    { src: Educational3 },
     // Add more Educational images
   ],
   'Service Business': [
@@ -74,7 +102,7 @@ export const Navbar = ({ setCategory, setSearchQuery }) => {
   );
 };
 
-const ImageDisplay = ({ category, searchQuery }) => {
+const ImageDisplay = ({ category }) => {
   const images = category === 'All' ? Object.values(imageData).flat() : imageData[category];
 
 
