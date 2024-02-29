@@ -109,9 +109,9 @@ const ImageDisplay = ({ category }) => {
   return (
     <div className='px-[50px] mt-[2rem]'>
         <h1 className='text-[#000] text-[20px] font-[700] leading-[32px]'>{category} Website Templates</h1>
-        <div className="flex justify-start items-center flex-wrap gap-[2rem] mt-[2rem]">
+        <div className="lg:flex justify-start items-center flex-wrap gap-[2rem] mt-[2rem]">
         {images.map((image, index) => (
-            <img key={index} src={image.src} alt={category} className="m-2 w-[30%]" />
+            <img key={index} src={image.src} alt={category} className="m-2 lg:w-[30%] xs:w-[100%]" />
         ))}
         </div>
     </div>
