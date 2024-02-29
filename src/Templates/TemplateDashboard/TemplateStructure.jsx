@@ -238,7 +238,7 @@ const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
             return (
               <div className=''>
                   <div className='relative'>
-                    <div className="bg-[#F1F1F1E6] w-[95.8%] h-[80%] absolute flex items-center justify-center transition-opacity duration-300 ms-[0.5rem] opacity-0 hover:opacity-100">
+                    <div className="bg-[#F1F1F1E6] lg:w-[95.8%] xs:w-[100%] h-[80%] absolute flex items-center justify-center transition-opacity duration-300 ms-[0.5rem] opacity-0 hover:opacity-100">
                       <div className='ms-[-1.5rem]'>
                         <Link to='/templateviewintro' className='bg-blue-500 rounded-[50px] hover:bg-transparent hover:border-[1px] hover:border-solid hover:border-blue-500 hover:text-blue-500 py-[10px] text-white w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer'>Edit</Link>
                         <Link to='' className='bg-transparent border-[1px] border-solid hover:bg-blue-500 text-blue-500 hover:text-white mt-[1rem] border-blue-500 rounded-[50px] p-[10px] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer'>view</Link>
