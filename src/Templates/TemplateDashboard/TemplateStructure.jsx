@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 import OnlineStore1 from '../../assets/images/onlinestore1.png'
 import OnlineStore2 from '../../assets/images/onlinestore2.png'
 import OnlineStore3 from '../../assets/images/onlinestore3.png'
@@ -237,10 +238,12 @@ const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
             return (
               <div className=''>
                   <div className='relative'>
-                  {/* <div className="hover:bg-[#F1F1F1B3] w-[95.8%] h-[80%] text-transparent absolute hover:text-white flex items-center justify-center transition-opacity duration-300 ms-[0.5rem]">
-                    <h1 className='hover:bg-blue-500 rounded-[50px] p-[10px] w-[20%] flex justify-center items-center text-[14px] font-[500]'>Edit</h1>
-                    <h1>view</h1>
-                  </div> */}
+                    <div className="bg-[#F1F1F1E6] w-[95.8%] h-[80%] absolute flex items-center justify-center transition-opacity duration-300 ms-[0.5rem] opacity-0 hover:opacity-100">
+                      <div className='ms-[-1.5rem]'>
+                        <Link to='/templateviewintro' className='bg-blue-500 rounded-[50px] hover:bg-transparent hover:border-[1px] hover:border-solid hover:border-blue-500 hover:text-blue-500 py-[10px] text-white w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer'>Edit</Link>
+                        <Link to='' className='bg-transparent border-[1px] border-solid hover:bg-blue-500 text-blue-500 hover:text-white mt-[1rem] border-blue-500 rounded-[50px] p-[10px] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer'>view</Link>
+                      </div>
+                    </div>
                     <img key={index} src={image.src} alt={`${category}, ${`Image ${index + 1}`}`} className="m-2  lg:mt-0 xs:mt-[3rem]" />
                     <h1 className='mt-[2rem] mb-[1rem] ms-[0.5rem] text-[#000] text-[16px] leading-[22px] font-[500]'>{image.text}</h1>
                   </div>

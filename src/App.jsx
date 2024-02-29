@@ -17,6 +17,7 @@ import Website from './Dashboard/pages/Website'
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
 import Templates from './Templates/TemplateDashboard/Templates'
+import TemplateViewIntro from './Templates/TemplateDashboard/TemplateViewIntro'
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path='appplugins' element={ <AppPlugins/> } />
           <Route path='website' element={ <Website/> } />
           <Route path='website/templates' element={ <Templates/> } />
+          <Route path='templateviewintro' element={ <TemplateViewIntro/> } />
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />
