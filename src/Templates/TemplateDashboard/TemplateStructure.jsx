@@ -16,8 +16,25 @@ import Blog3 from '../../assets/images/blog3.png'
 import Educational1 from '../../assets/images/educational1.png'
 import Educational2 from '../../assets/images/educational2.png'
 import Educational3 from '../../assets/images/educational3.png'
-import template2 from '../../assets/images/template2.png';
-import template3 from '../../assets/images/template3.png';
+import Services1 from '../../assets/images/services1.png'
+import Services2 from '../../assets/images/services2.png'
+import Services3 from '../../assets/images/services3.png'
+import Food1 from '../../assets/images/food1.png'
+import Food2 from '../../assets/images/food2.png'
+import Food3 from '../../assets/images/food3.png'
+import Food4 from '../../assets/images/food4.png'
+import Technology1 from '../../assets/images/technology1.png'
+import Technology2 from '../../assets/images/technology2.png'
+import Technology3 from '../../assets/images/technology3.png'
+import Healthcare1 from '../../assets/images/health1.png'
+import Healthcare2 from '../../assets/images/health2.png'
+import Fashion1 from '../../assets/images/fashion1.png'
+import Fashion2 from '../../assets/images/fashion2.png'
+import Fashion3 from '../../assets/images/fashion3.png'
+import Entertainment1 from '../../assets/images/entertainment1.png'
+import Entertainment2 from '../../assets/images/entertainment2.png'
+import Entertainment3 from '../../assets/images/entertainment3.png'
+import Entertainment4 from '../../assets/images/entertainment4.png'
 import PropTypes from 'prop-types';
 
 
@@ -52,27 +69,40 @@ const imageData = {
     // Add more Educational images
   ],
   'Service Business': [
-    { src: template3 },
+    { src: Services1 },
+    { src: Services2 },
+    { src: Services3 },
     // Add more restaurant images
   ],
   'Restaurant': [
-    { src: template3 },
+    { src: Food1 },
+    { src: Food2 },
+    { src: Food3 },
+    { src: Food4 },
     // Add more restaurant images
   ],
   'IT & Technology': [
-    { src: template3 },
+    { src: Technology1 },
+    { src: Technology2 },
+    { src: Technology3 },
     // Add more IT & Technology images
   ],
   'HealthCare': [
-    { src: template3 },
+    { src: Healthcare1 },
+    { src: Healthcare2 },
     // Add more HealthCare images
   ],
   'Fashion': [
-    { src: template3 },
+    { src: Fashion1 },
+    { src: Fashion2 },
+    { src: Fashion3 },
     // Add more Fashion images
   ],
   'Entertainment': [
-    { src: template3 },
+    { src: Entertainment1 },
+    { src: Entertainment2 },
+    { src: Entertainment3 },
+    { src: Entertainment4 },
     // Add more Entertainment images
   ],
 };
@@ -83,8 +113,8 @@ export const Navbar = ({ setCategory, setSearchQuery }) => {
   };
 
   return (
-    <div className="px-[30px] py-[20px] flex justify-between items-center">
-      <ul className="flex gap-[15px] items-center">
+    <div className="lg:px-[30px] xs:px-[20px] py-[20px] lg:flex justify-between items-center">
+      <ul className="flex flex-wrap gap-[15px] items-center">
         {Object.keys(imageData).map(category => (
           <li
             key={category}
@@ -95,7 +125,7 @@ export const Navbar = ({ setCategory, setSearchQuery }) => {
           </li>
         ))}
       </ul>
-      <h2 className="text-[15px] text-[#0AADBF] font-[500] cursor-pointer" onClick={() => handleClick('All')}>
+      <h2 className="text-[15px] text-[#0AADBF] font-[500] cursor-pointer lg:mt-0 xs:mt-[1.5rem] flex justify-end items-end" onClick={() => handleClick('All')}>
         All Templates
       </h2>
     </div>
@@ -107,11 +137,11 @@ const ImageDisplay = ({ category }) => {
 
 
   return (
-    <div className='px-[50px] mt-[2rem]'>
-        <h1 className='text-[#000] text-[20px] font-[700] leading-[32px]'>{category} Website Templates</h1>
+    <div className='lg:px-[50px] xs:px-[20px] mt-[2rem] lg:mb-0 xs:mb-[4rem]'>
+        <h1 className='text-[#000] lg:text-[20px] xs:text-[18px] font-[700] leading-[32px]'>{category} Website Templates</h1>
         <div className="lg:flex justify-start items-center flex-wrap gap-[2rem] mt-[2rem]">
         {images.map((image, index) => (
-            <img key={index} src={image.src} alt={category} className="m-2 lg:w-[30%] xs:w-[100%]" />
+            <img key={index} src={image.src} alt={category} className="m-2 lg:w-[30%] xs:w-[100%] lg:mt-0 xs:mt-[3rem]" />
         ))}
         </div>
     </div>

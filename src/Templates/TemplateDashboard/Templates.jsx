@@ -26,9 +26,9 @@ const Templates = () => {
            <div className="shadow-md">
             <Navbar/>
            </div>
-            <div className="py-[50px] px-[40px] flex justify-between items-center">
-                <h1 className="text-[#000000] text-[32px] font-[700]">Pick the Website Template You Love</h1>
-                <label className="flex items-center">
+            <div className="py-[50px] lg:px-[40px] xs:px-[20px] lg:flex justify-between items-center">
+                <h1 className="text-[#000000] lg:text-[32px] xs:text-[25px] font-[700]">Pick the Website Template You Love</h1>
+                <label className="flex items-center lg:mt-0 xs:mt-[2rem]">
                     <input 
                         type="search" 
                         placeholder="Search all templates..."
