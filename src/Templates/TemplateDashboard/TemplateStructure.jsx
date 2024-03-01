@@ -182,7 +182,7 @@ export const Navbar = ({ setCategory, setSearchResults  }) => {
 
   return (
     <div>
-       <div className="py-[50px] lg:px-[40px] xs:px-[20px] lg:flex justify-between items-center">
+       <div className="pt-[50px] lg:px-[40px] xs:px-[20px] lg:flex justify-between items-center">
             <h1 className="text-[#000000] lg:text-[32px] xs:text-[25px] font-[700]">Pick the Website Template You Love</h1>
             <label className="flex items-center lg:mt-0 xs:mt-[2rem]">
                 <input 
@@ -205,12 +205,12 @@ export const Navbar = ({ setCategory, setSearchResults  }) => {
         </div>
         <hr className="w-[100%] h-[1px] bg-[#eee]"/>
 
-      <div className="lg:px-[30px] xs:px-[20px] py-[20px] lg:flex justify-between items-center">
+      <div className="lg:px-[30px] xs:px-[20px] pt-[20px] lg:flex justify-between items-center">
       <ul className="flex flex-wrap gap-[15px] items-center">
         {Object.keys(imageData).map(category => (
           <li
             key={category}
-            className="text-[13px] text-[#666666cc] font-[400] leading-[24px] cursor-pointer"
+            className="text-[13px] text-[#666666cc] hover:text-[#0AADBF] font-[400] leading-[24px] cursor-pointer"
             onClick={() => handleClick(category)}
           >
             {category}

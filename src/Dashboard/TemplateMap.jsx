@@ -7,7 +7,7 @@ const TemplateMap = [
         id: 1,
         Image: eductional,
         heading: 'School Website',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor aliqua.'
+        text: 'Not published'
     }
 ]
 

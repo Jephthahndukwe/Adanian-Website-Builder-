@@ -18,7 +18,7 @@ const Dashboard = () => {
             <div className="relative w-[100vw] h-[95vh] flex items-center justify-center overflow-hidden">
                 <Sidebar className='xs:hidden lg:block'/>
 
-                <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%] mt-3 mb-[3rem]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
+                <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%] mt-[3rem] mb-[3rem]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
                    <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                    
                     <Step1/>
 
@@ -39,6 +39,7 @@ const Dashboard = () => {
                                         <div className="mt-[2rem] cursor-pointer" onClick={() => setShow(true)}>
                                             <img src={index.Image} className="w-[317px] h-[218.75px] object-fill" />
                                             <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{index.heading}</h2>
+                                            <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{index.text}</h3>
                                         </div>
                                     </div>
                                 ))
