@@ -10,12 +10,14 @@ import image3 from '../images/image 13.png'
 import image4 from '../images//image 14.png'
 import ContactFuture from './ContactFuture'
 import Footer from '../Footer'
+import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
 
 
 const Contact = () => {
 
   return (
     <>
+    <TemplateEditNavbar/>
      <div>
         <NavBar/>
 

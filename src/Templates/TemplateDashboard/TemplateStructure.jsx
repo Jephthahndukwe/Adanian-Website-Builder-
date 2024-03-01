@@ -18,6 +18,7 @@ import Blog3 from '../../assets/images/blog3.png'
 import Educational1 from '../../assets/images/educational1.png'
 import Educational2 from '../../assets/images/educational2.png'
 import Educational3 from '../../assets/images/educational3.png'
+import Educational4 from '../../assets/images/educational4.png'
 import Services1 from '../../assets/images/services1.png'
 import Services2 from '../../assets/images/services2.png'
 import Services3 from '../../assets/images/services3.png'
@@ -40,6 +41,13 @@ import Entertainment4 from '../../assets/images/entertainment4.png'
 
 
 const imageData = {
+  'Educational': [
+    { src: Educational4, text: 'School Website' },
+    { src: Educational1, text: 'Online School' },
+    { src: Educational2, text: 'College' },
+    { src: Educational3, text: 'Education Blog' },
+    // Add more Educational images
+  ],
   'Online Store': [
     { src: OnlineStore1, text: 'Accessories Store' },
     { src: OnlineStore2, text: 'Electronics Store' },
@@ -62,12 +70,6 @@ const imageData = {
     { src: Blog2, text: 'Travel Blog' },
     { src: Blog3, text: 'Personal Blog' },
     // Add more Blog images
-  ],
-  'Educational': [
-    { src: Educational1, text: 'Online School' },
-    { src: Educational2, text: 'College' },
-    { src: Educational3, text: 'Education Blog' },
-    // Add more Educational images
   ],
   'Service Business': [
     { src: Services1, text: 'Cleaning Company' },

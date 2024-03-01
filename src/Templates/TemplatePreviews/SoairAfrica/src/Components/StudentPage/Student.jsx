@@ -10,6 +10,7 @@ import frame2 from '../images/Frame 162.png'
 import group from '../images/Group 2.png'
 import selectData from './SelectTemplate'
 import Footer from '../Footer'
+import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
 
 const Student = () => {
   const [searchTerms, setSearchTerms] = useState("");
@@ -17,6 +18,7 @@ const Student = () => {
 
   return (
     <>
+    <TemplateEditNavbar/>
      <div>
         <NavBar/>
         <div className='background2'>

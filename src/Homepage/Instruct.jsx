@@ -6,9 +6,9 @@ const Instruct = () => {
     <div style={{background: `#FB9613`}} className="py-[103px] lg:px-[70px] xs:px-[20px] pt-12">
         <div className="lg:flex gap-[70px] items-center">
             <div>
-                <h1 className="text-[#000] text-[56px] font-[400] leading-[76.8px] text-start">You Instruct, <br/> We Work</h1>
+                <h1 className="text-[#000] text-[54px] font-[400] leading-[76.8px] text-start">You Instruct, <br/> We Work</h1>
                 <div className="border-t-[1px] border-t-[solid] border-t-[#353535] w-[330px] h-[5px] mt-[65px]" />
-                <h3 className="mt-[65px]"><Link to='/' className="text-[#fff] text-[20px] font-[400] leading-[28px] bg-[#000] rounded-[100px] py-[14px] px-[24px] hover:bg-[#fff] hover:text-[#000]">Watch Tutorial</Link></h3>
+                <h3 className="mt-[65px]"><Link to='/' className="text-[#fff] text-[20px] font-[400] leading-[28px] bg-[#000] rounded-[100px] no-underline py-[14px] px-[24px] hover:bg-[#fff] hover:text-[#000]">Watch Tutorial</Link></h3>
             </div>
             <div className="lg:ms-[75px]">
                 <p className="text-[#000] text-[17px] font-[400] leading-[44px]  text-start lg:mt-0 xs:mt-[5rem]">

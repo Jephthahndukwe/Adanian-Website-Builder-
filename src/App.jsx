@@ -30,12 +30,12 @@ import SoairContact from './Templates/TemplatePreviews/SoairAfrica/src/Component
 import SoairEnrollPage from "./Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/EnrollPage";
 
 // EDITING TEMPLATE
-import SoairEditHome from './Templates/SoairAfrica/src/Components/HomePage/Home'
-import SoairEditCourse from './Templates/SoairAfrica/src/Components/CoursePage/Courses'
-import SoairEditEvent from './Templates/SoairAfrica/src/Components/EventsPage/Event';
-import SoairEditStudent from './Templates/SoairAfrica/src/Components/StudentPage/Student';
-import SoairEditContact from './Templates/SoairAfrica/src/Components/ContactPage/Contact';
-import SoairEditEnrollPage from "./Templates/SoairAfrica/src/Components/CoursePage/EnrollPage";
+import SoairEditHome from './Templates/TemplateEditing/SoairAfrica/src/Components/HomePage/Home'
+import SoairEditCourse from './Templates/TemplateEditing/SoairAfrica/src/Components/CoursePage/Courses'
+import SoairEditEvent from './Templates/TemplateEditing/SoairAfrica/src/Components/EventsPage/Event';
+import SoairEditStudent from './Templates/TemplateEditing/SoairAfrica/src/Components/StudentPage/Student';
+import SoairEditContact from './Templates/TemplateEditing/SoairAfrica/src/Components/ContactPage/Contact';
+import SoairEditEnrollPage from "./Templates/TemplateEditing/SoairAfrica/src/Components/CoursePage/EnrollPage";
 
 
 function App() {

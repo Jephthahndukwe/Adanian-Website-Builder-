@@ -3,7 +3,7 @@ import africa from '../assets/images/africa-cruise-safari.png'
 const Steps = () => {
   return (
     <div style={{background: `var(--Main-colour, #FB9613)`}} className="lg:ps-[30px] lg:pr-[90px] lg:px-0 xs:px-[20px] py-[40px] mt-[7rem]">
-        <div className="flex flex-wrap gap-auto items-center justify-between">
+        <div className="flex gap-[5rem] items-center justify-between">
             <div>
                 <img src={africa} width='500px' height='500px' />
             </div>

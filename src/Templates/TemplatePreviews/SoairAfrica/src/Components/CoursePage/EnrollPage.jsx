@@ -1,12 +1,15 @@
 import React from 'react'
 import '../stylings/Course.css'
 import logo from '../images/SOAIR LOGO 01 1.png'
+import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
 
 
 
 const EnrollPage = () => {
   
   return (
+    <>
+    <TemplateEditNavbar/>
     <div className='container-fluid'>
         <div className='nav d-sm-flex justify-content-between align-items-center p-4'>
             <img src={logo} className='logo-img2' />
@@ -93,6 +96,7 @@ const EnrollPage = () => {
           <button type='submit' className='f-style enrollBtn mt-5 fs-5'>Submit</button>
         </form>
     </div>
+    </>
   )
 }
 

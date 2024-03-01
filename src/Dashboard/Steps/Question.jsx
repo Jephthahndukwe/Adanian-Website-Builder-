@@ -13,8 +13,8 @@ const Question = ({ show, setShow }) => {
                     <h1 className="text-[25px] font-[500] text-[#000] text-center">Do you want to edit this template?</h1>
                         <div className="flex justify-center mt-[25px]">
                             <div className="flex gap-[16px] items-center">
-                                <p style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#0AADBF] text-[12px] font-[400] cursor-pointer" onClick={() => setShow(false)}>No</p>
-                                <Link to='/ayobatemplate' className="bg-[#00AABC] rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#fff] text-[12px] font-[400]" onClick={() => setShow(false)}>Yes</Link>
+                                <p style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#0AADBF] text-[12px] font-[400] cursor-pointer hover:bg-[#00AABC] hover:text-[#fff]" onClick={() => setShow(false)}>No</p>
+                                <Link to='/SoairEditHome' className="bg-[#00AABC] rounded-[100px] flex justify-center items-center py-[15px] px-[30px] h-[24px] text-[#fff] text-[12px] font-[400] no-underline mt-[-1rem] hover:text-[#00AABC] hover:border-[1px] hover:border-solid hover:border-[#00AABC] hover:bg-[#fff]" onClick={() => setShow(false)}>Yes</Link>
                             </div>
                         </div>
                     </div>
