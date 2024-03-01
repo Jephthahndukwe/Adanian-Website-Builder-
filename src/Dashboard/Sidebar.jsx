@@ -24,8 +24,8 @@ const Sidebar = () => {
             </div>
             <div className="mt-[32px]">
                 <h1 className="text-[#000] text-[16px] font-[400]">Set Up</h1>
-                <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]"><Link to='/Dashboard'>Home</Link></h1>
-                <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]"><Link to='/appplugins'>App and Plug-ins</Link></h1>
+                <Link to='/Dashboard' className="text-[#000] text-[16px] font-[400] no-underline">Home</Link>
+                <Link to='/appplugins' className="no-underline"><h1 className="text-[#000] text-[16px] font-[400] mt-2">App and Plug-ins</h1></Link>
                 <hr className="w-[231px] h-[4px] mt-[10px] bg-[#fff]"/>
             </div>
             <div className="mt-[32px]">

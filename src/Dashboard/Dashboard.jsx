@@ -28,8 +28,8 @@ const Dashboard = () => {
                                 <h3  className="text-[#000] text-[10px] font-[300]">Or pick</h3>
                                 <h3 className="text-[#000] text-[10px] font-[500]">Template</h3>
                             </div>
-                            <div className='border-[1px] border-solid border-[#00AABC] hover:bg-[#00AABC] hover:text-[#fff] text-[#00AABC] py-[5px] px-[20px] rounded-[100px]'>
-                                <Link to='/website' className='flex gap-[8px] justify-center items-center text-[14px] font-[400]'><FaPencilAlt /> Design Site</Link>
+                            <div className='border-[1px] border-solid border-[#00AABC] hover:bg-[#00AABC] text-[#00AABC] py-[5px] px-[20px] rounded-[100px] hover:text-[#fff]'>
+                                <Link to='/website' className='flex gap-[8px] justify-center items-center text-[14px] font-[400] no-underline hover:text-[#fff] text-[#00AABC]'><FaPencilAlt /> Design Site</Link>
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-[16px]">

@@ -29,11 +29,16 @@ export default {
         roboto: ['Roboto'],
         montserrat: ['Montserrat']
       },
+      fontFamily: {
+        sans: ['Gilroy', 'sans-serif']
+      },
       colors: {
-        navyBlue: "#001F3F",
-        steelGray: "#A9A9A9",
-        forestGreen: "#228B22",
-        burgundy: "#800020",
+        green: {
+          600: "#00AABC"
+        }
+      },
+      spacing: {
+        18: "4.5rem",
       }
     },
   },

@@ -12,3 +12,7 @@
   font-family: 'Inter';
   transition: .3s ease;
 }
+
+Link {
+  text-decoration: none;
+}

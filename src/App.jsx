@@ -18,6 +18,24 @@ import Website from './Dashboard/pages/Website'
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
 import Templates from './Templates/TemplateDashboard/Templates'
 import TemplateViewIntro from './Templates/TemplateDashboard/TemplateViewIntro'
+import TemplateEditor from './Templates/TemplateDashboard/TemplateEditor/TemplateEditor'
+
+
+// PREVIEW TEMPLATE
+import SoairHome from './Templates/TemplatePreviews/SoairAfrica/src/Components/HomePage/Home'
+import SoairCourse from './Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/Courses'
+import SoairEvent from './Templates/TemplatePreviews/SoairAfrica/src/Components/EventsPage/Event';
+import SoairStudent from './Templates/TemplatePreviews/SoairAfrica/src/Components/StudentPage/Student';
+import SoairContact from './Templates/TemplatePreviews/SoairAfrica/src/Components/ContactPage/Contact';
+import SoairEnrollPage from "./Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/EnrollPage";
+
+// EDITING TEMPLATE
+import SoairEditHome from './Templates/SoairAfrica/src/Components/HomePage/Home'
+import SoairEditCourse from './Templates/SoairAfrica/src/Components/CoursePage/Courses'
+import SoairEditEvent from './Templates/SoairAfrica/src/Components/EventsPage/Event';
+import SoairEditStudent from './Templates/SoairAfrica/src/Components/StudentPage/Student';
+import SoairEditContact from './Templates/SoairAfrica/src/Components/ContactPage/Contact';
+import SoairEditEnrollPage from "./Templates/SoairAfrica/src/Components/CoursePage/EnrollPage";
 
 
 function App() {
@@ -42,10 +60,26 @@ function App() {
           <Route path='website' element={ <Website/> } />
           <Route path='website/templates' element={ <Templates/> } />
           <Route path='templateviewintro' element={ <TemplateViewIntro/> } />
+          <Route path='templateeditor' element={ <TemplateEditor/> } />
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />
-        </Routes>
+          {/* Preview Template */}
+          <Route path='SoairHome' element={ <SoairHome/> } />
+          <Route path='SoairCourse' element={ <SoairCourse/> } />
+          <Route path='SoairEvent' element={ <SoairEvent/> } />
+          <Route path='SoairStudent' element={ <SoairStudent/> } />
+          <Route path='SoairContact' element={ <SoairContact/> } />
+          <Route path='SoairEnrollPage' element={ <SoairEnrollPage/> } />
+
+        {/* Editing Template         */}
+          <Route path='SoairEditHome' element={ <SoairEditHome/> } />
+          <Route path='SoairEditCourse' element={ <SoairEditCourse/> } />
+          <Route path='SoairEditEvent' element={ <SoairEditEvent/> } />
+          <Route path='SoairEditStudent' element={ <SoairEditStudent/> } />
+          <Route path='SoairEditContact' element={ <SoairEditContact/> } />
+          <Route path='SoairEditEnrollPage' element={ <SoairEditEnrollPage/> } />
+         </Routes>
       </Router>
     </>
   )

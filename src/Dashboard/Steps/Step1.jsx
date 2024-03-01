@@ -53,7 +53,7 @@ const Step1 = () => {
         <div className="flex gap-[12px] mt-[13px]">
                 {[1, 2, 3, 4, 5].map(step => (
                     <div key={step} className={`bg-[#${currentStep >= step ? '00AABC' : 'ECECEC'}] rounded-[12px] text-[#fff] flex justify-center items-center w-[62px] h-[30px] p-[8px]`}>
-                        <h1>{step}</h1>
+                        <h1 className="text-[20px] pt-2">{step}</h1>
                     </div>
                 ))}
             </div>
