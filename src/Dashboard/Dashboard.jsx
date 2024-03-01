@@ -18,7 +18,7 @@ const Dashboard = () => {
             <div className="relative w-[100vw] h-[95vh] flex items-center justify-center overflow-hidden">
                 <Sidebar className='xs:hidden lg:block'/>
 
-                <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
+                <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%] mt-3 mb-[3rem]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
                    <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                    
                     <Step1/>
 
@@ -29,7 +29,7 @@ const Dashboard = () => {
                                 {/* <h3 className="text-[#000] text-[10px] font-[500]">Template</h3> */}
                             </div>
                             <div className='border-[1px] border-solid border-[#00AABC] hover:bg-[#00AABC] text-[#00AABC] py-[5px] px-[20px] rounded-[100px] hover:text-[#fff]'>
-                                <Link to='/website' className='flex gap-[8px] justify-center items-center text-[14px] font-[400] no-underline hover:text-[#fff] text-[#00AABC]'><FaPencilAlt /> Design Site</Link>
+                                <Link to='/website' className='flex gap-[8px] justify-center items-center text-[14px] font-[400] no-underline hover:text-[#fff] text-[#00AABC]'><FaPencilAlt /> Design New Site</Link>
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-[16px]">

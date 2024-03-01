@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div className='lg:flex items-center gap-auto justify-between px-[24px] py-[12px] xs:hidden'>
         <div>
-            <Link to='/'><img src={Logo} /></Link>
+            <Link to='/dashboard'><img src={Logo} /></Link>
         </div>
         <div className='flex items-center gap-[32px]'>
             <Link to='/' className='no-underline'><h3 className='flex items-center gap-2 text-[14px] text-[#000] font-[400] no-underline'>Titled Project <span><MdKeyboardArrowDown className='mt-[3px]' /></span></h3></Link>

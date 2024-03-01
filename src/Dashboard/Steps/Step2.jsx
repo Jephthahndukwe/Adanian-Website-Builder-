@@ -8,19 +8,18 @@ const Step2 = ({ formDataStep2, handleInputChangeStep2, nextStep, prevStep }) =>
   return (
     <div>
        <form onSubmit={nextStep}>
-            <div style={{ boxShadow: `4px 4px 20px 0px rgba(128, 128, 128, 0.15)`}} className="bg-[#fff] rounded-[24px] w-[854px] py-[32px] ps-[24px] pr-[52px] mt-[36px]">
-                <div className="flex justify-end items-end">
-                    <FaTimes className="text-[24px] cursor-pointer"/>
-                </div>
-                <h1 className="text-[#000] text-[20px] font-[600]">Write your first blog post</h1>
-                <p className="text-[12px] font-[400] mt-[15px]" style={{ color: `rgba(102, 102, 102, 0.80)` }}>This could be about your business, launch date etc.</p>
-                <textarea 
-                    placeholder="Enterprenuer.com is a new................................................................................." 
-                    rows='2' 
-                    cols='50' 
-                    value={formDataStep2} 
+                <h1 className="text-[#000] text-[20px] font-[600] mt-[3rem]">Let’s get your store up and running</h1>
+                <p className="text-[12px] font-[400] mt-[15px]" style={{ color: `rgba(102, 102, 102, 0.80)` }}>Just a few questions and we’ll provide everything you need to start selling.</p>
+            <div style={{ boxShadow: `4px 4px 20px 0px rgba(128, 128, 128, 0.15)`}} className="bg-[#fff] rounded-[24px] lg:w-[1020px] xs:w-[100%] py-[32px] lg:ps-[24px] xs:ps-[10px] xs:pr-[10px] lg:pr-[52px] mt-[36px]">
+                <h3 className="text-[#000] text-[17px] font-[500]">What’s the name of your store?</h3>
+                <input 
+                    type="text" 
+                    value={formDataStep2}
                     onChange={handleInputChangeStep2} 
-                    className="flex justify-end items-center w-[778px] border-[1px] border-solid border-[#666] font-[400] text-[12px] text-[#666] rounded-[8px] bg-[#fff] mt-[15px] ps-[10px] pt-[11px] pb-[80px] outline-none" 
+                    placeholder="My store" 
+                    required 
+                    className="mt-[15px] font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3" 
+                    style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
                 />
                 <div className="flex justify-between items-center mt-[24px]">
                     <h3 className="text-[#000] text-[11px] font-[300]">Note: you can edit text</h3>

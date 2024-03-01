@@ -12,7 +12,7 @@ const NavBar = () => {
   };
 
   return (
-    <>
+    <div className='lg:block xs:hidden'>
       <nav className="navbar navbar-expand-lg navbar-dark lg:block xs:hidden">
         <div className="container-fluid">
           <img src={logo} className='logo-img'/>
@@ -30,7 +30,7 @@ const NavBar = () => {
           {/* </div> */}
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Step2 from "./Step2";
+import Step3 from './Step3'
 
 
 
@@ -8,9 +9,9 @@ const Step1 = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [formDataStep1, setFormDataStep1] = useState({
         answer: '',
-        domain: ''
     });
     const [formDataStep2, setFormDataStep2] = useState('');
+    const [formDataStep3, setFormDataStep3] = useState('');
 
      // Function to handle input change for Step 1 form
      const handleInputChangeStep1 = (e) => {
@@ -24,6 +25,11 @@ const Step1 = () => {
     const handleInputChangeStep2 = (e) => {
         const value = e.target.value;
         setFormDataStep2(value);
+    };
+
+    const handleInputChangeStep3 = (e) => {
+        const value = e.target.value;
+        setFormDataStep3(value);
     };
 
     const nextStep = () => {
@@ -40,12 +46,6 @@ const Step1 = () => {
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
-
-     // Function to clear form fields
-     const clearForm = () => {
-        setFormDataStep1({ answer: '', domain: '' });
-    };
-
 
   return (
     <div>
@@ -70,38 +70,27 @@ const Step1 = () => {
                             <input 
                                 type="text" 
                                 name="answer" 
-                                value={formDataStep1.otherField}
+                                value={formDataStep3.otherField}
                                 onChange={handleInputChangeStep1} 
-                                placeholder="Answer" 
+                                placeholder="Enter you business or website type" 
                                 required 
-                                className="mt-[15px] font-[400] text-[12px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px]" 
+                                className="mt-[15px] font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3 lg:ms-2" 
                                 style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
                             />
-                            <label>
-                                <input 
-                                    type="text" 
-                                    name="domain"
-                                    value={formDataStep1.otherField}
-                                    onChange={handleInputChangeStep1} 
-                                    placeholder="Domain name/.com" 
-                                    required 
-                                    className="mt-[15px] font-[400] text-[12px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px]" 
-                                    style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
-                                />
-
-                            </label>
-                            <div className="flex gap-[25px] ms-[10px] mt-[5px]">
-                                <h2 className="text-[#000] text-[16px] font-[400]">.com</h2>
-                                <h2 className="text-[#000] text-[16px] font-[400]">.blog</h2>
-                                <h2 className="text-[#000] text-[16px] font-[400]">.shop</h2>
-                                <h2 className="text-[#000] text-[16px] font-[400]">.design</h2>
-                                <h2 className="text-[#000] text-[16px] font-[400]">.tech</h2>
+                            <div className="flex lg:gap-[25px] xs:gap-[10px] lg:ms-[9px] mt-[13px]">
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Online Store</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Portfolio</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Blog</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Consultant</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Technology Company</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Restuarant</h2>
+                                <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Event</h2>
                             </div>
                             <div className="flex justify-between items-center mt-[24px]">
                                 <h3 className="text-[#000] text-[10px] font-[300]">Note: you can change this anytime</h3>
                                 <div className="flex gap-[16px] items-center">
-                                    <button style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#0AADBF] text-[12px] font-[400]" onClick={clearForm}>Cancel</button>
-                                    <button type="submit" disabled={!formDataStep1.answer || !formDataStep1.domain} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Next</button>
+                                    <button style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#0AADBF] text-[12px] font-[400]">Cancel</button>
+                                    <button type="submit" disabled={!formDataStep1.answer} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +100,11 @@ const Step1 = () => {
                     {/* Step 2 Form */}
                     {currentStep === 2 && (
                         <Step2 nextStep={nextStep} prevStep={prevStep} formDataStep2={formDataStep2} handleInputChangeStep2={handleInputChangeStep2} />
+                    )}
+
+                    {/* Step 3 Form */}
+                    {currentStep === 3 && (
+                        <Step3 nextStep={nextStep} prevStep={prevStep} formDataStep3={formDataStep3} handleInputChangeStep3={handleInputChangeStep3} />
                     )}
     </div>
   )
