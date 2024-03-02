@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="flex flex-wrap justify-between items-center">
         <div>
           <h1 className="text-[#fff] text-[20px] font-[700]">Company</h1>
-          <hr className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
+          <div className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Adanian Labs</Link></h3>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Afya Rekod</Link></h3>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Abc</Link></h3>
@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
         <div>
           <h1 className="text-[#fff] text-[20px] font-[700]">Support</h1>
-          <hr className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
+          <div className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
           <h3 className="text-[#fff] text-[16px] font-[400] mt-[11px] hover:underline">support.websitebuilder</h3>
           <h3 className="text-[#fff] text-[16px] font-[400] mt-[11px] hover:underline">01 234 78909</h3>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Hire a professional</Link></h3>
@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
         <div>
           <h1 className="text-[#fff] text-[20px] font-[700] lg:mt-0 xs:mt-[3rem]">More</h1>
-          <hr className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
+          <div className="bg-[#fff] h-[1px] w-[48px] mt-[11px]"/>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Pricing</Link></h3>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Blog</Link></h3>
           <h3 className="mt-[11px] hover:underline"><Link to='/' className='text-[#fff] text-[16px] font-[400] no-underline'>Careers</Link></h3>
