@@ -24,25 +24,25 @@ const Navbar = () => {
                     <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Pricing</Link></li>
                 </ul>
                 <ul className='lg:flex items-center gap-[24px] xs:mt-[3rem] lg:mt-0 xs:pb-[2rem] lg:pb-0'>
-                    <li className='border-b-[1px] border-b-[solid] border-b-[#fff] lg:py-[6px] lg:px-[10px] xs:pb-[1rem]'><Link to='/login' className='text-[#fff] lg:text-[16px] xs:text-[20px] font-[400] leading-[25.6px] no-underline'>Log In</Link></li>
-                    <li className='bg-[#FB9613] lg:mt-0 xs:mt-[2rem] rounded-[100px] lg:py-[8px] xs:py-[12px] px-[20px] flex items-center flex justify-center'><Link to='/signup' className='text-[#fff] lg:text-[16px] xs:text-[18px] font-[400] leading-[25.6px] no-underline'>Get Started</Link></li>
+                    <li className='border-b-[1px] border-b-[solid] border-b-[#fff] lg:py-[6px] lg:px-[10px] xs:pb-[1rem]'><Link to='/login' className='text-[#fff] lg:text-[16px] xs:text-[20px] font-[400] leading-[25.6px] no-underline hover:text-[#fff]'>Log In</Link></li>
+                    <li className='bg-[#FB9613] lg:mt-0 xs:mt-[2rem] rounded-[100px] lg:py-[8px] xs:py-[12px] px-[20px] flex items-center flex justify-center'><Link to='/signup' className='text-[#fff] lg:text-[16px] xs:text-[18px] font-[400] leading-[25.6px] no-underline hover:text-[#fff]'>Get Started</Link></li>
                 </ul>
               </div> 
            {
             showNav ?  
-             <div className='lg:bg-transparent xs:bg-[#000] lg:p-0 xs:p-[20px] xs:absolute lg:relative left-0 top-0 lg:w-auto xs:w-[100%] lg:h-auto xs:h-[100vh]'>
+             <div className='lg:bg-transparent xs:bg-[#000] lg:p-0 xs:p-[30px] xs:fixed lg:relative left-0 top-0 lg:w-auto xs:w-[100%] lg:h-auto xs:h-auto'>
                 <FaTimes onClick={() => setShowNav(false)} className='text-[#fff] text-[30px] flex justify-end items-end hover:text-[#FB9613]' />
-               <div className='lg:flex justify-between items-center gap-[120px] text-center'>
+               <div className='lg:flex justify-between items-center gap-[120px] text-center ms-[-2rem]'>
                 <ul className='lg:flex items-center gap-[40px] xs:pt-[2rem] lg:pt-0'>
-                    <li className='text-[#fff] lg:text-[16px] lg:p-0 xs:p-[25px] xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'><Link to='/'>Creation</Link></li>
-                    <li className='text-[#fff] lg:text-[16px] lg:p-0 xs:p-[25px] xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'><Link to='/'>Resources</Link></li>
-                    <li className='text-[#fff] lg:text-[16px] lg:p-0 xs:p-[25px] xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'><Link to='/'>Solution</Link></li>
-                    <li className='text-[#fff] lg:text-[16px] lg:p-0 xs:p-[25px] xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'><Link to='/'>Support</Link></li>
-                    <li className='text-[#fff] lg:text-[16px] lg:p-0 xs:p-[25px] xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'><Link to='/'>Pricing</Link></li>
+                    <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Creation</Link></li>
+                    <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Resources</Link></li>
+                    <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Solution</Link></li>
+                    <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Support</Link></li>
+                    <li className='lg:p-0 xs:p-[25px]'><Link to='/' className='text-[#fff] lg:text-[16px] no-underline xs:text-[22px] font-[400] leading-[25.6px] hover:text-[#FB9613]'>Pricing</Link></li>
                 </ul>
                 <ul className='lg:flex items-center gap-[24px] xs:mt-[3rem] lg:mt-0 xs:pb-[2rem] lg:pb-0'>
-                    <li className='text-[#ff00ff] lg:text-[16px] xs:text-[20px] font-[400] leading-[25.6px] border-b-[1px] border-b-[solid] border-b-[#fff] lg:py-[6px] lg:px-[10px] xs:pb-[1rem] hover:text-[#fff]'><Link to='/login' className='text-[#fff] hover:text-[#fff]'>Log In</Link></li>
-                    <li className='bg-[#FB9613] lg:mt-0 xs:mt-[2rem] rounded-[100px] lg:py-[8px] xs:py-[12px] px-[20px] flex items-center text-[#fff] lg:text-[16px] flex justify-center xs:text-[18px] font-[400] leading-[25.6px] hover:text-[#fff]'><Link to='/signup'>Get Started</Link></li>
+                    <li className='text-[#ff00ff] lg:text-[16px] xs:text-[20px] font-[400] leading-[25.6px] border-b-[1px] border-b-[solid] border-b-[#fff] lg:py-[6px] lg:px-[10px] xs:pb-[1rem] hover:text-[#fff]'><Link to='/login' className='text-[#fff] hover:text-[#fff] no-underline'>Log In</Link></li>
+                    <li className='bg-[#FB9613] lg:mt-0 xs:mt-[2rem] rounded-[100px] lg:py-[8px] xs:py-[12px] px-[20px] flex items-center text-[#fff] lg:text-[16px] flex justify-center xs:text-[18px] font-[400] leading-[25.6px] hover:text-[#fff]'><Link to='/signup' className='text-[#fff] hover:text-[#fff] no-underline'>Get Started</Link></li>
                 </ul>
               </div> 
              </div>
