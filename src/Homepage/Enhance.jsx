@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa'
 const Enhance = () => {
   return (
     <div>
-        <div className="lg:flex justify-bwtween items-center lg:gap-[108px] xs:gap-[90px] py-[49px] lg:px-[90px] xs:px-[5px]">
+        <div className="lg:flex justify-bwtween items-center lg:gap-[108px] xs:gap-[90px] py-[49px] lg:px-[90px] xs:px-[10px]">
             <div>
                 <h1 className="text-[#fff] lg:text-[50px] xs:text-[35px] font-[400] lg:leading-[83.2px] lg:w-[650px] md:w-[10px]">Enhance Your Digital <br/> Presence</h1>
             </div>

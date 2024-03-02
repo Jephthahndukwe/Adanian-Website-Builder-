@@ -50,7 +50,7 @@ const Footer = () => {
             <Link to='/'><img src={Logo} className='lg:ms-0 xs:ms-[-3rem]' /></Link>
           </div>
           <div>
-            <h3 className='text-[#fff] lg:text-[16px] xs:text-[17px] md:text-[12px] font-[400] lg:mt-0 xs:mt-[2rem] lg:ms-0 xs:ms-[-3rem]'>© 2024 <span className='font-[700]'>Adanian Website Builder</span>. All Rights Reserved.</h3>
+            <h3 className='text-[#fff] lg:text-[16px] xs:text-[17px] md:text-[12px] font-[400] lg:mt-0 xs:mt-[2rem] lg:ms-0 xs:ms-[-3rem] text-center'>© 2024 <span className='font-[700]'>Adanian Website Builder</span>. All Rights Reserved.</h3>
           </div>
           <div className='flex gap-[61px] items-center text-[#fff] text-[20px] lg:mt-0 xs:mt-[3rem] lg:ms-0 xs:ms-[-1rem]'>
             <Link to='/' className='hover:text-[#1877F2] text-[#fff]'><FaFacebookF/></Link>
