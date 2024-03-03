@@ -60,7 +60,7 @@ const Step3 = ({ formDataStep3, handleInputChangeStep3, nextStep, prevStep }) =>
                     <h3 className="text-[#000] text-[11px] font-[300]">Note: you can edit text</h3>
                     <div className="flex gap-[16px] items-center">
                         <button type="button" onClick={prevStep} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Previous</button>
-                        <button type="submit" onClick={nextStep} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Next</button>
+                        <button type="submit" className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Done</button>
                     </div>
                 </div>
             </div>

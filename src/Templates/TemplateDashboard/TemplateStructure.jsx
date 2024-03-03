@@ -205,8 +205,8 @@ export const Navbar = ({ setCategory, setSearchResults  }) => {
         </div>
         <hr className="w-[100%] h-[1px] bg-[#eee]"/>
 
-      <div className="lg:px-[30px] xs:px-[20px] pt-[20px] lg:flex justify-between items-center">
-      <ul className="flex flex-wrap gap-[15px] items-center">
+      <div className="lg:px-[30px] xs:px-[10px] pt-[20px] lg:flex justify-between items-center">
+      <ul className="flex flex-wrap gap-[15px] items-center lg:ms-0 xs:ms-[-2rem] ">
         {Object.keys(imageData).map(category => (
           <li
             key={category}
