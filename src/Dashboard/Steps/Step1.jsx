@@ -77,7 +77,7 @@ const Step1 = () => {
                                 className="mt-[15px] font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3 lg:ms-2" 
                                 style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
                             />
-                            <div className="flex lg:gap-[25px] xs:gap-[10px] lg:ms-[9px] mt-[13px]">
+                            <div className="flex lg:gap-[25px] xs:gap-[8px] lg:ms-[9px] mt-[13px]">
                                 <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Online Store</h2>
                                 <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Portfolio</h2>
                                 <h2 className="text-[#000] lg:text-[12px] xs:text-[9px] font-[300]">Blog</h2>
