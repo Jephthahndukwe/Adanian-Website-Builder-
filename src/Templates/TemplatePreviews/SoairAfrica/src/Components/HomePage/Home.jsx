@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import NavBar from '../NavBar'
 import '../stylings/style.css'
 import { Link } from 'react-router-dom'
@@ -13,31 +13,8 @@ import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNav
 
 const Home = () => {
 
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const hasPopupBeenShown = sessionStorage.getItem('popupShown');
-    if (!hasPopupBeenShown) {
-      setShowPopup(true);
-      sessionStorage.setItem('popupShown', 'true');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (showPopup) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [showPopup]);
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
   return (
     <>
-     <div className={`${showPopup ? 'opacity-50 pointer-events-none' : ''}`}>
      <TemplateEditNavbar/>
     <div>
       <NavBar/>
@@ -62,18 +39,6 @@ const Home = () => {
     <Solutions/>
     <HomeContact/>
     <Footer/>
-     </div>
-
-    {showPopup && <div className="fixed inset-0 bg-black opacity-50" style={{  }}></div>}
-      {/* Popup */}
-      {showPopup && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 w-[50%] h-[70vh] rounded shadow-lg flex justify-center">
-          <div>
-          <p>This is a popup!</p>
-          <button onClick={handleClosePopup}>Cancel</button>
-          </div>
-        </div>
-      )}
     </>
   )
 }
