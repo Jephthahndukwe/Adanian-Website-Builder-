@@ -26,12 +26,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        roboto: ['Roboto'],
-        montserrat: ['Montserrat']
+        Namdhinggo: ['Namdhinggo', 'serif']
       },
-      fontFamily: {
-        sans: ['Gilroy', 'sans-serif']
-      },
+      // fontFamily: {
+      //   sans: ['Gilroy', 'sans-serif']
+      // },
       colors: {
         green: {
           600: "#00AABC"

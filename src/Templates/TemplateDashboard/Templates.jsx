@@ -7,7 +7,7 @@ const Templates = () => {
            <div className="shadow-md">
             <Navbar/>
            </div>
-            <TemplateStructure/>
+            <TemplateStructure />
         </div>
     )
 }

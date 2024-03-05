@@ -22,6 +22,8 @@ import TemplateEditor from './Templates/TemplateDashboard/TemplateEditor/Templat
 
 
 // PREVIEW TEMPLATE
+
+// SOAIR TEMPLATE
 import SoairHome from './Templates/TemplatePreviews/SoairAfrica/src/Components/HomePage/Home'
 import SoairCourse from './Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/Courses'
 import SoairEvent from './Templates/TemplatePreviews/SoairAfrica/src/Components/EventsPage/Event';
@@ -29,13 +31,31 @@ import SoairStudent from './Templates/TemplatePreviews/SoairAfrica/src/Component
 import SoairContact from './Templates/TemplatePreviews/SoairAfrica/src/Components/ContactPage/Contact';
 import SoairEnrollPage from "./Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/EnrollPage";
 
+// LAWRENCE TEMPLATE
+import LawrenceHome from './Templates/TemplatePreviews/Lawrence/Homepage/Homepage'
+import LawrenceReservation from './Templates/TemplatePreviews/Lawrence/Homepage/Reservation'
+import LawrenceAbout from './Templates/TemplatePreviews/Lawrence/Homepage/About'
+import LawrenceContact from './Templates/TemplatePreviews/Lawrence/Homepage/Contact'
+import LawrenceMenu from './Templates/TemplatePreviews/Lawrence/Homepage/Menu'
+
+
 // EDITING TEMPLATE
+
+// EDITING  - SOAIR
 import SoairEditHome from './Templates/TemplateEditing/SoairAfrica/src/Components/HomePage/Home'
 import SoairEditCourse from './Templates/TemplateEditing/SoairAfrica/src/Components/CoursePage/Courses'
 import SoairEditEvent from './Templates/TemplateEditing/SoairAfrica/src/Components/EventsPage/Event';
 import SoairEditStudent from './Templates/TemplateEditing/SoairAfrica/src/Components/StudentPage/Student';
 import SoairEditContact from './Templates/TemplateEditing/SoairAfrica/src/Components/ContactPage/Contact';
 import SoairEditEnrollPage from "./Templates/TemplateEditing/SoairAfrica/src/Components/CoursePage/EnrollPage";
+
+// EDITING  - LAWRENCE
+import LawrenceEditHome from './Templates/TemplateEditing/Lawrence/Homepage/Homepage'
+import LawrenceEditReservation from './Templates/TemplateEditing/Lawrence/Homepage/Reservation'
+import LawrenceEditAbout from './Templates/TemplateEditing/Lawrence/Homepage/About'
+import LawrenceEditContact from './Templates/TemplateEditing/Lawrence/Homepage/Contact'
+import LawrenceEditMenu from './Templates/TemplateEditing/Lawrence/Homepage/Menu'
+
 
 
 function App() {
@@ -64,7 +84,11 @@ function App() {
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />
+
+
           {/* Preview Template */}
+
+          {/* SOAIR TEMPLATE */}
           <Route path='SoairHome' element={ <SoairHome/> } />
           <Route path='SoairCourse' element={ <SoairCourse/> } />
           <Route path='SoairEvent' element={ <SoairEvent/> } />
@@ -72,13 +96,30 @@ function App() {
           <Route path='SoairContact' element={ <SoairContact/> } />
           <Route path='SoairEnrollPage' element={ <SoairEnrollPage/> } />
 
-        {/* Editing Template         */}
+          {/* LAWRENCE TEMPLATE */}
+          <Route path='LawrenceHome' element={ <LawrenceHome /> } />
+          <Route path='LawrenceReservation' element={ <LawrenceReservation /> } />
+          <Route path='/LawrenceAbout' element={ <LawrenceAbout /> } />
+          <Route path='/LawrenceContact' element={ <LawrenceContact /> } />
+          <Route path='LawrenceMenu' element={ <LawrenceMenu /> } />
+
+        {/* Editing Template */}
+
+        {/* SOAIR TEMPLATE */}
           <Route path='SoairEditHome' element={ <SoairEditHome/> } />
           <Route path='SoairEditCourse' element={ <SoairEditCourse/> } />
           <Route path='SoairEditEvent' element={ <SoairEditEvent/> } />
           <Route path='SoairEditStudent' element={ <SoairEditStudent/> } />
           <Route path='SoairEditContact' element={ <SoairEditContact/> } />
           <Route path='SoairEditEnrollPage' element={ <SoairEditEnrollPage/> } />
+
+        {/* LAWRENCE TEMPLATE */}
+          <Route path='LawrenceEditHome' element={ <LawrenceEditHome /> } />
+          <Route path='LawrenceEditReservation' element={ <LawrenceEditReservation /> } />
+          <Route path='LawrenceEditAbout' element={ <LawrenceEditAbout /> } />
+          <Route path='LawrenceEditContact' element={ <LawrenceEditContact /> } />
+          <Route path='LawrenceEditMenu' element={ <LawrenceEditMenu /> } />
+
          </Routes>
       </Router>
     </>

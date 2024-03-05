@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom'
+import LoadingContext from '../../Components/LoadingContext';
 import OnlineStore1 from '../../assets/images/onlinestore1.png'
 import OnlineStore2 from '../../assets/images/onlinestore2.png'
 import OnlineStore3 from '../../assets/images/onlinestore3.png'
@@ -42,11 +43,12 @@ import Entertainment4 from '../../assets/images/entertainment4.png'
 
 const imageData = {
   'Educational': [
-    { src: Educational4, text: 'School Website' },
-    { src: Educational1, text: 'Online School' },
-    { src: Educational2, text: 'College' },
-    { src: Educational3, text: 'Education Blog' },
+    { src: Educational4, text: 'School Website', edit: '/SoairEditHome', preview: '/SoairHome' },
     // Add more Educational images
+  ],
+  'Restaurant': [
+    { src: Food2, text: 'Restaurant', edit: '/LawrenceEditHome', preview: '/LawrenceHome' },
+    // Add more restaurant images
   ],
   'Online Store': [
     { src: OnlineStore1, text: 'Accessories Store' },
@@ -75,13 +77,6 @@ const imageData = {
     { src: Services1, text: 'Cleaning Company' },
     { src: Services2, text: 'Home Improvement Company' },
     { src: Services3, text: 'Recycling Facility' },
-    // Add more restaurant images
-  ],
-  'Restaurant': [
-    { src: Food1, text: 'Dinner Restaurant' },
-    { src: Food2, text: 'Restaurant' },
-    { src: Food3, text: 'Farm' },
-    { src: Food4, text: 'Forestry Company' },
     // Add more restaurant images
   ],
   'IT & Technology': [
@@ -225,7 +220,7 @@ export const Navbar = ({ setCategory, setSearchResults  }) => {
   );
 };
 
-const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
+export const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
   const images = category === 'All' ? Object.values(imageData).flat() : imageData[category];
   const displayImages = searchResults.length > 0 ? searchResults : images;
 
@@ -242,8 +237,8 @@ const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
                   <div className='relative'>
                     <div className="bg-[#F1F1F1E6] lg:w-[95.8%] xs:w-[100%] h-[80%] absolute flex items-center justify-center transition-opacity duration-300 ms-[0.5rem] opacity-0 hover:opacity-100">
                       <div className='ms-[-1.5rem]'>
-                        <Link to='/templateviewintro' className='bg-[#00AABC] rounded-[50px] hover:bg-transparent hover:border-[1px] hover:border-solid hover:border-[#00AABC] hover:text-[#00AABC] py-[10px] text-[#fff] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer no-underline'>Edit</Link>
-                        <Link to='/SoairHome' className='border-[1px] border-solid hover:bg-[#00AABC] text-[#00AABC] hover:text-[#fff] mt-[1rem] border-[#00AABC] rounded-[50px] p-[10px] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer no-underline'>view</Link>
+                        <Link to={image.edit} className='bg-[#00AABC] rounded-[50px] hover:bg-transparent hover:border-[1px] hover:border-solid hover:border-[#00AABC] hover:text-[#00AABC] py-[10px] text-[#fff] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer no-underline'>Edit</Link>
+                        <Link to={image.preview} className='border-[1px] border-solid hover:bg-[#00AABC] text-[#00AABC] hover:text-[#fff] mt-[1rem] border-[#00AABC] rounded-[50px] p-[10px] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer no-underline'>view</Link>
                       </div>
                     </div>
                     <img key={index} src={image.src} alt={`${category}, ${`Image ${index + 1}`}`} className="m-2 lg:mt-0 xs:mt-[3rem]" />
@@ -265,6 +260,7 @@ const TemplateStructure = () => {
     <div>
       <Navbar setCategory={setCategory} setSearchResults={setSearchResults}  />
       <ImageDisplay category={category} searchResults={searchResults} />
+      
     </div>
   );
 };

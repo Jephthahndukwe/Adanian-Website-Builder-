@@ -6,6 +6,7 @@ import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Login = () => {
 
@@ -40,14 +41,16 @@ const Login = () => {
 
       // Handle successful login
       console.log('Login successful:', response.data);
-      alert('Login successful!');
 
       // Redirect user to dashboard
       navigate('/dashboard');
+
+      //Handle login message
+      toast.success("Login Successful");
     } catch (error) {
       // Handle login error
       console.error('Login failed:', error);
-      alert('Login failed. Please try again.');
+      toast.error('Login failed. Please try again.');
     }
   };
 
