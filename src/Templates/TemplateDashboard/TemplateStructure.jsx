@@ -13,6 +13,7 @@ import Portfolio2 from '../../assets/images/Portfolio2.png'
 import Portfolio3 from '../../assets/images/Portfolio3.png'
 import Portfolio4 from '../../assets/images/Portfolio4.png'
 import Portfolio5 from '../../assets/images/Portfolio5.png'
+import Portfolio6 from '../../assets/images/Portfolio6.png'
 import Blog1 from '../../assets/images/blog1.png'
 import Blog2 from '../../assets/images/blog2.png'
 import Blog3 from '../../assets/images/blog3.png'
@@ -54,6 +55,10 @@ const imageData = {
     { src: Fashion1, text: 'Clothing Store', edit: '/DayDreamEditHome', preview: '/DayDreamHome' },
     // Add more Fashion images
   ],
+  'Portfolio': [
+    { src: Portfolio6, text: 'Business CV', edit: '/MayaNelsonEditHome', preview: '/MayaNelsonHome' },
+    // Add more Portfolio images
+  ],
   'Online Store': [
     { src: OnlineStore1, text: 'Accessories Store' },
     { src: OnlineStore2, text: 'Electronics Store' },
@@ -62,14 +67,6 @@ const imageData = {
     { src: OnlineStore5, text: 'Beauty Shop' },
     { src: OnlineStore6, text: 'Supermarket' },
     // Add more online store images
-  ],
-  'Portfolio': [
-    { src: Portfolio1, text: 'Photographer' },
-    { src: Portfolio2, text: 'Fashion Designer' },
-    { src: Portfolio3, text: 'Fashion Designer' },
-    { src: Portfolio4, text: 'Graphic Designer' },
-    { src: Portfolio5, text: 'Videographer' },
-    // Add more Portfolio images
   ],
   'Blog': [
     { src: Blog1, text: 'Personal Blog' },

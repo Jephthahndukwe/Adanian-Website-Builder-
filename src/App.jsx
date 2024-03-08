@@ -23,7 +23,7 @@ import TemplateEditor from './Templates/TemplateDashboard/TemplateEditor/Templat
 
 // PREVIEW TEMPLATE
 
-// SOAIR TEMPLATE
+// SOAIR AFRICA TEMPLATE
 import SoairHome from './Templates/TemplatePreviews/SoairAfrica/src/Components/HomePage/Home'
 import SoairCourse from './Templates/TemplatePreviews/SoairAfrica/src/Components/CoursePage/Courses'
 import SoairEvent from './Templates/TemplatePreviews/SoairAfrica/src/Components/EventsPage/Event';
@@ -45,10 +45,16 @@ import DayDreamAbout from './Templates/TemplatePreviews/Day Dream/Homepage/About
 import DayDreamContact from './Templates/TemplatePreviews/Day Dream/Homepage/Contact'
 import DayDreamSales from './Templates/TemplatePreviews/Day Dream/Homepage/Sales'
 
+// MAYA NELSON TEMPLATE
+import MayaNelsonHome from './Templates/TemplatePreviews/Maya Nelson/Homepage/Homepage'
+import MayaNelsonResume from './Templates/TemplatePreviews/Maya Nelson/Homepage/Resume'
+import MayaNelsonProjects from './Templates/TemplatePreviews/Maya Nelson/Homepage/Projects'
+import MayaNelsonContact from './Templates/TemplatePreviews/Maya Nelson/Homepage/Contact'
+
 
 // EDITING TEMPLATE
 
-// EDITING  - SOAIR
+// EDITING  - SOAIR AFRICA
 import SoairEditHome from './Templates/TemplateEditing/SoairAfrica/src/Components/HomePage/Home'
 import SoairEditCourse from './Templates/TemplateEditing/SoairAfrica/src/Components/CoursePage/Courses'
 import SoairEditEvent from './Templates/TemplateEditing/SoairAfrica/src/Components/EventsPage/Event';
@@ -69,6 +75,12 @@ import DayDreamEditLookbook from './Templates/TemplateEditing/Day Dream/Homepage
 import DayDreamEditAbout from './Templates/TemplateEditing/Day Dream/Homepage/About'
 import DayDreamEditContact from './Templates/TemplateEditing/Day Dream/Homepage/Contact'
 import DayDreamEditSales from './Templates/TemplateEditing/Day Dream/Homepage/Sales'
+
+// EDITING  -  MAYA NELSON
+import MayaNelsonEditHome from './Templates/TemplateEditing/Maya Nelson/Homepage/Homepage'
+import MayaNelsonEditResume from './Templates/TemplateEditing/Maya Nelson/Homepage/Resume'
+import MayaNelsonEditProjects from './Templates/TemplateEditing/Maya Nelson/Homepage/Projects'
+import MayaNelsonEditContact from './Templates/TemplateEditing/Maya Nelson/Homepage/Contact'
 
 
 
@@ -102,7 +114,7 @@ function App() {
 
           {/* Preview Template */}
 
-          {/* SOAIR TEMPLATE */}
+          {/* SOAIR AFRICA TEMPLATE */}
           <Route path='SoairHome' element={ <SoairHome/> } />
           <Route path='SoairCourse' element={ <SoairCourse/> } />
           <Route path='SoairEvent' element={ <SoairEvent/> } />
@@ -124,11 +136,18 @@ function App() {
           <Route path='DayDreamContact' element={ <DayDreamContact /> } /> 
           <Route path='DayDreamSales' element={ <DayDreamSales/> } />
 
+          {/* Maya Nelson TEMPLATES */} {/* PORTFOLIO */}
+          <Route path='MayaNelsonHome' element={ <MayaNelsonHome /> } />
+          <Route path='MayaNelsonResume' element={ <MayaNelsonResume /> } /> 
+          <Route path='MayaNelsonProjects' element={ <MayaNelsonProjects /> } /> 
+          <Route path='MayaNelsonContact' element={ <MayaNelsonContact /> } /> 
+
+
 
 
         {/* Editing Template */}
 
-        {/* SOAIR TEMPLATE */} {/* EDUCATIONAL */}
+        {/* SOAIR AFRICA TEMPLATE */} {/* EDUCATIONAL */}
           <Route path='SoairEditHome' element={ <SoairEditHome/> } />
           <Route path='SoairEditCourse' element={ <SoairEditCourse/> } />
           <Route path='SoairEditEvent' element={ <SoairEditEvent/> } />
@@ -150,6 +169,11 @@ function App() {
         <Route path='DayDreamEditContact' element={ <DayDreamEditContact /> } /> 
         <Route path='DayDreamEditSales' element={ <DayDreamEditSales/> } />
 
+        {/* Maya Nelson TEMPLATES */} {/* PORTFOLIO */}
+        <Route path='MayaNelsonEditHome' element={ <MayaNelsonEditHome /> } />
+        <Route path='MayaNelsonEditResume' element={ <MayaNelsonEditResume /> } /> 
+        <Route path='MayaNelsonEditProjects' element={ <MayaNelsonEditProjects /> } /> 
+        <Route path='MayaNelsonEditContact' element={ <MayaNelsonEditContact /> } /> 
       
 
          </Routes>

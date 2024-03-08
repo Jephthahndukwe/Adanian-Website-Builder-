@@ -8,7 +8,7 @@ import { MdOutlinePhoneAndroid } from "react-icons/md";
 
 const TemplateEditNavbar = () => {
     return (
-        <div className="pt-[10px] mb-5 pb-[20px] px-[20px] shadow-2xl lg:flex justify-between items-center">
+        <div className="pt-[10px] mb-5 pb-[20px] px-[20px] shadow-md lg:flex justify-between items-center">
             <div className='flex items-center lg:gap-[16px] xs:gap-[35px]'>
                 <img src={Logo} className='lg:w-[150px] xs:w-[100px]' />
                 <div className='h-[45px] w-[1px] bg-[#eaeaea]'/>
