@@ -21,7 +21,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const navbarTop = scrollPosition === 0 ? 'lg:top-[0] xs:top-[14rem]' : 'top-[0rem]';
+  const navbarTop = scrollPosition === 0 ? 'lg:top-[0] xs:top-[0]' : 'top-[0rem]';
 
   const [show, setShow] = useState(false)
 
