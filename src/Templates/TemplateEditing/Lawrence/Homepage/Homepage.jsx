@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import restro from '../../../../assets/images/restro.jpg'
 import restro2 from '../../../../assets/images/restro2.png'
 import restro3 from '../../../../assets/images/restro3.jpg'

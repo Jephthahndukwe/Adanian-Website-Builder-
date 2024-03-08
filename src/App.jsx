@@ -38,6 +38,13 @@ import LawrenceAbout from './Templates/TemplatePreviews/Lawrence/Homepage/About'
 import LawrenceContact from './Templates/TemplatePreviews/Lawrence/Homepage/Contact'
 import LawrenceMenu from './Templates/TemplatePreviews/Lawrence/Homepage/Menu'
 
+// ANN SIMON TEMPLATE
+import DayDreamHome from './Templates/TemplatePreviews/Day Dream/Homepage/Homepage'
+import DayDreamLookbook from './Templates/TemplatePreviews/Day Dream/Homepage/Lookbook'
+import DayDreamAbout from './Templates/TemplatePreviews/Day Dream/Homepage/About'
+import DayDreamContact from './Templates/TemplatePreviews/Day Dream/Homepage/Contact'
+import DayDreamSales from './Templates/TemplatePreviews/Day Dream/Homepage/Sales'
+
 
 // EDITING TEMPLATE
 
@@ -55,6 +62,13 @@ import LawrenceEditReservation from './Templates/TemplateEditing/Lawrence/Homepa
 import LawrenceEditAbout from './Templates/TemplateEditing/Lawrence/Homepage/About'
 import LawrenceEditContact from './Templates/TemplateEditing/Lawrence/Homepage/Contact'
 import LawrenceEditMenu from './Templates/TemplateEditing/Lawrence/Homepage/Menu'
+
+// EDITING  - ANN SIMON
+import DayDreamEditHome from './Templates/TemplateEditing/Day Dream/Homepage/Homepage'
+import DayDreamEditLookbook from './Templates/TemplateEditing/Day Dream/Homepage/Lookbook'
+import DayDreamEditAbout from './Templates/TemplateEditing/Day Dream/Homepage/About'
+import DayDreamEditContact from './Templates/TemplateEditing/Day Dream/Homepage/Contact'
+import DayDreamEditSales from './Templates/TemplateEditing/Day Dream/Homepage/Sales'
 
 
 
@@ -103,9 +117,18 @@ function App() {
           <Route path='/LawrenceContact' element={ <LawrenceContact /> } />
           <Route path='LawrenceMenu' element={ <LawrenceMenu /> } />
 
+          {/* ANN SIMON TEMPLATES */} {/* FASHION */}
+          <Route path='DayDreamHome' element={ <DayDreamHome/> } />
+          <Route path='DayDreamLookbook' element={ <DayDreamLookbook/> } />
+          <Route path='DayDreamAbout' element={ <DayDreamAbout /> } />
+          <Route path='DayDreamContact' element={ <DayDreamContact /> } /> 
+          <Route path='DayDreamSales' element={ <DayDreamSales/> } />
+
+
+
         {/* Editing Template */}
 
-        {/* SOAIR TEMPLATE */}
+        {/* SOAIR TEMPLATE */} {/* EDUCATIONAL */}
           <Route path='SoairEditHome' element={ <SoairEditHome/> } />
           <Route path='SoairEditCourse' element={ <SoairEditCourse/> } />
           <Route path='SoairEditEvent' element={ <SoairEditEvent/> } />
@@ -113,12 +136,21 @@ function App() {
           <Route path='SoairEditContact' element={ <SoairEditContact/> } />
           <Route path='SoairEditEnrollPage' element={ <SoairEditEnrollPage/> } />
 
-        {/* LAWRENCE TEMPLATE */}
+        {/* LAWRENCE TEMPLATE */} {/* RESTAURANT */}
           <Route path='LawrenceEditHome' element={ <LawrenceEditHome /> } />
           <Route path='LawrenceEditReservation' element={ <LawrenceEditReservation /> } />
           <Route path='LawrenceEditAbout' element={ <LawrenceEditAbout /> } />
           <Route path='LawrenceEditContact' element={ <LawrenceEditContact /> } />
           <Route path='LawrenceEditMenu' element={ <LawrenceEditMenu /> } />
+
+        {/* ANN SIMON TEMPLATES */} {/* FASHION */}
+        <Route path='DayDreamEditHome' element={ <DayDreamEditHome/> } />
+        <Route path='DayDreamEditLookbook' element={ <DayDreamEditLookbook/> } />
+        <Route path='DayDreamEditAbout' element={ <DayDreamEditAbout /> } />
+        <Route path='DayDreamEditContact' element={ <DayDreamEditContact /> } /> 
+        <Route path='DayDreamEditSales' element={ <DayDreamEditSales/> } />
+
+      
 
          </Routes>
       </Router>

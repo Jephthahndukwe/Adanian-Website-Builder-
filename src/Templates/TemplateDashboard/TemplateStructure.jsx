@@ -50,6 +50,12 @@ const imageData = {
     { src: Food2, text: 'Restaurant', edit: '/LawrenceEditHome', preview: '/LawrenceHome' },
     // Add more restaurant images
   ],
+  'Fashion': [
+    { src: Fashion1, text: 'Clothing Store', edit: '/DayDreamEditHome', preview: '/DayDreamHome' },
+    { src: Fashion2, text: 'Shoe Store' },
+    { src: Fashion3, text: 'Clothing Store' },
+    // Add more Fashion images
+  ],
   'Online Store': [
     { src: OnlineStore1, text: 'Accessories Store' },
     { src: OnlineStore2, text: 'Electronics Store' },
@@ -89,12 +95,6 @@ const imageData = {
     { src: Healthcare1, text: 'Home Healthcare Company' },
     { src: Healthcare2, text: 'Medical Clinic' },
     // Add more HealthCare images
-  ],
-  'Fashion': [
-    { src: Fashion1, text: 'Clothing Store' },
-    { src: Fashion2, text: 'Shoe Store' },
-    { src: Fashion3, text: 'Clothing Store' },
-    // Add more Fashion images
   ],
   'Entertainment': [
     { src: Entertainment1, text: 'Event Planning Company' },
