@@ -61,15 +61,15 @@ const Sales = () => {
                         <img src={fashSale1} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 1"/>
                         <img src={fashSale2} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 2"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[37rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[35rem]">
                         <img src={fashSale3} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 3"/>
                         <img src={fashSale4} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 4"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[37rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[35rem]">
                         <img src={fashSale5} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 5"/>
                         <img src={fashSale6} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 6"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[37rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[35rem]">
                         <img src={fashSale9} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 9"/>
                         <img src={fashSale10} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 10"/>
                     </div>
@@ -79,11 +79,11 @@ const Sales = () => {
                         <img src={fashSale12} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 12"/>
                         <img src={fashSale13} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 13"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[37rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[35rem]">
                         <img src={fashSale14} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 14"/>
                         <img src={fashSale15} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 15"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[37rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[35rem]">
                         <img src={fashSale18} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0 lg:h-[60vh] xs:h-[70vh]" alt="Fashion Sale 18"/>
                         <img src={fashSale19} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100 lg:h-[60vh] xs:h-[70vh]" alt="Fashion Sale 19"/>
                     </div>
