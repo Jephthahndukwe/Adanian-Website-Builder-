@@ -92,7 +92,7 @@ const Sales = () => {
                         <img src={fashSale21} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 21"/>
                     </div>
                 </div>
-                    <div className='lg:flex flex-wrap lg:ms-[9rem] mt-[27rem] gap-[2rem] xs:mt-[37rem] lg:px-0 xs:px-[2rem] items-center'>
+                    <div className='lg:flex flex-wrap lg:ms-[9rem] mt-[27rem] gap-[2rem] lg:mt-[27rem] xs:mt-[37rem] lg:px-0 xs:px-[2rem] items-center'>
                         <div className="relative w-full md:w-[70vw] lg:w-[20%]">
                             <img src={fashSale7} className="h-[60vh] xs:w-[50vh] lg:w-[100%]" alt="Fashion Sale 7"/>
                         </div>
