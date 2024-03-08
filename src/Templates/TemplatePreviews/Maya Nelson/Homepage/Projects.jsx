@@ -38,7 +38,7 @@ const Projects = () => {
                     <p className='lg:ms-[20rem] lg:mt-5 xs:mt-4 lg:text-[16px] xs:text-[17px] px-[20px] font-Urbanist font-[400] leading-[26px] lg:w-[53%] text-center tracking-[1px]'>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.</p>
                     <div className='lg:px-[330px] xs:px-[20px] mt-[5rem]'>
                         <div className='lg:flex items-center'>
-                            <div className='bg-[#fff] lg:w-[170vw] h-[60vh] pt-[4rem]'>
+                            <div className='bg-[#fff] lg:w-[170vw] lg:h-[60vh] xs:h-[45vh] pt-[4rem]'>
                                 <div className='flex gap-[2rem]'>
                                     <div className='bg-blue-600 px-[5px] py-[10px]'/>
                                     <div>
@@ -53,7 +53,7 @@ const Projects = () => {
                             </div>
                         </div>
                         <div className='lg:flex items-center mt-[5rem]'>
-                            <div className='bg-[#fff] lg:w-[170vw] h-[60vh] pt-[4rem]'>
+                            <div className='bg-[#fff] lg:w-[170vw] lg:h-[60vh] xs:h-[45vh] pt-[4rem]'>
                                 <div className='flex gap-[2rem]'>
                                     <div className='bg-blue-600 px-[5px] py-[10px]'/>
                                     <div>
@@ -68,7 +68,7 @@ const Projects = () => {
                             </div>
                         </div>
                         <div className='lg:flex items-center mt-[5rem]'>
-                            <div className='bg-[#fff] lg:w-[170vw] h-[60vh] pt-[4rem]'>
+                            <div className='bg-[#fff] lg:w-[170vw] lg:h-[60vh] xs:h-[45vh] pt-[4rem]'>
                                 <div className='flex gap-[2rem]'>
                                     <div className='bg-blue-600 px-[5px] py-[10px]'/>
                                     <div>
