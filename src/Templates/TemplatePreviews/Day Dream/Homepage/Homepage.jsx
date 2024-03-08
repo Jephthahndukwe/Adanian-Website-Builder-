@@ -42,7 +42,7 @@ const Homepage = () => {
     >
     <div>
       <TemplateEditNavbar/>
-        <div className='lg:mt-[-2.8rem] pt-[1rem]'>
+        <div className='lg:mt-[-2.8rem] pt-[1rem] overflow-hidden'>
           <div>
          <div className='lg:absolute top-[7rem] left-6 lg:mt-[5rem]'>
          <Navbar/>

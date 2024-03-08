@@ -44,7 +44,7 @@ const Lookbook = () => {
     >
         <div>
             <TemplateEditNavbar/>
-            <div className='bg-[#fff] mt-[-4rem]'>
+            <div className='bg-[#fff] mt-[-4rem] overflow-hidden'>
                 <div className='lg:mt-[7rem] xs:mt-[3.9rem]'>
                     <Navbar/>
                 </div>

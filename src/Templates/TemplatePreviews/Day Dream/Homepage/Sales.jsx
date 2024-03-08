@@ -74,25 +74,25 @@ const Sales = () => {
                         <img src={fashSale10} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 10"/>
                     </div>
                 </div>
-                <div className='flex flex-wrap lg:ms-[9rem] lg:mt-[27rem] gap-[2rem] xs:mt-[32rem] items-center lg:px-0 xs:px-[2rem]'>
+                <div className='flex flex-wrap lg:ms-[9rem] lg:mt-[27rem] gap-[2rem] xs:mt-[40rem] items-center lg:px-0 xs:px-[2rem]'>
                     <div className="relative w-full md:w-[50%] lg:w-[20%]">
                         <img src={fashSale12} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 12"/>
                         <img src={fashSale13} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 13"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[30rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[40rem]">
                         <img src={fashSale14} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 14"/>
                         <img src={fashSale15} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 15"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[30rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[40rem]">
                         <img src={fashSale18} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0 lg:h-[60vh] xs:h-[70vh]" alt="Fashion Sale 18"/>
                         <img src={fashSale19} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100 lg:h-[60vh] xs:h-[70vh]" alt="Fashion Sale 19"/>
                     </div>
-                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[30rem]">
+                    <div className="relative w-full md:w-[50%] lg:w-[20%] lg:mt-0 xs:mt-[40rem]">
                         <img src={fashSale20} className="absolute inset-0 transition-opacity opacity-100 hover:opacity-0" alt="Fashion Sale 20"/>
                         <img src={fashSale21} className="absolute inset-0 transition-opacity opacity-0 hover:opacity-100" alt="Fashion Sale 21"/>
                     </div>
                 </div>
-                    <div className='lg:flex flex-wrap lg:ms-[9rem] mt-[27rem] gap-[2rem] xs:mt-[32rem] lg:px-0 xs:px-[2rem] items-center'>
+                    <div className='lg:flex flex-wrap lg:ms-[9rem] mt-[27rem] gap-[2rem] xs:mt-[40rem] lg:px-0 xs:px-[2rem] items-center'>
                         <div className="relative w-full md:w-[70vw] lg:w-[20%]">
                             <img src={fashSale7} className="h-[60vh] xs:w-[50vh] lg:w-[100%]" alt="Fashion Sale 7"/>
                         </div>
