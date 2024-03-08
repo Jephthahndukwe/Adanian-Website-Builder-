@@ -31,7 +31,7 @@ const Homepage = () => {
                 <Navbar/>
             </div>
             <div className='lg:flex items-center'>
-                <div className='bg-[#E6DACE] lg:w-[80vw] xs:w-[100vw] lg:h-[150vh] xs:h-[160vh] lg:mt-[5rem] xs:mt-[27rem] lg:flex gap-[4rem] items-center'>
+                <div className='bg-[#E6DACE] lg:w-[80vw] xs:w-[100vw] lg:h-[150vh] xs:h-[120vh] lg:mt-[5rem] xs:mt-[27rem] lg:flex gap-[4rem] items-center'>
                     <div className='bg-[#f4ece6] lg:shadow-xl xs:shadow-2xl lg:w-[30vw] xs:w-[90%] absolute lg:ms-[14rem] xs:ms-[1.5rem] lg:mt-0 xs:mt-[-19rem]'>
                             <div className='flex items-center justify-center py-[50px] px-[20px]'>
                                 <div>
@@ -53,7 +53,7 @@ const Homepage = () => {
                             </div>
                     </div>
                 </div>
-                <div className='lg:mt-[7.5rem] xs:mt-[-60rem] lg:ms-[8rem] xs:ms-[2rem]'>
+                <div className='lg:mt-[7.5rem] xs:mt-[-49rem] lg:ms-[8rem] xs:ms-[2rem]'>
                     <h1 className='lg:text-[100px] xs:text-[60px] font-Urbanist font-[900] text-start'>Hello</h1>
                     <h3 className='lg:text-[25px] xs:text-[20px] font-Urbanist font-[600] text-start mt-2'>Here's who I am & what I do</h3>
                     <div className='lg:flex gap-2 items-center lg:mt-[2rem] xs:hidden'>
