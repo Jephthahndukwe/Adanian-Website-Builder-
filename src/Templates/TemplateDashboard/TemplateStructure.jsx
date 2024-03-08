@@ -52,8 +52,6 @@ const imageData = {
   ],
   'Fashion': [
     { src: Fashion1, text: 'Clothing Store', edit: '/DayDreamEditHome', preview: '/DayDreamHome' },
-    { src: Fashion2, text: 'Shoe Store' },
-    { src: Fashion3, text: 'Clothing Store' },
     // Add more Fashion images
   ],
   'Online Store': [
