@@ -53,7 +53,7 @@ const Homepage = () => {
                             </div>
                     </div>
                 </div>
-                <div className='lg:mt-[7.5rem] xs:mt-[-49rem] lg:ms-[8rem] xs:ms-[2rem]'>
+                <div className='lg:mt-[7.5rem] xs:mt-[-40rem] lg:ms-[8rem] xs:ms-[2rem]'>
                     <h1 className='lg:text-[100px] xs:text-[60px] font-Urbanist font-[900] text-start'>Hello</h1>
                     <h3 className='lg:text-[25px] xs:text-[20px] font-Urbanist font-[600] text-start mt-2'>Here's who I am & what I do</h3>
                     <div className='lg:flex gap-2 items-center lg:mt-[2rem] xs:hidden'>
