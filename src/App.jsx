@@ -51,6 +51,12 @@ import MayaNelsonResume from './Templates/TemplatePreviews/Maya Nelson/Homepage/
 import MayaNelsonProjects from './Templates/TemplatePreviews/Maya Nelson/Homepage/Projects'
 import MayaNelsonContact from './Templates/TemplatePreviews/Maya Nelson/Homepage/Contact'
 
+// Travel Better TEMPLATE
+import TravelBetterHome from './Templates/TemplatePreviews/Travel Better/Homepage/Homepage'
+import TravelBetterAbout from './Templates/TemplatePreviews/Travel Better/Homepage/About'
+import TravelBetterPackage from './Templates/TemplatePreviews/Travel Better/Homepage/Package'
+import TravelBetterBook from './Templates/TemplatePreviews/Travel Better/Homepage/Book'
+
 
 // EDITING TEMPLATE
 
@@ -141,6 +147,12 @@ function App() {
           <Route path='MayaNelsonResume' element={ <MayaNelsonResume /> } /> 
           <Route path='MayaNelsonProjects' element={ <MayaNelsonProjects /> } /> 
           <Route path='MayaNelsonContact' element={ <MayaNelsonContact /> } /> 
+
+          {/* Travel Better TEMPLATES */} {/* TRAVEL */}
+          <Route path='travelbetterHome' element={ <TravelBetterHome /> } />
+          <Route path='travelbetterabout' element={ <TravelBetterAbout/> } />
+          <Route path='travelbetterpackage' element={ <TravelBetterPackage /> } />
+          <Route path='travelbetterbook' element={ <TravelBetterBook /> } />
 
 
 
