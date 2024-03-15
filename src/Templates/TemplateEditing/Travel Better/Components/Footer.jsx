@@ -16,19 +16,19 @@ const Footer = () => {
                        <ul className='ms-[-2rem]'>
                             <li className='mt-3 flex items-center'>
                                 <RiArrowRightSLine className='text-[#8e44ad] text-[1.2rem]' /> 
-                                <Link to="/travelbetterhome" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>home</Link>
+                                <Link to="#" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>home</Link>
                             </li>
                             <li className='mt-3 flex items-center'>
                                 <RiArrowRightSLine className='text-[#8e44ad] text-[1.2rem]' /> 
-                                <Link to="/travelbetterabout" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'> about</Link>
+                                <Link to="about.html" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'> about</Link>
                             </li>
                             <li className='mt-3 flex items-center'>
                                 <RiArrowRightSLine className='text-[#8e44ad] text-[1.2rem]'/> 
-                                <Link to="/travelbetterpackage" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>package</Link>
+                                <Link to="package.html" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>package</Link>
                             </li>
                             <li className='mt-3 flex items-center'>
                                 <RiArrowRightSLine className='text-[#8e44ad] text-[1.2rem]'/> 
-                                <Link to="/travelbetterbook" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>book</Link>
+                                <Link to="book.html" className='text-[#fff9] pr-[0rem] transition delay-[.2s] ease-linear hover:ps-[7px] no-underline text-[0.9rem] capitalize hover:text-[#fff9]'>book</Link>
                             </li>
                        </ul>
                     </div>
@@ -79,7 +79,7 @@ const Footer = () => {
                 </div>
                 <hr className='w-[100%] mt-5 h-[2px] bg-[#fff9]'/>
 
-            <div class="text-center pt-[1rem] pb-[2rem] lg:text-[1rem] xs:text-[0.7rem] text-[#fff] capitalize"> © 2035 Travel Better. Powered and secured by <Link to='/travelbetterhome' className='text-[#8e44ad] hover:text-[#8e44ad]'>Adanian Labs</Link></div>
+            <div class="text-center pt-[1rem] pb-[2rem] lg:text-[1rem] xs:text-[0.7rem] text-[#fff] capitalize"> © 2035 Travel Better. Powered and secured by <Link to='/travelbetter' className='text-[#8e44ad] hover:text-[#8e44ad]'>Adanian Labs</Link></div>
 
         </div>
     </div>

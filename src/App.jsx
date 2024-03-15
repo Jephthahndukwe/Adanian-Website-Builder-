@@ -88,6 +88,12 @@ import MayaNelsonEditResume from './Templates/TemplateEditing/Maya Nelson/Homepa
 import MayaNelsonEditProjects from './Templates/TemplateEditing/Maya Nelson/Homepage/Projects'
 import MayaNelsonEditContact from './Templates/TemplateEditing/Maya Nelson/Homepage/Contact'
 
+// EDITING  -  TRAVEL  BETTER
+import TravelBetterEditHome from './Templates/TemplateEditing/Travel Better/Homepage/Homepage'
+import TravelBetterEditAbout from './Templates/TemplateEditing/Travel Better/Homepage/About'
+import TravelBetterEditPackage from './Templates/TemplateEditing/Travel Better/Homepage/Package'
+import TravelBetterEditBook from './Templates/TemplateEditing/Travel Better/Homepage/Book'
+
 
 
 function App() {
@@ -186,6 +192,12 @@ function App() {
         <Route path='MayaNelsonEditResume' element={ <MayaNelsonEditResume /> } /> 
         <Route path='MayaNelsonEditProjects' element={ <MayaNelsonEditProjects /> } /> 
         <Route path='MayaNelsonEditContact' element={ <MayaNelsonEditContact /> } /> 
+
+        {/* Travel Better TEMPLATES */} {/* TRAVEL */}
+        <Route path='travelbettereditHome' element={ <TravelBetterEditHome /> } />
+        <Route path='travelbettereditabout' element={ <TravelBetterEditAbout/> } />
+        <Route path='travelbettereditpackage' element={ <TravelBetterEditPackage /> } />
+        <Route path='travelbettereditbook' element={ <TravelBetterEditBook /> } />
       
 
          </Routes>

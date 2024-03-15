@@ -47,7 +47,7 @@ const imageData = {
     // Add more Portfolio images
   ],
   'Travel and Tour': [
-    { src: Travel1, text: 'Travel and Tours', preview: '/travelbetterhome' },
+    { src: Travel1, text: 'Travel and Tours', edit: '/travelbetteredithome', preview: '/travelbetterhome' },
   ],
   'Online Store': [
     { src: OnlineStore1, text: 'Accessories Store' },

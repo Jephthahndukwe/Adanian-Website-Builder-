@@ -28,7 +28,6 @@ import gallery11 from '../../../../assets/images/gallery-img-11.jpg'
 import gallery12 from '../../../../assets/images/gallery-img-12.jpg'
 import gallery13 from '../../../../assets/images/gallery-img-13.jpg'
 import Footer from '../Components/Footer';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 
 const Homepage = () => {
@@ -57,11 +56,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <div>
-        <TemplateEditNavbar/>
-      </div>
-     <div>
-     <Navbar />
+      <Navbar />
       <div style={{ overflow: 'hidden' }}> {/* Set overflow to hidden */}
   <div className="">
     <div className="">
@@ -75,7 +70,7 @@ const Homepage = () => {
             backgroundImage: `url(${image.src})`,
             position: 'absolute',
             left: 0,
-            // top: 0,
+            top: 0,
           }}
         >
           <div className="content w-full lg:pt-[30vh] xs:h-[-10vh]">
@@ -86,7 +81,7 @@ const Homepage = () => {
              {image.content}
             </h3>
             <Link
-              to="/travelbetterpackage"
+              to="/destination1"
               className="inline-block bg-gray-800 lg:mt-[3rem] xs:mt-3 text-white text-[1rem] lg:py-[1rem] xs:py-[0.8rem] px-[3rem] cursor-pointer hover:bg-purple-800 hover:text-white no-underline"
             >
               Discover More
@@ -112,7 +107,7 @@ const Homepage = () => {
   </div>
         </div>
 
-        <div className="mt-[55rem]">
+        <div className="mt-[50rem]">
             <h1 className="text-center mb-[3rem] text-[2.8rem] uppercase text-[#222]"> our services </h1>
             <div className='flex justify-center items-center'>
                 <div className="flex flex-wrap items-center gap-[1.5rem] px-[20px]">
@@ -174,7 +169,7 @@ const Homepage = () => {
                         </div>
                         <div className="flex items-center justify-between pt-[24px]">
                             <div className="location">
-                                <h4 className='text-[24px] font-[600] mb-[8px]'>New York</h4>
+                                <h4 className='text-[24px] font-[600] mb-[8px]'>London</h4>
                                 <p className='text-[15px] text-[#222]'>4h - 5h</p>
                             </div>
                             <div className="flex">
@@ -193,7 +188,7 @@ const Homepage = () => {
                        </div>
                         <div className="flex items-center justify-between pt-[24px]">
                             <div className="location">
-                                <h4 className='text-[24px] font-[600] mb-[8px]'>Dubai</h4>
+                                <h4 className='text-[24px] font-[600] mb-[8px]'>London</h4>
                                 <p className='text-[15px] text-[#222]'>4h - 5h</p>
                             </div>
                             <div className="flex">
@@ -289,7 +284,7 @@ const Homepage = () => {
             <h3 className='text-[2.5rem] uppercase text-[#222]'>upto 50% off</h3>
             <p className='text-[1rem] text-[#777] leading-[2] py-[1rem] px-0'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure tempora assumenda, debitis aliquid nesciunt maiores quas! Magni cumque quaerat saepe!</p>
             <Link
-              to="/travelbetterbook"
+              to="/destination1"
               className="inline-block bg-gray-800 text-white text-[1rem] py-[0.8rem] px-[3rem] cursor-pointer hover:bg-purple-800 hover:text-white no-underline"
             >
               Book Now
@@ -300,10 +295,64 @@ const Homepage = () => {
    <div>
    <Footer/>
    </div>
-     </div>
 
     </div>
   );
 };
 
 export default Homepage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react'
+// import Navbar from '../Components/Navbar'
+// import slide1 from '../../../../assets/images/home-slide-1.jpg'
+// import slide2 from '../../../../assets/images/home-slide-2.jpg'
+// import slide3 from '../../../../assets/images/home-slide-3.jpg'
+// import { Link } from 'react-router-dom'
+
+// const Homepage = () => {
+//   return (
+//     <div>
+//         <Navbar/>
+//         <section className="p-0">
+//             <div className="swiper home-slider">
+//                 <div className="swiper-wrapper">
+//                 <div
+//               className="swiper-slide slide text-center flex items-center justify-center bg-cover bg-center min-h-screen"
+//               style={{ backgroundImage: `url(${slide1})` }}
+//             >
+//               <div className="content w-full">
+//                 <span className="block text-[2.2rem] text-white pb-[1rem]">
+//                   explore, discover, travel
+//                 </span>
+//                 <h3 className="text-[4vw] text-white uppercase leading-[1px] py-[1rem]">
+//                   travel around the world
+//                 </h3>
+//                 <Link
+//                   to="/destination1"
+//                   className="inline-block bg-gray-800 mt-[3rem] text-white text-[1rem] py-[1rem] px-[3rem] cursor-pointer hover:bg-purple-800 hover:text-white no-underline"
+//                 >
+//                   Discover More
+//                 </Link>
+//               </div>
+//             </div>
+//                 </div>
+//             </div>
+//         </section>
+
+//     </div>
+//   )
+// }
+
+// export default Homepage

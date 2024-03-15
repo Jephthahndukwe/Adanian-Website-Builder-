@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div>
-        <section className="mt-[-2.7rem]  z-[1000] bg-[#fff] flex  items-center justify-between xs:py-[20px] lg:px-[50px] xs:px-[10px]" style={{ boxShadow: `0 .5rem 1rem rgba(0,0,0,.1)` }}>
+        <section className="sticky top-0 left-0 right-0 z-[1000] bg-[#fff] flex  items-center justify-between xs:py-[20px] lg:px-[50px] xs:px-[10px]" style={{ boxShadow: `0 .5rem 1rem rgba(0,0,0,.1)` }}>
             <div className='flex gap-[10rem] items-center'>
               <Link to="/travelbetterhome" className="text-[1.5rem] no-underline hover:text-[#222] text-[#222] flex items-center gap-3"><FaPaperPlane /> travelBetter</Link>
               <div className='xs:flex lg:hidden justify-end items-end'>
