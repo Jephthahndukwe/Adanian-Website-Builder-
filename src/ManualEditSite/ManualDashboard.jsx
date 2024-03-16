@@ -75,8 +75,8 @@ const ManualDashboard = () => {
 
   return (
     <div className='bg-[#f0f4fe]'>
-        <div className='flex items-center gap-[1rem] px-[20px] py-[20px]'>
-            <div className='w-[45%] h-[93vh] bg-[#fff] rounded-[20px] shadow-md'>
+        <div className='lg:flex items-center gap-[1rem] lg:px-[20px] lg:py-[20px]'>
+            <div className='lg:w-[45%] xs:w-[100%] h-[93vh] bg-[#fff] rounded-[20px] shadow-md'>
                 <div className='bg-[#fff] py-[20px] px-[20px] rounded-[20px]'>
                     <img src={logo} className='w-[20%]' />
                 </div>
@@ -104,7 +104,7 @@ const ManualDashboard = () => {
                     <Link to='' className='lg:text-[16px] xs:text-[13px] text-center font-[500] leading-[24px] text-[#fff] hover:text-[#fff] bg-[#00AABC] hover:bg-[#116dff] py-[9px] px-[20px] lg:w-[50%] xs:w-[65%] rounded-[100px] no-underline'>Continue with this Design</Link>
                 </div>
             </div>
-            <div className='w-[55%] bg-[#fff] rounded-[20px] h-[93vh] shadow-md ' style={{ }}>
+            <div className='lg:w-[55%] xs:w-[100%] bg-[#fff] rounded-[20px] h-[93vh] shadow-md lg:mt-0 xs:mt-[5rem]' style={{ }}>
                 <iframe style={{scrollbarWidth: '0'}} src="/LawrenceHome" frameborder="0" className='h-[100%] w-[100%] rounded-[20px] overflow-auto overflow-y-hidden' />
             </div>
         </div>
