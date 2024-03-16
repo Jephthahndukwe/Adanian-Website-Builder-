@@ -105,7 +105,7 @@ const ManualDashboard = () => {
                 </div>
             </div>
             <div className='lg:w-[55%] xs:w-[100%] bg-[#fff] rounded-[20px] h-[93vh] shadow-md lg:mt-0 xs:mt-[5rem]' style={{ }}>
-                <iframe style={{scrollbarWidth: '0'}} src="/LawrenceHome" frameborder="0" className='h-[100%] w-[100%] rounded-[20px] overflow-auto overflow-y-hidden' />
+                <iframe style={{scrollbarWidth: '0'}} src="http://localhost:5173/LawrenceHome" frameborder="0" className='h-[100%] w-[100%] rounded-[20px] overflow-auto overflow-y-hidden' />
             </div>
         </div>
     </div>
