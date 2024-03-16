@@ -73,7 +73,7 @@ const ManualDashboard = () => {
       ];
 
           // Determine the base URL based on the environment
-      const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/' : 'http://localhost:5173';
+      const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/LawrenceHome' : 'http://localhost:5173';
 
       // Construct the full URL for the iframe src
       const iframeSrc = `${baseUrl}/LawrenceHome`;
