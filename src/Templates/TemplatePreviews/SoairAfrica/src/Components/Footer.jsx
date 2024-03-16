@@ -38,7 +38,7 @@ const Footer = () => {
                     <a href='' target='_blank'><img src={image4} className='social-img text-center me-3'/></a>
             </div>
             <hr className='foot-hr'/>
-            <p className='f-style text-light text-uppercase text-center pb-4'>copyright @soair 2022. all rights reserved</p>
+            <p className='f-style text-light text-uppercase text-center pb-4'>© 2035 Soair Africa. Powered and secured by <Link to='/' className='text-[18px] text-[#fff] font-[100] font-Namdhinggo hover:text-[#fff]'>Adanian Labs</Link></p>
         </div>
     </div>
   )

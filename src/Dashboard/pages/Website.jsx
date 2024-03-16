@@ -24,7 +24,7 @@ const Website = () => {
                             <h3 className='text-[#000624] lg:text-[20px] xs:text-[13px] font-[700] leading-[30px] mt-[2rem] text-center'>Let Adanian Lab create a site for you</h3>
                             <h4 className='text-[#000624] lg:text-[16px] xs:text-[12px] font-[400] leading-[24px] mt-[3%] text-center'>Use our site-builder to go live quickly.</h4>
                             <p className='flex justify-center items-center mt-5'>
-                                <Link to='/' className='lg:text-[16px] xs:text-[13px] text-center font-[500] leading-[24px] text-[#fff] hover:text-[#fff] bg-[#00AABC] hover:bg-[#116dff] py-[9px] px-[30px] lg:w-[55%] xs:w-[65%] rounded-[100px] no-underline'>Get Started</Link>
+                                <Link to='/manualsite' className='lg:text-[16px] xs:text-[13px] text-center font-[500] leading-[24px] text-[#fff] hover:text-[#fff] bg-[#00AABC] hover:bg-[#116dff] py-[9px] px-[30px] lg:w-[55%] xs:w-[65%] rounded-[100px] no-underline'>Get Started</Link>
                             </p>
                         </div>
                         <div className='bg-[#fff] shadow-2xl py-[25px] hover:shadow-lg hover:shadow-[#00AABC] px-[40px] lg:w-[450px] xs:w-[100%] lg:h-[320px] rounded-[15px] lg:mt-0 xs:mt-[2rem]'>

@@ -13,6 +13,7 @@ import QuestionFive from './Auth/AuthQues/QuestionFive'
 import Dashboard from './Dashboard/Dashboard'
 import AppPlugins from './Dashboard/pages/AppPlugins'
 import Website from './Dashboard/pages/Website'
+import ManualDashboard from './ManualEditSite/ManualDashboard'
 
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
@@ -96,6 +97,7 @@ import TravelBetterEditBook from './Templates/TemplateEditing/Travel Better/Home
 
 
 
+
 function App() {
 
   return (
@@ -119,6 +121,7 @@ function App() {
           <Route path='website/templates' element={ <Templates/> } />
           <Route path='templateviewintro' element={ <TemplateViewIntro/> } />
           <Route path='templateeditor' element={ <TemplateEditor/> } />
+          <Route path='manualsite' element={ <ManualDashboard/> } />
 
           {/* TEMPLATES */}
           <Route path='ayobatemplate' element={ <Homepage/> } />

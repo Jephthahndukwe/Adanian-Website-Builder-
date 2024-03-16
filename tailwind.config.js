@@ -27,7 +27,8 @@ export default {
     extend: {
       fontFamily: {
         Namdhinggo: ['Namdhinggo', 'serif'],
-        Urbanist: ['Urbanist', 'sans-serif']
+        Urbanist: ['Urbanist', 'sans-serif'],
+        Poppins: ['Poppins', 'sans-serif']
       },
       // fontFamily: {
       //   sans: ['Gilroy', 'sans-serif']
