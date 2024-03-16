@@ -71,6 +71,13 @@ const ManualDashboard = () => {
         "Based on your site profile, My Site, your Local Business site has a site structure which includes 1 page. it's content is generated based on your site description.",
         "Your site theme features a techy design with shades of black and yellow. it's layout a clean, simple design with a classic look."
       ];
+
+          // Determine the base URL based on the environment
+      const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/' : 'http://localhost:5173';
+
+      // Construct the full URL for the iframe src
+      const iframeSrc = `${baseUrl}/LawrenceHome`;
+
       
 
   return (
@@ -105,7 +112,7 @@ const ManualDashboard = () => {
                 </div>
             </div>
             <div className='lg:w-[55%] xs:w-[100%] bg-[#fff] rounded-[20px] h-[93vh] shadow-md lg:mt-0 xs:mt-[5rem]' style={{ }}>
-                <iframe style={{scrollbarWidth: '0'}} src="http://localhost:5173/LawrenceHome" frameborder="0" className='h-[100%] w-[100%] rounded-[20px] overflow-auto overflow-y-hidden' />
+                <iframe style={{scrollbarWidth: '0'}} src={iframeSrc} frameborder="0" className='h-[100%] w-[100%] rounded-[20px] overflow-auto overflow-y-hidden' />
             </div>
         </div>
     </div>
