@@ -5,10 +5,12 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 const Navbar = () => {
 
   const [show, setShow] = useState(false)
+  const [screenSize, setScreenSize] = useState('desktop');
+
 
   return (
     <div>
-      <button className='text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[15px] px-[30px] xs:block lg:hidden mt-[-2rem] w-[100%]'>Order Online</button>
+      <button className={`text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[15px] px-[30px] mt-[-2rem] w-[100%] ${screenSize === 'desktop' ? 'lg:hidden' : 'xs:block'}`}>Order Online</button>
         <div className='lg:flex justify-between items-center lg:pb-[50px] xs:pb-5 lg:pt-0 xs:pt-5 lg:px-[100px] xs:px-[20px]'>
           {/* <h1><Link to='/LawrenceHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] text-[30px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1> */}
           <div className='flex justify-between items-center'>

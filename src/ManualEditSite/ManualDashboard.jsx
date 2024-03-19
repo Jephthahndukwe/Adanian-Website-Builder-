@@ -2,7 +2,25 @@ import React, { useState, useEffect } from 'react'
 import logo from '../assets/images/ADANIAN LOGO 1.png'
 import { BsStars } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import Lawrence from '../Templates/TemplatePreviews/Lawrence/Homepage/Homepage'
+
+
+function getRandomTemplateUrl() {
+  // List of template URLs
+  const templates = [
+    "/LawrenceHome",
+    "/SoairHome",
+    "/DayDreamHome",
+    "/MayaNelsonHome",
+    "/travelbetterhome"
+    // Add more template URLs as needed
+  ];
+
+  // Generate a random index to select a template
+  const randomIndex = Math.floor(Math.random() * templates.length);
+
+  // Return the URL of the randomly selected template
+  return templates[randomIndex];
+}
 
 const Typewriter = ({ texts, speed }) => {
     const [textIndex, setTextIndex] = useState(0);
@@ -72,13 +90,28 @@ const ManualDashboard = () => {
         "Your site theme features a techy design with shades of black and yellow. it's layout a clean, simple design with a classic look."
       ];
 
-          // Determine the base URL based on the environment
-      const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/LawrenceHome' : 'http://localhost:5173';
+      //     // Determine the base URL based on the environment
+      // const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/LawrenceHome' : 'http://localhost:5173';
+
+      // // Construct the full URL for the iframe src
+      // const iframeSrc = `${baseUrl}/LawrenceHome`;
+
+      // Determine the base URL based on the environment
+      const baseUrl = process.env.NODE_ENV === 'production' ? 'https://adanian-website-builder.vercel.app/LawrenceHomep' : 'http://localhost:5173';
+
+      // Get a random template URL
+      const randomTemplateUrl = getRandomTemplateUrl();
 
       // Construct the full URL for the iframe src
-      const iframeSrc = `${baseUrl}/LawrenceHome`;
+      const iframeSrc = `${baseUrl}${randomTemplateUrl}`;
 
-      
+       // State variable to hold the selected template URL
+      const [selectedTemplateUrl, setSelectedTemplateUrl] = useState(getRandomTemplateUrl());
+
+      // Handle button click event to direct to selected template URL
+      const handleButtonClick = () => {
+        window.location.href = `${baseUrl}${selectedTemplateUrl}`;
+      };
 
   return (
     <div className='bg-[#f0f4fe]'>
@@ -108,7 +141,7 @@ const ManualDashboard = () => {
                </div>
 
                 <div className='bg-[#fff] px-[20px] py-[20px] flex justify-end items-end'>
-                    <Link to='' className='lg:text-[16px] xs:text-[13px] text-center font-[500] leading-[24px] text-[#fff] hover:text-[#fff] bg-[#00AABC] hover:bg-[#116dff] py-[9px] px-[20px] lg:w-[50%] xs:w-[65%] rounded-[100px] no-underline'>Continue with this Design</Link>
+                    <Link onClick={handleButtonClick} className='lg:text-[16px] xs:text-[13px] text-center font-[500] leading-[24px] text-[#fff] hover:text-[#fff] bg-[#00AABC] hover:bg-[#116dff] py-[9px] px-[20px] lg:w-[50%] xs:w-[65%] rounded-[100px] no-underline'>Continue with this Design</Link>
                 </div>
             </div>
             <div className='lg:w-[55%] xs:w-[100%] bg-[#fff] rounded-[20px] h-[93vh] shadow-md lg:mt-0 xs:mt-[5rem]' style={{ }}>
