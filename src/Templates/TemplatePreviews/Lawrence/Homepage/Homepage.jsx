@@ -18,21 +18,19 @@ const Homepage = () => {
     <>
     <div>
         <TemplateEditNavbar setScreenSize={setScreenSize} />
-        <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>       
-            <Navbar setScreenSize={setScreenSize}/>
+        <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>
+            <Navbar/>
             <div className='lg:flex gap-[3rem]'>
               <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${restro})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='lg:w-[90%] xs:w-[100%] h-[100vh] bg-fixed' />
-              <div className={`${screenSize === 'desktop' ? 'lg:hidden' : 'xs:block'} mt-[5rem]`}>
+              <div className='lg:hidden xs:block mt-[5rem]'>
                 <h2 className='text-[#7c6c50] text-[25px] text-center font-[400] font-Namdhinggo'>Restaurant & Bar</h2>
                 <h2 className='text-[#7c6c50] text-[25px] text-center font-[400] font-Namdhinggo'>Est. 2035</h2>
               </div>
-              {screenSize === 'desktop' && (
               <div className='lg:block xs:hidden'>
                 <h2 className='text-[#7c6c50] text-[20px] font-[400] font-Namdhinggo' style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)` }}>Restaurant & Bar</h2>
                 <div className='h-[50%] w-[1px] bg-[#7c6c50] mt-[3rem] ms-[0.7rem]' />
                 <h2 className='text-[#7c6c50] text-[20px] font-[400] font-Namdhinggo mt-[3rem]' style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)` }}>Est. 2035</h2>
               </div>
-               )}
             </div>
             <div className='lg:flex justify-center items-center gap-[4rem] lg:px-[100px] mt-[4rem]'>
                 <div>
