@@ -113,6 +113,7 @@ const ManualDashboard = () => {
         window.location.href = `${baseUrl}${selectedTemplateUrl}`;
       };
 
+
   return (
     <div className='bg-[#f0f4fe]'>
         <div className='lg:flex items-center gap-[1rem] lg:px-[20px] lg:py-[20px]'>

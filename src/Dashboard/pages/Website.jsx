@@ -1,11 +1,21 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/images/ADANIAN LOGO 1.png'
 import { FaArrowLeft } from "react-icons/fa";
 import Icons1 from '../../assets/images/M1_296.png'
 import Icons2 from '../../assets/images/M1_297.png'
+import LoadingContext from '../../Components/LoadingContext';
+
 
 
 const Website = () => {
+
+    const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+  };
+
     return (
         <div className='py-[20px] lg:px-[30px] xs:px-[20px]'>
            <div className='flex items-center lg:gap-[16px] xs:gap-[35px]'>
@@ -40,6 +50,7 @@ const Website = () => {
                     </div>
                 </div>
            </div>
+           {loading && <LoadingContext redirectTo="/manualsite" />}
         </div>
     )
 }

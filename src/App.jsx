@@ -58,6 +58,9 @@ import TravelBetterAbout from './Templates/TemplatePreviews/Travel Better/Homepa
 import TravelBetterPackage from './Templates/TemplatePreviews/Travel Better/Homepage/Package'
 import TravelBetterBook from './Templates/TemplatePreviews/Travel Better/Homepage/Book'
 
+// Travel Better TEMPLATE
+import KnollWaterHome from './Templates/TemplatePreviews/Knoll Walters/Homepage/Homepage'
+
 
 // EDITING TEMPLATE
 
@@ -162,6 +165,9 @@ function App() {
           <Route path='travelbetterabout' element={ <TravelBetterAbout/> } />
           <Route path='travelbetterpackage' element={ <TravelBetterPackage /> } />
           <Route path='travelbetterbook' element={ <TravelBetterBook /> } />
+
+          {/* Knoll Walters LLP TEMPLATES */} {/* LEGAL SERVICE */}
+          <Route path='knollwaterHome' element={ <KnollWaterHome /> } />
 
 
 

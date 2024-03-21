@@ -24,6 +24,7 @@ import Entertainment2 from '../../assets/images/entertainment2.png'
 import Entertainment3 from '../../assets/images/entertainment3.png'
 import Entertainment4 from '../../assets/images/entertainment4.png'
 import Travel1 from '../../assets/images/Travel1.png'
+import Legal1 from '../../assets/images/Legal1.png'
 
 
 const imageData = {
@@ -85,6 +86,9 @@ const imageData = {
       { src: Entertainment4, text: 'Event Venue' },
       // Add more Entertainment images
     ],
+    '': [
+      { src: Legal1, text: 'Law Firm', preview: '/knollwaterHome' }
+    ]
   };
 
   export default imageData;
