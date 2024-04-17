@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 import Navbar from '../Component/Navbar';
 import fash23 from '../../../../assets/images/fash23.png'
 import fash24 from '../../../../assets/images/fash24.png'
@@ -23,7 +23,7 @@ const Contact = () => {
         enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div className='bg-[#fff] mt-[-4rem]'>
                 <div className='mt-[7rem] xs:mt-[3.9rem]'>
                     <Navbar/>

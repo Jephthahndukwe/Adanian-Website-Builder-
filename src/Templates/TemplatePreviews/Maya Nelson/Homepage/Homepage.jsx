@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import portfo1 from '../../../../assets/images/portfo1.png'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
@@ -25,7 +25,7 @@ const Homepage = () => {
       enterTo="opacity-100"
     >
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div className='lg:mt-[-3rem]'>
             <div>
                 <Navbar/>

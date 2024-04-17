@@ -14,11 +14,13 @@ import img10 from '../../../../assets/images/img-10.jpg'
 import img11 from '../../../../assets/images/img-11.jpg'
 import img12 from '../../../../assets/images/img-12.jpg'
 import Footer from '../Components/Footer'
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 
 
 const Package = () => {
   return (
     <div>
+        <TemplateEditNavbar/>
         <Navbar/>
         <div class="h-[70vh]" style={{ background: `url(${bgimg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover' }}>
             <h1 className='text-center lg:text-[6rem] xs:text-[3rem] pt-[20vh] uppercase text-[#fff]' style={{ textShadow: '0 1.5rem 3rem rgba(0,0,0,.3)' }}>Package</h1>

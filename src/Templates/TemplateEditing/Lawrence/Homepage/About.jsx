@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import Navbar from '../Components/Navbar'
 import restro4 from '../../../../assets/images/restro4.jpg'
 import restro5 from '../../../../assets/images/restro5.png'
 import Footer from '../Components/Footer'
 import { Editor } from '@tinymce/tinymce-react';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 
 
 const About = () => {
@@ -51,82 +51,65 @@ const About = () => {
          }
     };
 
-    // IMAGE EDIT 1
- const [selectedImage, setSelectedImage] = useState(null);
- const [errorMessage, setErrorMessage] = useState('');
 
- const onSelectFile = (event) => {
-     const selectedFile = event.target.files[0];
-
-     // Check if file size is within limits (e.g., 2 MB)
-     if (selectedFile.size > 2 * 1024 * 1024) {
-         setErrorMessage('File size exceeds 2MB. Please select a smaller file.');
-         setTimeout(() => {
-             setErrorMessage('');
-         }, 10000); // Hide the error message after 10 seconds
-         return;
-     }
-
-     // Check if image dimensions are within limits (e.g., 800x600)
-     const img = new Image();
-     img.onload = function () {
-         if (this.width > 3264 || this.height > 4928) {
-             setErrorMessage('Image dimensions exceed 5139x3426 pixels. Please select a smaller image.');
-             setTimeout(() => {
-                 setErrorMessage('');
-             }, 10000); // Hide the error message after 10 seconds
-             return;
-         }
-         const imageUrl = URL.createObjectURL(selectedFile);
-         setSelectedImage(imageUrl);
-         setErrorMessage('');
-     };
-     img.src = URL.createObjectURL(selectedFile);
- };
-
- const handleImageClick = () => {
-     document.getElementById('fileInput').click();
- };
-
- // IMAGE EDIT 2
- const [selectedImage2, setSelectedImage2] = useState(null);
- const [errorMessage2, setErrorMessage2] = useState('');
-
- const onSelectFile2 = (event) => {
-     const selectedFile2 = event.target.files[0];
-
-     // Check if file size is within limits (e.g., 2 MB)
-     if (selectedFile2.size > 2 * 1024 * 1024) {
-         setErrorMessage2('File size exceeds 2MB. Please select a smaller file.');
-         setTimeout(() => {
-             setErrorMessage2('');
-         }, 10000); // Hide the error message after 10 seconds
-         return;
-     }
-
-     // Check if image dimensions are within limits (e.g., 800x600)
-     const img = new Image();
-     img.onload = function () {
-         if (this.width > 555 || this.height > 800) {
-             setErrorMessage2('Image dimensions exceed 555x800 pixels. Please select a smaller image.');
-             setTimeout(() => {
-                 setErrorMessage2('');
-             }, 10000); // Hide the error message after 10 seconds
-             return;
-         }
-         const imageUrl = URL.createObjectURL(selectedFile2);
-         setSelectedImage2(imageUrl);
-         setErrorMessage2('');
-     };
-     img.src = URL.createObjectURL(selectedFile2);
- };
-
- const handleImageClick2 = () => {
-     document.getElementById('fileInput2').click();
- };
+    // IMAGE EDITING
+    const useImageUpload = (setImage, setErrorMessage, maxSize, maxWidth, maxHeight) => {
+        return (event) => {
+            const selectedFile = event.target.files[0];
+    
+            // Check if file size is within limits
+            if (selectedFile.size > maxSize) {
+                setErrorMessage(`File size exceeds ${maxSize / (1024 * 1024)}MB. Please select a smaller file.`);
+                setTimeout(() => {
+                    setErrorMessage('');
+                }, 10000); // Hide the error message after 10 seconds
+                return;
+            }
+    
+            // Check if image dimensions are within limits
+            const img = new Image();
+            img.onload = function () {
+                if (this.width > maxWidth || this.height > maxHeight) {
+                    setErrorMessage(`Image dimensions exceed ${maxWidth}x${maxHeight} pixels. Please select a smaller image.`);
+                    setTimeout(() => {
+                        setErrorMessage('');
+                    }, 10000); // Hide the error message after 10 seconds
+                    return;
+                }
+                const imageUrl = URL.createObjectURL(selectedFile);
+                setImage(imageUrl);
+                setErrorMessage('');
+            };
+            img.src = URL.createObjectURL(selectedFile);
+        };
+    };
+    
+    const handleImageClick = (inputId) => {
+        document.getElementById(inputId).click();
+    };
+    
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    
+    const onSelectFile = useImageUpload(setSelectedImage, setErrorMessage, 2 * 1024 * 1024, 3264, 4928);
+    
+    const handleImageClick1 = () => {
+        handleImageClick('fileInput1');
+    };
+    
+    const [selectedImage2, setSelectedImage2] = useState(null);
+    const [errorMessage2, setErrorMessage2] = useState('');
+    
+    const onSelectFile2 = useImageUpload(setSelectedImage2, setErrorMessage2, 2 * 1024 * 1024, 555, 800);
+    
+    const handleImageClick2 = () => {
+        handleImageClick('fileInput2');
+    };
+    
 
   return (
     <div>
+        <TemplateEditNavbar/>
         <div className='bg-[#faf8f1] pt-[2rem]'>
             <Navbar/>
             <div>

@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar'
 import { Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 
 const Resume = () => {
@@ -22,6 +23,7 @@ const Resume = () => {
       enterTo="opacity-100"
     >
         <div>
+            <TemplateEditNavbar/>
             <div>
                <div>
                 <Navbar/>

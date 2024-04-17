@@ -11,13 +11,13 @@ import internship from '../images/Internship.png'
 import Startcourse from './Startcourse'
 import Testimonials from './Testimonials'
 import Footer from '../Footer'
-import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../../../TemplateDashboard/TemplatePreviewNavbar'
 
 
 const Courses = () => {
     return (
       <>
-      <TemplateEditNavbar/>
+      <TemplatePreviewNavbar/>
       <div>
         <NavBar/>
 

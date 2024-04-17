@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Navbar from '../Components/Navbar'
 import { Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ const Resume = () => {
       enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div>
                <div>
                 <Navbar/>

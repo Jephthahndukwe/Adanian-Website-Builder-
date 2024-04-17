@@ -1,5 +1,5 @@
 import React from 'react'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Navbar from '../Components/Navbar'
 import restro6 from '../../../../assets/images/restro6.jpg'
 import Footer from '../Components/Footer'
@@ -7,7 +7,7 @@ import Footer from '../Components/Footer'
 const Contact = () => {
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>
             <Navbar/>
             <div className='bg-[#a89d8a] py-[70px] lg:px-[180px] xs:px-[80px] w-[90vw]'>

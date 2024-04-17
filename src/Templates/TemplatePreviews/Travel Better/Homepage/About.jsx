@@ -10,12 +10,12 @@ import pic4 from '../../../../assets/images/pic-4.png'
 import pic5 from '../../../../assets/images/pic-5.png'
 import pic6 from '../../../../assets/images/pic-6.png'
 import Footer from '../Components/Footer'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 
 const About = () => {
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <Navbar/>
         <div class="h-[70vh]" style={{ background: `url(${bgimg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover' }}>
             <h1 className='text-center lg:text-[6rem] xs:text-[3rem] pt-[20vh] uppercase text-[#fff]' style={{ textShadow: '0 1.5rem 3rem rgba(0,0,0,.3)' }}>About Us</h1>

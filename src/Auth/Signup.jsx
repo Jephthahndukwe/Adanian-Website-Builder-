@@ -66,7 +66,6 @@ const Signup = () => {
 
       } catch (error) {
         // Handle signup error (e.g., show error message)
-        // Handle signup error (e.g., show error message)
         console.error('Signup failed:', error.response.data);
         alert('Signup failed. Please try again.'); // Example: Show an alert message
       }

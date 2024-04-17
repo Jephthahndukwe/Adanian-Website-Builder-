@@ -47,6 +47,13 @@ const imageData = {
     'Travel and Tour': [
       { src: Travel1, text: 'Travel and Tours', edit: '/travelbetteredithome', preview: '/travelbetterhome' },
     ],
+    'Entertainment': [
+      { src: Entertainment1, text: 'Event Planning Company', preview: '/qproductionHome' },
+      { src: Entertainment2, text: 'Club' },
+      { src: Entertainment3, text: 'DJ' },
+      { src: Entertainment4, text: 'Event Venue' },
+      // Add more Entertainment images
+    ],
     'Online Store': [
       { src: OnlineStore1, text: 'Accessories Store' },
       { src: OnlineStore2, text: 'Electronics Store' },
@@ -78,13 +85,6 @@ const imageData = {
       { src: Healthcare1, text: 'Home Healthcare Company' },
       { src: Healthcare2, text: 'Medical Clinic' },
       // Add more HealthCare images
-    ],
-    'Entertainment': [
-      { src: Entertainment1, text: 'Event Planning Company' },
-      { src: Entertainment2, text: 'Club' },
-      { src: Entertainment3, text: 'DJ' },
-      { src: Entertainment4, text: 'Event Venue' },
-      // Add more Entertainment images
     ],
     '': [
       { src: Legal1, text: 'Law Firm', preview: '/knollwaterHome' }

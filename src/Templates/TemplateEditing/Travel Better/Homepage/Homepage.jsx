@@ -28,6 +28,7 @@ import gallery11 from '../../../../assets/images/gallery-img-11.jpg'
 import gallery12 from '../../../../assets/images/gallery-img-12.jpg'
 import gallery13 from '../../../../assets/images/gallery-img-13.jpg'
 import Footer from '../Components/Footer';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 
 const Homepage = () => {
@@ -56,6 +57,8 @@ const Homepage = () => {
 
   return (
     <div>
+      <TemplateEditNavbar/>
+      <div className='mt-1'>
       <Navbar />
       <div style={{ overflow: 'hidden' }}> {/* Set overflow to hidden */}
   <div className="">
@@ -70,7 +73,7 @@ const Homepage = () => {
             backgroundImage: `url(${image.src})`,
             position: 'absolute',
             left: 0,
-            top: 0,
+            top: '6rem',
           }}
         >
           <div className="content w-full lg:pt-[30vh] xs:h-[-10vh]">
@@ -295,6 +298,7 @@ const Homepage = () => {
    <div>
    <Footer/>
    </div>
+      </div>
 
     </div>
   );

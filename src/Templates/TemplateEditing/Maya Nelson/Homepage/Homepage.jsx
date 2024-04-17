@@ -5,6 +5,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/f
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react';
 import Footer from '../Components/Footer'
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 
 const Homepage = () => {
 
@@ -24,7 +25,8 @@ const Homepage = () => {
       enterTo="opacity-100"
     >
     <div>
-        <div className=''>
+        <TemplateEditNavbar/>
+        <div className='mt-[]'>
                 <Navbar/>
             <div className='lg:flex items-center'>
                 <div className='bg-[#E6DACE] lg:w-[80vw] xs:w-[100vw] lg:h-[150vh] xs:h-[120vh] lg:mt-[5rem] xs:mt-[27rem] lg:flex gap-[4rem] items-center'>

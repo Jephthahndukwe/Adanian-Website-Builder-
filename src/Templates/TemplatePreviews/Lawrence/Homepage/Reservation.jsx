@@ -1,7 +1,8 @@
 import React from 'react'
 import Navbar from '../Components/Navbar';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+// import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Footer from '../Components/Footer';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 
 const Reservation = () => {
 
@@ -10,7 +11,7 @@ const Reservation = () => {
 
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>
         <Navbar/>
         <div className='mt-[4rem] py-[30px] pb-[90px]'>

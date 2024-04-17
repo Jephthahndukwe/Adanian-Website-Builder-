@@ -1,7 +1,7 @@
 import React from 'react'
 import '../stylings/Course.css'
 import logo from '../images/SOAIR LOGO 01 1.png'
-import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../../../TemplateDashboard/TemplatePreviewNavbar'
 
 
 
@@ -9,7 +9,7 @@ const EnrollPage = () => {
   
   return (
     <>
-    <TemplateEditNavbar/>
+    <TemplatePreviewNavbar/>
     <div className='container-fluid'>
         <div className='nav d-sm-flex justify-content-between align-items-center p-4'>
             <img src={logo} className='logo-img2' />

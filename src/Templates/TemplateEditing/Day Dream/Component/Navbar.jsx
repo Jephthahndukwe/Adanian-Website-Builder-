@@ -33,7 +33,7 @@ const Navbar = () => {
             <div className='lg:flex xs:hidden gap-[2rem] items-center list-none'>
                   <li><Link to='/DayDreamEditHome' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>Home</Link></li>
                   <li><Link to='/DayDreamEditLookbook' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>Lookbook</Link></li>
-                  <li><Link to='/DayDreamAbout' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>About</Link></li>
+                  <li><Link to='/DayDreamEditAbout' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>About</Link></li>
                   <li><Link to='/DayDreamEditSales' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>Sale</Link></li>
                   <li><Link to='/DayDreamEditContact' className='text-[16px] no-underline font-Namdhinggo italic font-[200] text-[#4a573e] hover:text-[#4a573e]'>Contact</Link></li>
             </div>

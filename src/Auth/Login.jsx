@@ -6,53 +6,97 @@ import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import toast from 'react-hot-toast'
+// import { toast } from 'react-toastify'
+import { useAuth } from '../../Redux/Context/User'
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [auth, setAuth] = useAuth()
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const navigate = useNavigate(); 
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  //form function
+  const submitHandler = async (e) => {
+    e.preventDefault()
+      try {
+        const res = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { 
+          email, 
+          password,
+        });
+        if(res && res.data.success) {
+          // toast.success(res.data && res.data.message)
+          alert(res.data && res.data.message)
+          setAuth({
+            ...auth,
+            user: res.data.user,
+            token: res.data.token,
+          });
+          localStorage.setItem('auth', JSON.stringify(res.data));
+          navigate('/dashboard');
+        }
+        else {
+          // toast.error(res.data.message)
+          alert(res.data.message)
+        }
+      } catch (error) {
+      console.log(error)
+      // toast.error('Something went wrong')
+      alert('Something went wrong')
+  }
+} 
 
-  const navigate = useNavigate(); // Initialize the navigate function
+  // const handlePasswordChange = (event) => {
+  //   setPassword(event.target.value);
+  // };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+  // const toggleShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    try {
-      // Send login data to backend
-      const response = await axios.post('https://ayoba.adanianlabs.io/api/user/login', {
-        email,
-        password,
-      });
+  // const navigate = useNavigate(); // Initialize the navigate function
 
-      // Handle successful login
-      console.log('Login successful:', response.data);
+  // const handleEmailChange = (event) => {
+  //   setEmail(event.target.value);
+  // };
 
-      // Redirect user to dashboard
-      navigate('/dashboard');
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
 
-      //Handle login message
-      toast.success("Login Successful");
-    } catch (error) {
-      // Handle login error
-      console.error('Login failed:', error);
-      toast.error('Login failed. Please try again.');
-    }
-  };
+  //   try {
+  //     // Send login data to backend
+  //     const response = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password });
+  //     const { userId } = response.data;
+
+  //      // Store user ID in state, context, or local storage
+  //      localStorage.setItem('userId', userId);
+
+  //     // Handle successful login
+  //     console.log('Login successful:', response.data);
+
+  //     // Redirect user to dashboard
+  //     navigate('/dashboard');
+
+  //     //Handle login message
+  //     toast.success("Login Successful");
+  //   } catch (error) {
+
+  //     // Handle login error
+  //     console.error('Login failed:', error);
+  //     alert('Login failed. Please try again.');
+  //   }
+  // };
 
 
   return (
@@ -66,14 +110,19 @@ const Login = () => {
             <div className='lg:p-[37px] lg:flex gap-[37px] mt-[40px]'> 
                 <div>
                     <h2 className='text-[#333] text-center text-[24px] font-[500]'>Log in</h2>
-                    <form className='mt-5' onSubmit={handleSubmit}>
+                    <form className='mt-5' onSubmit={submitHandler}>
                         <label htmlFor='email' className='text-[#666] text-[16px] font-[400]'>Email address</label><br/>
-                        <input type='email' style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' value={email}
-                        onChange={handleEmailChange}/>
+                        <input 
+                          type='email' 
+                          style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
+                          className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' 
+                          value={email} 
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
                         <label htmlFor='password' className='text-[#666] text-[16px] font-[400] flex justify-between items-center mt-5 w-[354px]'>Password <span onClick={toggleShowPassword} className='cursor-pointer'>{showPassword ? 'Hide' : 'Show'}</span></label>
                         <input 
                           type={showPassword ? 'text' : 'password'}
-                          onChange={handlePasswordChange} 
+                          onChange={handlePasswordChange}
                           value={password}
                           style={{border: `1px solid rgba(102, 102, 102, 0.35)`}} 
                           className='rounded-[12px] w-[354px] h-[50px] p-3 mt-3 outline-none' /><br/>

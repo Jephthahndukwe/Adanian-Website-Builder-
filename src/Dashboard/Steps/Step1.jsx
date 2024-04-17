@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Step2 from "./Step2";
 import Step3 from './Step3'
+import axios from 'axios';
+
 
 
 
@@ -33,19 +35,52 @@ const Step1 = () => {
     };
 
     const nextStep = () => {
-        if (currentStep === 3) {
-            // Submit form or move to the next page
-            return;
-        }
-
-        // Move to the next step
         setCurrentStep(currentStep + 1);
     };
 
-    // Function to move to the previous step
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        // Retrieve user ID from local storage
+        // const userId = localStorage.getItem('userId');
+    
+        // Make the POST request including `created_by`
+        const requestBody = {
+            // created_by: userId,
+            category: formDataStep1.answer,
+            nameOfStore: formDataStep2,
+            template: formDataStep3,
+        };
+    
+        try {
+            const response = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', requestBody, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            console.log('Response:', response);
+    
+            if (response.status === 200) {
+                console.log('Form submitted successfully');
+                alert('Form submitted successfully');
+
+            } 
+        } catch (error) {
+            console.error('Error:', error);
+            if (error.response) {
+                console.error('Server response:', error.response.data);
+                alert('Server response:', error.response.data);
+            }
+        }
+    };
+    
+
 
   return (
     <div>
@@ -70,11 +105,11 @@ const Step1 = () => {
                             <input 
                                 type="text" 
                                 name="answer" 
-                                value={formDataStep3.otherField}
+                                value={formDataStep1.otherField}
                                 onChange={handleInputChangeStep1} 
                                 placeholder="Enter you business or website type" 
                                 required 
-                                className="mt-[15px] font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3 lg:ms-2" 
+                                className="font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3 lg:ms-2" 
                                 style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
                             />
                             <div className="flex lg:gap-[25px] xs:gap-[8px] lg:ms-[9px] mt-[13px]">
@@ -99,12 +134,22 @@ const Step1 = () => {
 
                     {/* Step 2 Form */}
                     {currentStep === 2 && (
-                        <Step2 nextStep={nextStep} prevStep={prevStep} formDataStep2={formDataStep2} handleInputChangeStep2={handleInputChangeStep2} />
+                        <Step2 
+                            nextStep={nextStep} 
+                            prevStep={prevStep} 
+                            formDataStep2={formDataStep2} 
+                            handleInputChangeStep2={handleInputChangeStep2} 
+                        />
                     )}
 
                     {/* Step 3 Form */}
                     {currentStep === 3 && (
-                        <Step3 nextStep={nextStep} prevStep={prevStep} formDataStep3={formDataStep3} handleInputChangeStep3={handleInputChangeStep3} />
+                        <Step3 
+                            nextStep={handleSubmit}
+                            prevStep={prevStep} 
+                            formDataStep3={formDataStep3} 
+                            handleInputChangeStep3={handleInputChangeStep3} 
+                        />
                     )}
     </div>
   )

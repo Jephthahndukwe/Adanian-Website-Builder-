@@ -1,5 +1,5 @@
 import React from 'react'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Navbar from '../Components/Navbar'
 import restro7 from '../../../../assets/images/restro7.png'
 import Footer from '../Components/Footer'
@@ -7,7 +7,7 @@ import Footer from '../Components/Footer'
 const Menu = () => {
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem] pb-[6rem]'>
             <Navbar/>
             <div>

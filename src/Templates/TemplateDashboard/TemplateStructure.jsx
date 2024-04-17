@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import imageData from './TemplatesMap';
+import { FaAngleLeft, FaAngleRight, FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
 
 
 export const Navbar = ({ setCategory, setSearchResults  }) => {
@@ -124,16 +125,31 @@ export const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
   const images = category === 'All' ? Object.values(imageData).flat() : imageData[category];
   const displayImages = searchResults.length > 0 ? searchResults : images;
 
+  // Pagination settings
+  const imagesPerPage = 12; // Number of images per page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(displayImages.length / imagesPerPage);
+
+  // Calculate start and end indices of images for the current page
+  const startIndex = (currentPage - 1) * imagesPerPage;
+  const endIndex = Math.min(startIndex + imagesPerPage, displayImages.length);
+
+  // Function to handle pagination
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className='lg:px-[50px] xs:px-[20px] mt-[2rem] lg:mb-0 xs:mb-[4rem] bg-[#f5f7f7] pt-[2rem]'>
         <h1 className='text-[#000] lg:text-[20px] xs:text-[18px] font-[700] leading-[32px]'>{category} Website Templates</h1>
         <div className='lg:flex justify-start items-center flex-wrap gap-[2rem] mt-[2rem]'>
-          {displayImages.map((image, index) => {
-            const randomIndex = Math.floor(Math.random() * (index + 1));
-            [images[index], images[randomIndex]] = [images[randomIndex], images[index]];
+          {displayImages.slice(startIndex, endIndex).map((image, index) => {
+            const randomIndex = Math.floor(Math.random() * (startIndex + index + 1));
+            [displayImages[startIndex + index], displayImages[randomIndex]] = [displayImages[randomIndex], displayImages[startIndex + index]];
             return (
-              <div className=''>
+              <div key={startIndex + index} className=''>
                   <div className='relative'>
                     <div className="bg-[#F1F1F1E6] lg:w-[95.8%] xs:w-[100%] h-[80%] absolute flex items-center justify-center transition-opacity duration-300 ms-[0.5rem] opacity-0 hover:opacity-100">
                       <div className='ms-[-1.5rem]'>
@@ -141,14 +157,32 @@ export const ImageDisplay = ({ category, searchResults, searchQuery  }) => {
                         <Link to={image.preview} className='border-[1px] border-solid hover:bg-[#00AABC] text-[#00AABC] hover:text-[#fff] mt-[1rem] border-[#00AABC] rounded-[50px] p-[10px] w-[150%] flex justify-center items-center text-[18px] font-[500] cursor-pointer no-underline'>view</Link>
                       </div>
                     </div>
-                    <img key={index} src={image.src} alt={`${category}, ${`Image ${index + 1}`}`} className="m-2 lg:mt-0 xs:mt-[3rem]" />
+                    <img key={index} src={image.src} alt={`${category}, ${`Image ${startIndex + index + 1}`}`} className="m-2 lg:mt-0 xs:mt-[3rem]" />
                     <h1 className='mt-[2rem] mb-[1rem] ms-[0.5rem] text-[#000] text-[16px] leading-[22px] font-[500]'>{image.text}</h1>
                   </div>
               </div>
             )
           })}
         </div>
-    </div>
+         {/* Pagination controls */}
+          <div className="flex justify-center items-center mt-[5rem] pb-[4rem]">
+            <button onClick={() => handlePageChange(Math.max(currentPage - 2, 1))} className="mr-2 text-[19px]">
+              <FaAnglesLeft className="text-gray-500" />
+            </button>
+            <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))} disabled={currentPage === 1} className="mr-2 text-[19px]">
+              <FaAngleLeft className="text-gray-500" />
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button key={i} onClick={() => handlePageChange(i + 1)} className={`px-3 text-[20px] py-2 rounded-full ${currentPage === i + 1 ? 'text-gray-400' : ' text-black'} ${i !== 0 && 'ml-2'}`}>{i + 1}</button>
+            ))}
+            <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))} disabled={currentPage === totalPages} className="ml-2 text-[19px]">
+              <FaAngleRight className="text-gray-500" />
+            </button>
+            <button onClick={() => handlePageChange(Math.min(currentPage + 2, totalPages))}className="ml-2 text-[19px]">
+              <FaAnglesRight className="text-gray-500" />
+            </button>
+          </div>
+        </div>
   );
 };
 

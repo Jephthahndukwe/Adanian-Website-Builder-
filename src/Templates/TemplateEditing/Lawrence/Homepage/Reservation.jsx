@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 import Footer from '../Components/Footer';
 import { Editor } from '@tinymce/tinymce-react';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 const Reservation = () => {
 
@@ -90,6 +90,7 @@ const Reservation = () => {
 
   return (
     <div>
+        <TemplateEditNavbar/>
         <div className='bg-[#faf8f1] pt-[2rem]'>
         <Navbar/>
         <div className='mt-[4rem] py-[30px] pb-[90px]'>

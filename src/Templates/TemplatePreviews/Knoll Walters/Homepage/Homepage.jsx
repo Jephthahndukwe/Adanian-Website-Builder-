@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
-import TemplateEditNavbar from './../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from './../../../TemplateDashboard/TemplatePreviewNavbar';
 import Law1 from '../../../../assets/images/Law1.jpg'
 import Law2 from '../../../../assets/images/Law2.png'
 import Law3 from '../../../../assets/images/Law3.png'
@@ -12,7 +12,7 @@ import Footer from '../Components/Footer';
 const Homepage = () => {
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div>
             <Navbar/>
             <div id='Home' style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${Law1})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} className='lg:h-[100vh] xs:h-[90vh] bg-fixed lg:pt-0 xs:pt-[7rem] lg:ps-0 xs:ps-[2rem]'>

@@ -1,7 +1,7 @@
 import './App.css'
 import Login from './Auth/Login'
 import Signup from './Auth/Signup'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Header from './Homepage/Header'
 import QuestionOne from './Auth/AuthQues/QuestionOne'
 import QuestionTwo from './Auth/AuthQues/QuestionTwo'
@@ -14,6 +14,8 @@ import Dashboard from './Dashboard/Dashboard'
 import AppPlugins from './Dashboard/pages/AppPlugins'
 import Website from './Dashboard/pages/Website'
 import ManualDashboard from './ManualEditSite/ManualDashboard'
+import PreviewPage from './Templates/TemplateDashboard/PreviewPage'
+
 
 // TEMPLATES
 import Homepage from './Templates/AyobaTemplate/Homepage/Homepage'
@@ -52,14 +54,20 @@ import MayaNelsonResume from './Templates/TemplatePreviews/Maya Nelson/Homepage/
 import MayaNelsonProjects from './Templates/TemplatePreviews/Maya Nelson/Homepage/Projects'
 import MayaNelsonContact from './Templates/TemplatePreviews/Maya Nelson/Homepage/Contact'
 
-// Travel Better TEMPLATE
+// TRAVEL BETTER TEMPLATE
 import TravelBetterHome from './Templates/TemplatePreviews/Travel Better/Homepage/Homepage'
 import TravelBetterAbout from './Templates/TemplatePreviews/Travel Better/Homepage/About'
 import TravelBetterPackage from './Templates/TemplatePreviews/Travel Better/Homepage/Package'
 import TravelBetterBook from './Templates/TemplatePreviews/Travel Better/Homepage/Book'
 
-// Travel Better TEMPLATE
+// KNOLL WATER TEMPLATE
 import KnollWaterHome from './Templates/TemplatePreviews/Knoll Walters/Homepage/Homepage'
+
+// Q PRODUCTION TEMPLATE
+import QProductionHome from './Templates/TemplatePreviews/Q Production/Homepage/Homepage'
+import QProductionServices from './Templates/TemplatePreviews/Q Production/Homepage/Services'
+import QProductionAbout from './Templates/TemplatePreviews/Q Production/Homepage/About'
+import QProductionContact from './Templates/TemplatePreviews/Q Production/Homepage/Contact'
 
 
 // EDITING TEMPLATE
@@ -97,6 +105,8 @@ import TravelBetterEditHome from './Templates/TemplateEditing/Travel Better/Home
 import TravelBetterEditAbout from './Templates/TemplateEditing/Travel Better/Homepage/About'
 import TravelBetterEditPackage from './Templates/TemplateEditing/Travel Better/Homepage/Package'
 import TravelBetterEditBook from './Templates/TemplateEditing/Travel Better/Homepage/Book'
+import Testfile from './Testfile'
+
 
 
 
@@ -105,8 +115,7 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Routes>
+      <Routes>
           <Route path='/' element={ <Header /> } />
           <Route path='login' element={ <Login /> } />
           <Route path='signup' element={ <Signup /> } />
@@ -115,6 +124,8 @@ function App() {
           <Route path='questionthree' element={ <QuestionThree/> } />
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
+          <Route path="/preview/:content" element={ <PreviewPage/> } />
+          <Route path='/testfile' element={ <Testfile/> } />
 
 
           {/* DASHBOARD ROUTES */}
@@ -169,6 +180,12 @@ function App() {
           {/* Knoll Walters LLP TEMPLATES */} {/* LEGAL SERVICE */}
           <Route path='knollwaterHome' element={ <KnollWaterHome /> } />
 
+          {/* Q Production TEMPLATES */} {/* Event Community */}
+          <Route path='qproductionHome' element={ <QProductionHome /> } />
+          <Route path='qproductionServices' element={ <QProductionServices /> } />
+          <Route path='qproductionAbout' element={ <QProductionAbout /> } />
+          <Route path='qproductionContact' element={ <QProductionContact /> } />
+
 
 
 
@@ -209,8 +226,7 @@ function App() {
         <Route path='travelbettereditbook' element={ <TravelBetterEditBook /> } />
       
 
-         </Routes>
-      </Router>
+    </Routes>
     </>
   )
 }

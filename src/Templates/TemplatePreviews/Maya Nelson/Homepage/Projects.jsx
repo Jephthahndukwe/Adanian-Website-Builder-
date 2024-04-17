@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 import Navbar from '../Components/Navbar';
 import portfo2 from '../../../../assets/images/portfo2.png'
 import portfo3 from '../../../../assets/images/portfo3.png'
@@ -25,7 +25,7 @@ const Projects = () => {
       enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div>
                <div>
                 <Navbar/>

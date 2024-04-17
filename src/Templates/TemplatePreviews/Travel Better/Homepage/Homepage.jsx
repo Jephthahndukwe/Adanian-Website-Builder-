@@ -28,7 +28,7 @@ import gallery11 from '../../../../assets/images/gallery-img-11.jpg'
 import gallery12 from '../../../../assets/images/gallery-img-12.jpg'
 import gallery13 from '../../../../assets/images/gallery-img-13.jpg'
 import Footer from '../Components/Footer';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 
 
 const Homepage = () => {
@@ -58,7 +58,7 @@ const Homepage = () => {
   return (
     <div>
       <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
       </div>
      <div>
      <Navbar />

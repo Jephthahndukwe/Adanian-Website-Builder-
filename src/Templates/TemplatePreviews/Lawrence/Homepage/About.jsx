@@ -1,5 +1,5 @@
 import React from 'react'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Navbar from '../Components/Navbar'
 import restro4 from '../../../../assets/images/restro4.jpg'
 import restro5 from '../../../../assets/images/restro5.png'
@@ -8,7 +8,7 @@ import Footer from '../Components/Footer'
 const About = () => {
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplatePreviewNavbar/>
         <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>
             <Navbar/>
             <div>

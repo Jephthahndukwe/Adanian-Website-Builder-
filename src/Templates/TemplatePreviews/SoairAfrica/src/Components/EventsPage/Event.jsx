@@ -17,7 +17,7 @@ import Future from './Future'
 import ProgramTwo from './ProgramTwo'
 import data from "./EventTemplate"
 import Footer from '../Footer'
-import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../../../TemplateDashboard/TemplatePreviewNavbar'
 
 
 const Event = () => {
@@ -26,7 +26,7 @@ const Event = () => {
 
   return (
     <>
-    <TemplateEditNavbar/>
+    <TemplatePreviewNavbar/>
      <div>
         <NavBar/>
         <div className='background3'>

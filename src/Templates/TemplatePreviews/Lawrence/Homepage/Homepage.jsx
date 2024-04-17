@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import restro from '../../../../assets/images/restro.jpg'
 import restro2 from '../../../../assets/images/restro2.png'
 import restro3 from '../../../../assets/images/restro3.jpg'
@@ -17,7 +17,7 @@ const Homepage = () => {
   return (
     <>
     <div>
-        <TemplateEditNavbar setScreenSize={setScreenSize} />
+        <TemplatePreviewNavbar setScreenSize={setScreenSize} />
         <div className='bg-[#faf8f1] mt-[-3rem] pt-[2rem]'>
             <Navbar/>
             <div className='lg:flex gap-[3rem]'>

@@ -32,20 +32,20 @@ const Navbar = () => {
             </div>
             <div>
                 <ul className='lg:flex mt-3 xs:hidden'>
-                    <li><Link to="/travelbetterhome" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Home</Link></li>
-                    <li><Link to="/travelbetterabout" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>About</Link></li>
-                    <li><Link to="/travelbetterpackage" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Package</Link></li>
-                    <li><Link to="/travelbetterbook" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Book</Link></li>
+                    <li><Link to="/travelbetteredithome" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Home</Link></li>
+                    <li><Link to="/travelbettereditabout" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>About</Link></li>
+                    <li><Link to="/travelbettereditpackage" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Package</Link></li>
+                    <li><Link to="/travelbettereditbook" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Book</Link></li>
                 </ul>
             </div>
 
             {show ? 
               <div className='absolute lg:hidden xs:block top-[3rem] bg-[#fff] left-0 w-[100%]'>
                   <ul className='mt-3 text-center ms-[-3rem]'>
-                      <li className='mt-4'><Link to="/travelbetterhome" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Home</Link></li>
-                      <li className='mt-4'><Link to="/travelbetterabout" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>About</Link></li>
-                      <li className='mt-4'><Link to="/travelbetterpackage" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Package</Link></li>
-                      <li className='mt-4'><Link to="/travelbetterbook" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Book</Link></li>
+                      <li className='mt-4'><Link to="/travelbetteredithome" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Home</Link></li>
+                      <li className='mt-4'><Link to="/travelbettereditabout" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>About</Link></li>
+                      <li className='mt-4'><Link to="/travelbettereditpackage" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Package</Link></li>
+                      <li className='mt-4'><Link to="/travelbettereditbook" className='text-[1.2rem] no-underline ms-[2rem] text-[#222] hover:text-[#8e44ad]'>Book</Link></li>
                   </ul>
               </div>
             :null

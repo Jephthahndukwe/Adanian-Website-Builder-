@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 import Navbar from '../Component/Navbar';
 import fashSale1 from '../../../../assets/images/fashSale1.webp'
 import fashSale2 from '../../../../assets/images/fashSale2.webp'
@@ -45,7 +45,7 @@ const Sales = () => {
         enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div className='bg-[#fff] mt-[-4rem]'>
                 <div className='lg:mt-[7rem] xs:mt-[3.9rem]'>
                     <Navbar/>

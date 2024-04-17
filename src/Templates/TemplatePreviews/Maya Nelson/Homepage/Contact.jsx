@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer'
 
@@ -21,7 +21,7 @@ const Contact = () => {
       enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div>
                 <div>
                     <Navbar/>

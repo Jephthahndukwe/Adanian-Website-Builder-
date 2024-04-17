@@ -5,6 +5,7 @@ import portfo2 from '../../../../assets/images/portfo2.png'
 import portfo3 from '../../../../assets/images/portfo3.png'
 import portfo4 from '../../../../assets/images/portfo4.png'
 import Footer from '../Components/Footer';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 
 const Projects = () => {
@@ -24,6 +25,7 @@ const Projects = () => {
       enterTo="opacity-100"
     >
         <div>
+            <TemplateEditNavbar/>
             <div>
                <div>
                 <Navbar/>

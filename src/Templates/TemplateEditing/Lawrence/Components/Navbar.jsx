@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
@@ -6,13 +6,58 @@ const Navbar = () => {
 
   const [show, setShow] = useState(false)
 
+  const [editableElement, setEditableElement] = useState(null);
+  const [editorContent, setEditorContent] = useState('');
+  const [dragging, setDragging] = useState(false);
+
+  useEffect(() => {
+       // Load content from local storage when component mounts
+       const savedContent = localStorage.getItem('editorContent');
+       if (savedContent) {
+       setEditorContent(savedContent);
+       }
+  }, []);
+
+  const handleElementClick = (event) => {
+       const element = event.target;
+       setEditableElement(element);
+       setEditorContent(element.innerHTML);
+  };
+
+  useEffect(() => {
+       const handleClickOutside = (event) => {
+       if (editableElement && !editableElement.contains(event.target)) {
+            // Clicked outside the editable element, remove the editor
+            setEditableElement(null);
+       }
+       };
+
+       document.addEventListener('click', handleClickOutside);
+
+       return () => {
+       document.removeEventListener('click', handleClickOutside);
+       };
+  }, [editableElement]);
+
+  const handleEditorChange = (content) => {
+       if (editableElement) {
+       editableElement.innerHTML = content;
+       setEditorContent(content);
+       // Save the edited content to local storage
+       localStorage.setItem('editorContent', content);
+       }
+  };
+
+
   return (
     <div>
       <button className='text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[15px] px-[30px] xs:block lg:hidden mt-[-2rem] w-[100%]'>Order Online</button>
         <div className='lg:flex justify-between items-center lg:pb-[50px] xs:pb-5 lg:pt-0 xs:pt-5 lg:px-[100px] xs:px-[20px]'>
           {/* <h1><Link to='/LawrenceHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] text-[30px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1> */}
           <div className='flex justify-between items-center'>
-              <h1><Link to='/LawrenceEditHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] lg:text-[30px] xs:text-[22px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1>
+              <div onClick={handleElementClick} className='hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'>
+                <h1><Link to='/LawrenceEditHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] lg:text-[30px] xs:text-[22px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1>
+              </div>
               <FaBars onClick={() => setShow(true)} className='text-[#7c6c50] text-[22px] lg:hidden xs:block'/>
            </div>
           <div className='lg:flex xs:hidden items-center justify-center gap-[7rem]'>
@@ -43,6 +88,31 @@ const Navbar = () => {
       </div>
       : null
       }
+
+        {editableElement && (
+            <div
+                className="editor-wrapper fixed h-[50vh] flex justify-center items-center top-0 left-[3rem]"
+            >
+                <Editor
+                    initialValue={editorContent}
+                    apiKey="weyuzxfz4rnkmcfm9egz0vqo4qwek3fq6aucwzeudmatw48t"
+                    init={{
+                        height: 150,
+                        menubar: false,
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount',
+                        ],
+                        toolbar:
+                            'undo redo | formatselect | bold italic backcolor | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent | removeformat | help',
+                    }}
+                    onEditorChange={handleEditorChange}
+                />
+            </div>
+        )}
     </div>
   )
 }

@@ -9,13 +9,13 @@ import HomeContact from './HomeContact'
 import Imageslide from './Imageslide'
 import ImageSlider from './ImageSlider'
 import Footer from '../Footer'
-import TemplateEditNavbar from '../../../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../../../TemplateDashboard/TemplatePreviewNavbar'
 
 const Home = () => {
 
   return (
     <>
-     <TemplateEditNavbar/>
+     <TemplatePreviewNavbar/>
     <div>
       <NavBar/>
         <div className='home background2'>

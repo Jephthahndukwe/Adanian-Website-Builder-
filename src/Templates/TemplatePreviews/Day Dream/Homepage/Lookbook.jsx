@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar';
 import Navbar from '../Component/Navbar';
 import fash6 from '../../../../assets/images/fash6.jpg'
 import fash13 from '../../../../assets/images/fash13.png'
@@ -43,7 +43,7 @@ const Lookbook = () => {
         enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplatePreviewNavbar/>
             <div className='bg-[#fff] mt-[-4rem] overflow-hidden'>
                 <div className='lg:mt-[7rem] xs:mt-[3.9rem]'>
                     <Navbar/>

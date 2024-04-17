@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer'
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 
 const Contact = () => {
 
@@ -20,6 +21,7 @@ const Contact = () => {
       enterTo="opacity-100"
     >
         <div>
+            <TemplateEditNavbar/>
             <div>
                 <div>
                     <Navbar/>

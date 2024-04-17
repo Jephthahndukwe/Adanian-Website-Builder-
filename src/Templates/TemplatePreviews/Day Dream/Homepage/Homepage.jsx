@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Component/Navbar'
-import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import TemplatePreviewNavbar from '../../../TemplateDashboard/TemplatePreviewNavbar'
 import fash from '../../../../assets/images/fash.png'
 import fash2 from '../../../../assets/images/fash2.png'
 import fash3 from '../../../../assets/images/fash3.jpg'
@@ -41,7 +41,7 @@ const Homepage = () => {
       enterTo="opacity-100"
     >
     <div>
-      <TemplateEditNavbar/>
+      <TemplatePreviewNavbar/>
         <div className='lg:mt-[-2.8rem] pt-[1rem] overflow-hidden'>
           <div>
          <div className='lg:absolute top-[7rem] left-6 lg:mt-[5rem]'>

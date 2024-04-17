@@ -2,11 +2,13 @@ import React from 'react'
 import Navbar from '../Components/Navbar'
 import bgimg from '../../../../assets/images/header-bg-3.png'
 import Footer from '../Components/Footer'
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 
 
 const Book = () => {
   return (
     <div>
+        <TemplateEditNavbar/>
       <Navbar/>
       <div class="h-[70vh]" style={{ background: `url(${bgimg})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover' }}>
             <h1 className='text-center lg:text-[6rem] xs:text-[3rem] pt-[20vh] uppercase text-[#fff]' style={{ textShadow: '0 1.5rem 3rem rgba(0,0,0,.3)' }}>Book Now</h1>

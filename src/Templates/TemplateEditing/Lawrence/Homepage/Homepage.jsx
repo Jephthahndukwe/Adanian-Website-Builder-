@@ -3,27 +3,51 @@ import Navbar from '../Components/Navbar'
 import restro from '../../../../assets/images/restro.jpg'
 import restro2 from '../../../../assets/images/restro2.png'
 import restro3 from '../../../../assets/images/restro3.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
 import { Editor } from '@tinymce/tinymce-react';
+import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import axios from 'axios'
+
 
 const Homepage = () => {
 
      // Get today's date in the format YYYY-MM-DD
   const today = new Date().toISOString().split('T')[0];
 
+  const navigate = useNavigate()
 
-  const [editableElement, setEditableElement] = useState(null);
+
+    const [editableElement, setEditableElement] = useState(null);
     const [editorContent, setEditorContent] = useState('');
-    const [dragging, setDragging] = useState(false);
+    const [isPublished, setIsPublished] = useState(false);
+    
+
+
 
     useEffect(() => {
-        // Load content from local storage when component mounts
-        const savedContent = localStorage.getItem('editorContent');
+        // Load saved data from localStorage on component mount
+        const savedData = JSON.parse(localStorage.getItem('homepageData'));
+        if (savedData) {
+            setEditorContent(savedData.editorContent || '');
+            setSelectedImage(savedData.selectedImage || '');
+            setSelectedImage2(savedData.selectedImage2 || '');
+            setSelectedImage3(savedData.selectedImage3 || '');
+        }
+    }, []);
+
+    // Load template content from local storage on component mount
+    useEffect(() => {
+        const savedContent = localStorage.getItem('homepageContent');
         if (savedContent) {
             setEditorContent(savedContent);
         }
     }, []);
+
+    // Save changes to local storage whenever editorContent changes
+    useEffect(() => {
+        localStorage.setItem('homepageContent', editorContent);
+    }, [editorContent]);
 
     const handleElementClick = (event) => {
         const element = event.target;
@@ -46,129 +70,135 @@ const Homepage = () => {
         };
     }, [editableElement]);
 
-    const handleEditorChange = (content) => {
+    const handleEditorChange = (content, editor) => {
         if (editableElement) {
             editableElement.innerHTML = content;
             setEditorContent(content);
-            // Save the edited content to local storage
-            localStorage.setItem('editorContent', content);
+            // Automatically save the content to local storage
+            localStorage.setItem('homepageContent', content);
         }
     };
 
-    // IMAGE EDIT 1
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
-  
-    const onSelectFile = (event) => {
-        const selectedFile = event.target.files[0];
-  
-        // Check if file size is within limits (e.g., 2 MB)
-        if (selectedFile.size > 2 * 1024 * 1024) {
-            setErrorMessage('File size exceeds 2MB. Please select a smaller file.');
-            setTimeout(() => {
-                setErrorMessage('');
-            }, 10000); // Hide the error message after 10 seconds
-            return;
-        }
-  
-        // Check if image dimensions are within limits (e.g., 800x600)
-        const img = new Image();
-        img.onload = function () {
-            if (this.width > 5139 || this.height > 3426) {
-                setErrorMessage('Image dimensions exceed 5139x3426 pixels. Please select a smaller image.');
+       // IMAGE EDITING
+    const useImageUpload = (setImage, setErrorMessage, maxSize, maxWidth, maxHeight) => {
+        return (event) => {
+            const selectedFile = event.target.files[0];
+    
+            // Check if file size is within limits
+            if (selectedFile.size > maxSize) {
+                setErrorMessage(`File size exceeds ${maxSize / (1024 * 1024)}MB. Please select a smaller file.`);
                 setTimeout(() => {
                     setErrorMessage('');
                 }, 10000); // Hide the error message after 10 seconds
                 return;
             }
-            const imageUrl = URL.createObjectURL(selectedFile);
-            setSelectedImage(imageUrl);
-            setErrorMessage('');
+    
+            // Check if image dimensions are within limits
+            const img = new Image();
+            img.onload = function () {
+                if (this.width > maxWidth || this.height > maxHeight) {
+                    setErrorMessage(`Image dimensions exceed ${maxWidth}x${maxHeight} pixels. Please select a smaller image.`);
+                    setTimeout(() => {
+                        setErrorMessage('');
+                    }, 10000); // Hide the error message after 10 seconds
+                    return;
+                }
+                const imageUrl = URL.createObjectURL(selectedFile);
+                setImage(imageUrl);
+                setErrorMessage('');
+            };
+            img.src = URL.createObjectURL(selectedFile);
         };
-        img.src = URL.createObjectURL(selectedFile);
     };
-  
-    const handleImageClick = () => {
-        document.getElementById('fileInput').click();
+    
+    const handleImageClick = (inputId) => {
+        document.getElementById(inputId).click();
     };
-  
-     // IMAGE EDIT 2
+    
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    
+    const onSelectFile = useImageUpload(setSelectedImage, setErrorMessage, 2 * 1024 * 1024, 5139, 3426);
+    
+    const handleImageClick1 = () => {
+        handleImageClick('fileInput1');
+    };
+    
     const [selectedImage2, setSelectedImage2] = useState(null);
     const [errorMessage2, setErrorMessage2] = useState('');
-  
-    const onSelectFile2 = (event) => {
-        const selectedFile2 = event.target.files[0];
-  
-        // Check if file size is within limits (e.g., 2 MB)
-        if (selectedFile2.size > 2 * 1024 * 1024) {
-            setErrorMessage2('File size exceeds 2MB. Please select a smaller file.');
-            setTimeout(() => {
-                setErrorMessage2('');
-            }, 10000); // Hide the error message after 10 seconds
-            return;
-        }
-  
-        // Check if image dimensions are within limits (e.g., 800x600)
-        const img = new Image();
-        img.onload = function () {
-            if (this.width > 555 || this.height > 800) {
-                setErrorMessage2('Image dimensions exceed 555x800 pixels. Please select a smaller image.');
-                setTimeout(() => {
-                    setErrorMessage2('');
-                }, 10000); // Hide the error message after 10 seconds
-                return;
-            }
-            const imageUrl = URL.createObjectURL(selectedFile2);
-            setSelectedImage2(imageUrl);
-            setErrorMessage2('');
-        };
-        img.src = URL.createObjectURL(selectedFile2);
-    };
-  
+    
+    const onSelectFile2 = useImageUpload(setSelectedImage2, setErrorMessage2, 2 * 1024 * 1024, 555, 800);
+    
     const handleImageClick2 = () => {
-        document.getElementById('fileInput2').click();
+        handleImageClick('fileInput2');
     };
-  
-      // IMAGE EDIT 3
-      const [selectedImage3, setSelectedImage3] = useState(null);
-      const [errorMessage3, setErrorMessage3] = useState('');
-    
-      const onSelectFile3 = (event) => {
-          const selectedFile3 = event.target.files[0];
-    
-          // Check if file size is within limits (e.g., 2 MB)
-          if (selectedFile3.size > 2 * 1024 * 1024) {
-              setErrorMessage3('File size exceeds 2MB. Please select a smaller file.');
-              setTimeout(() => {
-                  setErrorMessage3('');
-              }, 10000); // Hide the error message after 10 seconds
-              return;
-          }
-    
-          // Check if image dimensions are within limits (e.g., 800x600)
-          const img = new Image();
-          img.onload = function () {
-              if (this.width > 628 || this.height > 440) {
-                  setErrorMessage3('Image dimensions exceed 628x440 pixels. Please select a smaller image.');
-                  setTimeout(() => {
-                      setErrorMessage3('');
-                  }, 10000); // Hide the error message after 10 seconds
-                  return;
-              }
-              const imageUrl = URL.createObjectURL(selectedFile3);
-              setSelectedImage3(imageUrl);
-              setErrorMessage3('');
-          };
-          img.src = URL.createObjectURL(selectedFile3);
-      };
-    
-      const handleImageClick3 = () => {
-          document.getElementById('fileInput3').click();
-      };
 
+    const [selectedImage3, setSelectedImage3] = useState(null);
+    const [errorMessage3, setErrorMessage3] = useState('');
+    
+    const onSelectFile3 = useImageUpload(setSelectedImage3, setErrorMessage3, 2 * 1024 * 1024, 628, 440);
+    
+    const handleImageClick3 = () => {
+        handleImageClick('fileInput3');
+    };
+
+
+
+// Define the handleSave function in your Homepage component
+const handleSave = () => {
+    // Gather the necessary data to be saved (e.g., editor content, selected images)
+    const dataToSave = new FormData();
+    dataToSave.append('editorContent', editorContent);
+    dataToSave.append('selectedImage', selectedImage);
+    dataToSave.append('selectedImage2', selectedImage2);
+    dataToSave.append('selectedImage3', selectedImage3);
+    // Add other relevant data as needed
+
+    // Save data to localStorage
+    localStorage.setItem('images', JSON.stringify(dataToSave));
+
+    // Send data to backend for further processing
+    axios.post('https://ayoba.adanianlabs.io/api/user/upload_file', dataToSave)
+        .then(response => {
+            alert('Template successfully saved. Try previewing the template.')
+            console.log('Homepage saved successfully');
+        })
+        .catch(error => {
+            console.error('Error saving homepage:', error);
+            alert('Failed to save template, Please try again later.')
+        });
+};
+
+// Define the handlePreview function in your Homepage component
+const handlePreview = () => {
+    // Retrieve the saved content from local storage
+    const savedContent = localStorage.getItem('homepageContent');
+    // Construct the URL for the preview page
+    const previewUrl = `/preview/${encodeURIComponent(savedContent)}`;
+    // Redirect to the preview page
+    navigate(previewUrl);
+};
+
+// Define the handlePublish function in your Homepage component
+const handlePublish = async () => {
+    try {
+        // Send a request to the backend to publish the template
+        const response = await axios.post('/api/publish', { content: editorContent });
+        const publishedUrl = response.data.publishedUrl;
+        setIsPublished(true);
+        alert(`Template published successfully at: ${publishedUrl}`);
+    } catch (error) {
+        console.error('Error publishing template:', error);
+        alert('Failed to publish template. Please try again later.');
+    }
+};
 
   return (
     <>
+    <TemplateEditNavbar  
+        onSave={handleSave} 
+        onPreview={handlePreview} 
+        onPublish={handlePublish} />
         <div className='bg-[#faf8f1] pt-[2rem]'>
             <Navbar/>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -404,6 +434,9 @@ const Homepage = () => {
                     />
                 </div>
             )}
+
+            
+
     </>
   )
 }
