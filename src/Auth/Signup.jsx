@@ -1,15 +1,20 @@
-import { useState  } from 'react'
+import { useEffect, useState  } from 'react'
 import Logo from '../assets/images/ADANIAN LOGO 1.png'
 import Google1 from '../assets/icons/google.svg'
 import facebook from '../assets/icons/facebook.svg'
 import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../../Redux/Action/UserAction'
+import { REGISTER_USER_RESET } from '../../Redux/Constant/Types' 
+import toast from 'react-hot-toast'
+
 
 const Signup = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState(''); // Add state for email
   const [password, setPassword] = useState('');
@@ -38,42 +43,45 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const userRegister = useSelector((state) => state.userRegister)
+  const {user, error} = userRegister
 
-     // Log the email and password before making the POST request
-      console.log('Email:', email);
-      console.log('Password:', password);
-
-    // Check if passwords match
-    if (password === confirmPassword) {
-      try {
-        // Send signup data to backend
-        const response = await axios.post('https://ayoba.adanianlabs.io/api/user/signup', {
-          email,
-          password,
-        });
-
-        // Handle successful signup (e.g., show success message)
-        console.log(response.data);
-        alert('Signup successful!'); // Example: Show an alert message
-        // Redirect user to dashboard
-        navigate('/dashboard');
-
-        // Redirect user to login page or any other page
-        // You can use React Router's history object for this purpose
-        // history.push('/login'); // Example: Redirect to login page after successful signup
-
-      } catch (error) {
-        // Handle signup error (e.g., show error message)
-        console.error('Signup failed:', error.response.data);
-        alert('Signup failed. Please try again.'); // Example: Show an alert message
-      }
-    } else {
-      // Passwords do not match, handle accordingly
-      setPasswordsMatch(false);
+  useEffect(() => {
+    if(user) {
+      navigate('/dashboard')
     }
-  };
+  }, user, navigate)
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const data = {
+      email,
+      password,
+    }
+    dispatch(register(data))
+  }
+
+  useEffect(() => {
+    return () => {
+      dispatch({type: REGISTER_USER_RESET})
+    }
+  }, [dispatch])
+
+
+  // GOOGLE SIGNUP
+  // const google = () => {
+  //   window.open("https://ayoba.adanianlabs.io/api/user/auth/google", "_self");
+  // };
+
+  const handleGoogleAuth = () => {
+    try {
+        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+    } catch (err) {
+        toast.error(err?.data?.message || err.error)
+
+    }
+}
+
 
   return (
     <div className='flex justify-center items-center'>
@@ -86,7 +94,7 @@ const Signup = () => {
             <div className='lg:p-[37px] lg:flex gap-[37px] mt-[40px]'> 
                 <div>
                     <h2 className='text-[#333] text-center text-[24px] font-[500]'>Sign up</h2>
-                    <form className='mt-5' onSubmit={handleSubmit}>
+                    <form className='mt-5' onSubmit={submitHandler}>
                         <label htmlFor='email' className='text-[#666] text-[16px] font-[400]'>Email address</label><br/>
                         <input 
                           type='email' 
@@ -120,7 +128,31 @@ const Signup = () => {
                     <div className='lg:h-[170px] lg:w-[2px] xs:h-[2px] xs:w-[150px] lg:ms-2 bg-[#666]' style={{background: `rgba(102, 102, 102, 0.25)`}}/>
                 </div>
                 <div className='lg:mt-[3rem] xs:mt-[-4rem]'>
-                    <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'><img src={Google1} /> Continue with Google</button>
+                        <button
+                          className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'
+                          onClick={handleGoogleAuth}
+                        >
+                          <img src={Google1} alt="Google Icon" />
+                          Sign up with Google
+                        </button>
+                          {/* <GoogleLogin
+                            clientId="http://683842650235-shjd2i5go4s5v6i1rqa2hr5mjtjbdbo2.apps.googleusercontent.com"
+                            buttonText="Sign up with Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            render={renderProps => (
+                              <button
+                                className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'
+                                onClick={renderProps.onClick}
+                                // disabled={renderProps.disabled}
+                              >
+                                <img src={Google1} alt="Google Icon" />
+                                Sign up with Google
+                              </button>
+                            )}
+                          /> */}
+
                     <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[24px] text-[#333] text-[16px] font-[400]'><img src={facebook} /> Continue with Facebook</button>
                 </div>     
             </div>

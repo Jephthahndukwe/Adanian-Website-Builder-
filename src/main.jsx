@@ -6,29 +6,24 @@ import './assets/css/css/bootstrap.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { Provider } from 'react-redux'
-import store from '../Redux/Store.jsx'
+import configStore from '../Redux/Store.jsx'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import { positions, transitions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+const store = configStore()
+const persistor = persistStore(store)
 
-import { AuthProvider } from '../Redux/Context/User.jsx';
-
-const options = {
-  timeout: 5000,
-  position: positions.BOTTOM_CENTER,
-  transition: transitions.SCALE
-}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvider>
     <BrowserRouter>
           <Provider store={store}>
-            <AlertProvider template={AlertTemplate} {...options}>
-            <Routes>
-                <Route path='/*' element={ <App /> } />
-            </Routes>
-            </AlertProvider>
+            <PersistGate persistor={persistor}>
+              <React.StrictMode>
+                <Routes>
+                    <Route path='/*' element={ <App /> } />
+                </Routes>
+            </React.StrictMode>
+            </PersistGate>
           </Provider>
-    </BrowserRouter>
-  </AuthProvider>,
+    </BrowserRouter>,
 )

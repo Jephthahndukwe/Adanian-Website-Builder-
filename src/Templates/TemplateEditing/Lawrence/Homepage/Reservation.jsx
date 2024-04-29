@@ -1,101 +1,150 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
-import { Editor } from '@tinymce/tinymce-react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Reservation = () => {
 
  // Get today's date in the format YYYY-MM-DD
  const today = new Date().toISOString().split('T')[0];
 
- const [editableElement, setEditableElement] = useState(null);
- const [editorContent, setEditorContent] = useState('');
- const [dragging, setDragging] = useState(false);
+   // State variables for each heading
+const [heading9, setHeading9] = useState({ id: 'heading9', text: 'Make a reservation', color: '#000' });
+const [heading10, setHeading10] = useState({ id: 'heading10', text: 'To help us find the best table for you, select the preferred party size, date, and time of your reservation.', color: '#000' });
+const [heading11, setHeading11] = useState({ id: 'heading11', text: 'Choose an available time slot:', color: '#000' });
+const [heading12, setHeading12] = useState({ id: 'heading12', text: '10:45 AM', color: '#000' });
+const [heading13, setHeading13] = useState({ id: 'heading13', text: '10:45 AM', color: '#000' });
+const [heading14, setHeading14] = useState({ id: 'heading14', text: '10:45 AM', color: '#000' });
+const [heading15, setHeading15] = useState({ id: 'heading15', text: '10:45 AM', color: '#000' });
+const [heading16, setHeading16] = useState({ id: 'heading16', text: '10:45 AM', color: '#000' });
+const [heading17, setHeading17] = useState({ id: 'heading17', text: '10:45 AM', color: '#000' });
+const [heading18, setHeading18] = useState({ id: 'heading18', text: '10:45 AM', color: '#000' });
+const [heading19, setHeading19] = useState({ id: 'heading19', text: '10:45 AM', color: '#000' });
+const [heading20, setHeading20] = useState({ id: 'heading20', text: '10:45 AM', color: '#000' });
+const [heading21, setHeading21] = useState({ id: 'heading21', text: '10:45 AM', color: '#000' });
+const [heading22, setHeading22] = useState({ id: 'heading22', text: '10:45 AM', color: '#000' });
+const [heading23, setHeading23] = useState({ id: 'heading23', text: '10:45 AM', color: '#000' });
+const [heading24, setHeading24] = useState({ id: 'heading24', text: '10:45 AM', color: '#000' });
+const [heading25, setHeading25] = useState({ id: 'heading25', text: '10:45 AM', color: '#000' });
+const [heading26, setHeading26] = useState({ id: 'heading26', text: '10:45 AM', color: '#000' });
 
- useEffect(() => {
-     // Load content from local storage when component mounts
-     const savedContent = localStorage.getItem('editorContent');
-     if (savedContent) {
-         setEditorContent(savedContent);
-     }
- }, []);
+// Define state variables for up to 10 headings
+// Add additional headings as needed...
 
- const handleElementClick = (event) => {
-     const element = event.target;
-     setEditableElement(element);
-     setEditorContent(element.innerHTML);
- };
+const [isModalOpen, setModalOpen] = useState(false);
+const [currentHeading, setCurrentHeading] = useState(null);
+const [inputText, setInputText] = useState('');
+const [inputColor, setInputColor] = useState('');
 
- useEffect(() => {
-     const handleClickOutside = (event) => {
-         if (editableElement && !editableElement.contains(event.target)) {
-             // Clicked outside the editable element, remove the editor
-             setEditableElement(null);
-         }
-     };
+// Function to open the modal for editing a specific heading
+const openModal = (heading, setHeadingState) => {
+    setCurrentHeading({ heading, setHeadingState });
+    setInputText(heading.text);
+    setInputColor(heading.color);
+    setModalOpen(true);
+};
 
-     document.addEventListener('click', handleClickOutside);
+// Function to handle save button click
+const handleSave = () => {
+    // Update the current heading based on the input values
+    currentHeading.setHeadingState({
+        ...currentHeading.heading,
+        text: inputText,
+        color: inputColor,
+    });
+    setModalOpen(false);
+};
 
-     return () => {
-         document.removeEventListener('click', handleClickOutside);
-     };
- }, [editableElement]);
+// Function to handle cancel button click
+const handleCancelClick = () => {
+    setModalOpen(false);
+};
 
- const handleEditorChange = (content) => {
-     if (editableElement) {
-         editableElement.innerHTML = content;
-         setEditorContent(content);
-         // Save the edited content to local storage
-         localStorage.setItem('editorContent', content);
-     }
- };
 
-  // IMAGE EDIT 1
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
+     // SAVING DATA TO BACKEND
+     const handleUpload = async () => {
+        const formData = new FormData();
 
-  const onSelectFile = (event) => {
-      const selectedFile = event.target.files[0];
+        const textArray = [
+          JSON.stringify(heading9),
+          JSON.stringify(heading10),
+          JSON.stringify(heading11),
+          JSON.stringify(heading12),
+          JSON.stringify(heading13),
+          JSON.stringify(heading14),
+          JSON.stringify(heading15),
+          JSON.stringify(heading16),
+          JSON.stringify(heading17),
+          JSON.stringify(heading18),
+          JSON.stringify(heading19),
+          JSON.stringify(heading20),
+          JSON.stringify(heading21),
+          JSON.stringify(heading22),
+          JSON.stringify(heading23),
+          JSON.stringify(heading24),
+          JSON.stringify(heading25),
+          JSON.stringify(heading26),
+        // Add additional text state variables here if needed...
+      ];
 
-      // Check if file size is within limits (e.g., 2 MB)
-      if (selectedFile.size > 2 * 1024 * 1024) {
-          setErrorMessage('File size exceeds 2MB. Please select a smaller file.');
-          setTimeout(() => {
-              setErrorMessage('');
-          }, 10000); // Hide the error message after 10 seconds
-          return;
-      }
+      console.log(textArray);
+        
+        // Append each text item (including ID, text, and color) to the FormData object
+        // textArray.forEach(({ id, text, color }, index) => {
+        //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
+        // });
+        // formData.append('texts', textArray)
+        let joiner = textArray.join("*")
+        formData.append('template', 'Lawrence');
+        formData.append('texts', joiner);
+        console.log(formData);
 
-      // Check if image dimensions are within limits (e.g., 800x600)
-      const img = new Image();
-      img.onload = function () {
-          if (this.width > 5139 || this.height > 3426) {
-              setErrorMessage('Image dimensions exceed 5139x3426 pixels. Please select a smaller image.');
-              setTimeout(() => {
-                  setErrorMessage('');
-              }, 10000); // Hide the error message after 10 seconds
-              return;
-          }
-          const imageUrl = URL.createObjectURL(selectedFile);
-          setSelectedImage(imageUrl);
-          setErrorMessage('');
-      };
-      img.src = URL.createObjectURL(selectedFile);
-  };
+        try {
+            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
 
-  const handleImageClick = () => {
-      document.getElementById('fileInput').click();
-  };
+            console.log(response.data);
+
+            if (response.data) {
+                setTimeout(() => {
+                    toast.success('Reservation page saved successfully');
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    toast.error('Failed to save template, Please try again later.');
+                }, 500);
+            }
+
+            // if (response.data) {
+            //     const data = await response.json();
+            //     console.log('Files uploaded:', data.files);
+            //     alert('Files uploaded:');
+            // } else {
+            //     console.error('Upload failed:', response.statusText);
+            //     alert('Upload failed:');
+            // }
+        } catch (error) {
+            console.error('Error uploading files:', error);
+            setTimeout(() => {
+                toast.error('Failed to save template, Please try again later.');
+            }, 500);
+        }
+    };
 
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplateEditNavbar handleUpload={handleUpload} />
         <div className='bg-[#faf8f1] pt-[2rem]'>
         <Navbar/>
         <div className='mt-[4rem] py-[30px] pb-[90px]'>
-                <h2 className='font-Namdhinggo text-center font-[100] lg:text-[50px] xs:text-[40px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>Make a reservation</h2>
-                <h3 className='text-center text-[16px] font-[400] mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>To help us find the best table for you, select the preferred party size, date, and time of your reservation.</h3>
+                <h2 className='font-Namdhinggo text-center font-[100] lg:text-[50px] xs:text-[40px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading9, setHeading9)} style={{ color: heading9.color}}>{heading9.text}</h2>
+                <h3 className='text-center text-[16px] font-[400] mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading10, setHeading10)} style={{ color: heading10.color}}>{heading10.text}</h3>
                 <form>
                     <div className='lg:flex justify-center gap-[1rem] items-center mt-[5rem] px-[10px]'>
                     <span>
@@ -183,123 +232,123 @@ const Reservation = () => {
                             <div className='lg:w-[93%] xs:w-[100%] lg:ms-[2rem] h-[2px] bg-[#d6d5cf] mt-[5rem]' />
                                 <div className='flex justify-center items-center lg:ms-[2rem]'>
                                     <div>
-                                    <h3 className='lg:text-start xs:text-center mt-[3rem] text-[18px] font-Namdhinggo hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>Choose an available time slot:</h3>
+                                    <h3 className='lg:text-start xs:text-center mt-[3rem] text-[18px] font-Namdhinggo hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading11, setHeading11)} style={{ color: heading11.color}}>{heading11.text}</h3>
                                         <div className='flex flex-wrap items-center gap-[1rem] mt-[2rem]'>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading12, setHeading12)} style={{ color: heading12.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]' >
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading12.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading13, setHeading13)} style={{ color: heading13.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading13.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading14, setHeading14)} style={{ color: heading14.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading14.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading15, setHeading15)} style={{ color: heading15.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading15.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading16, setHeading16)} style={{ color: heading16.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading16.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading17, setHeading17)} style={{ color: heading17.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading17.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading18, setHeading18)} style={{ color: heading18.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading18.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading19, setHeading19)} style={{ color: heading19.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading19.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading20, setHeading20)} style={{ color: heading20.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading20.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading21, setHeading21)} style={{ color: heading21.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading21.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading22, setHeading22)} style={{ color: heading22.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading22.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading23, setHeading23)} style={{ color: heading23.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading23.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading24, setHeading24)} style={{ color: heading24.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading24.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading25, setHeading25)} style={{ color: heading25.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading25.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
                                             </div>
                                         </div>
-                                        <div className='relative'>
+                                        <div className='relative' onClick={() => openModal(heading26, setHeading26)} style={{ color: heading26.color}}>
                                             <div className='flex justify-center items-center border-[1px] border-solid border-[#7c6c50] py-[5px] lg:px-[52.4px] xs:px-[15px]'>
-                                                <span className='font-Namdhinggo text-[18px]'>10:45 AM</span>
+                                                <span className='font-Namdhinggo text-[18px]'>{heading26.text}</span>
                                             </div>
                                             <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
                                                 <div className='w-full h-full bg-[#7c6c50] transform -skew-y-12' style={{ width: '200%', height: '3%' }}></div>
@@ -318,28 +367,33 @@ const Reservation = () => {
             </div>
         </div>
         <Footer/>
-        {editableElement && (
-                <div
-                    className="editor-wrapper fixed h-[50vh] flex justify-center items-center top-0 left-[3rem]"
-                >
-                    <Editor
-                        initialValue={editorContent}
-                        apiKey="weyuzxfz4rnkmcfm9egz0vqo4qwek3fq6aucwzeudmatw48t"
-                        init={{
-                            height: 150,
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount',
-                            ],
-                            toolbar:
-                                'undo redo | formatselect | bold italic backcolor | \
-                                alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | help',
-                        }}
-                        onEditorChange={handleEditorChange}
-                    />
+
+         {/* Popup modal */}
+         {isModalOpen && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-hidden pt-[5%]">
+                <div className="bg-[#fff] px-[20px] py-[10px] rounded-[5px] shadow-lg w-[50%]">
+                <p className="mb-4">Edit text:</p>
+                <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                <p className="mb-4">Change text color:</p>
+                <input
+                    type="color"
+                    value={inputColor}
+                    onChange={(e) => setInputColor(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                {/* Save and Cancel buttons */}
+                <div className='flex justify-end space-x-4'>
+                    <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                    <button onClick={handleCancelClick} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                </div>
+                </div>
                 </div>
             )}
     </div>

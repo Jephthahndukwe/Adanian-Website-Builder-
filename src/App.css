@@ -13,3 +13,13 @@
   font-family: 'Inter';
   transition: .3s ease;
 }
+
+.pHovered {
+  display: none;
+  opacity: 0;
+}
+
+.linkHover:hover .pHovered {
+    display: block;
+    opacity: 100;
+}

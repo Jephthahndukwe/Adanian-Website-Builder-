@@ -2,6 +2,8 @@ import { useState } from "react";
 import Step2 from "./Step2";
 import Step3 from './Step3'
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -66,16 +68,22 @@ const Step1 = () => {
     
             console.log('Response:', response);
     
-            if (response.status === 200) {
+            // if (response.status === 200) {
                 console.log('Form submitted successfully');
-                alert('Form submitted successfully');
+                // alert('Form submitted successfully');
+                setTimeout(() => {
+                    toast.success('Form submitted successfully');
+                }, 500);
 
-            } 
+            // } 
         } catch (error) {
             console.error('Error:', error);
             if (error.response) {
                 console.error('Server response:', error.response.data);
-                alert('Server response:', error.response.data);
+                // alert('Server response:', error.response.data);
+                setTimeout(() => {
+                    toast.error('Store name already exist!', error.response.data);
+                }, 500);
             }
         }
     };
@@ -151,6 +159,9 @@ const Step1 = () => {
                             handleInputChangeStep3={handleInputChangeStep3} 
                         />
                     )}
+
+<ToastContainer position="fixed top-0 left-0 flex justify-start items-left" closeOnClick={true} />
+
     </div>
   )
 }

@@ -21,7 +21,7 @@ const Contact = () => {
       enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar/>
+            <TemplateEditNavbar handleUpload={handleUpload}/>
             <div>
                 <div>
                     <Navbar/>

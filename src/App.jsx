@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react'
 import './App.css'
 import Login from './Auth/Login'
 import Signup from './Auth/Signup'
 import { Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 import Header from './Homepage/Header'
 import QuestionOne from './Auth/AuthQues/QuestionOne'
 import QuestionTwo from './Auth/AuthQues/QuestionTwo'
@@ -117,7 +119,7 @@ function App() {
     <>
       <Routes>
           <Route path='/' element={ <Header /> } />
-          <Route path='login' element={ <Login /> } />
+          <Route path='login' element={  <Login /> } />
           <Route path='signup' element={ <Signup /> } />
           <Route path='questionone' element={ <QuestionOne/> } />
           <Route path='questiontwo' element={ <QuestionTwo/> } />
@@ -227,6 +229,7 @@ function App() {
       
 
     </Routes>
+    <Toaster />
     </>
   )
 }

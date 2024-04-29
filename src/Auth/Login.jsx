@@ -1,22 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Logo from '../assets/images/ADANIAN LOGO 1.png'
 import Google from '../assets/icons/google.svg'
 import facebook from '../assets/icons/facebook.svg'
 import mail from '../assets/icons/mail.svg'
 import img from '../assets/images/loginImg.png'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-// import { toast } from 'react-toastify'
-import { useAuth } from '../../Redux/Context/User'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../Redux/Action/UserAction'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [auth, setAuth] = useAuth()
-
-  const navigate = useNavigate(); 
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -26,77 +26,35 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  //form function
-  const submitHandler = async (e) => {
-    e.preventDefault()
-      try {
-        const res = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { 
-          email, 
-          password,
-        });
-        if(res && res.data.success) {
-          // toast.success(res.data && res.data.message)
-          alert(res.data && res.data.message)
-          setAuth({
-            ...auth,
-            user: res.data.user,
-            token: res.data.token,
-          });
-          localStorage.setItem('auth', JSON.stringify(res.data));
-          navigate('/dashboard');
-        }
-        else {
-          // toast.error(res.data.message)
-          alert(res.data.message)
-        }
-      } catch (error) {
-      console.log(error)
-      // toast.error('Something went wrong')
-      alert('Something went wrong')
-  }
-} 
+  const userAuth = useSelector((state) => state.userAuth)
+  const { user, error } = userAuth
 
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
+ 
 
-  // const toggleShowPassword = () => {
-  //   setShowPassword(!showPassword);
-  // };
-
-
-  // const navigate = useNavigate(); // Initialize the navigate function
-
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     // Send login data to backend
-  //     const response = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password });
-  //     const { userId } = response.data;
-
-  //      // Store user ID in state, context, or local storage
-  //      localStorage.setItem('userId', userId);
-
-  //     // Handle successful login
-  //     console.log('Login successful:', response.data);
-
-  //     // Redirect user to dashboard
-  //     navigate('/dashboard');
-
-  //     //Handle login message
-  //     toast.success("Login Successful");
-  //   } catch (error) {
-
-  //     // Handle login error
-  //     console.error('Login failed:', error);
-  //     alert('Login failed. Please try again.');
+  // useEffect(() => {
+  //   if(user) {
+  //     navigate('/dashboard')
   //   }
-  // };
+  // }, user, navigate)
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(login(email, password))
+  }
+
+
+  const handleGoogleAuth = () => {
+    try {
+        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+    } catch (err) {
+        toast.error(err?.data?.message || err.error)
+
+    }
+}
+
+// const google = () => {
+//   window.open("https://ayoba.adanianlabs.io/api/user/auth/google", "_self");
+// };
 
 
   return (
@@ -135,7 +93,23 @@ const Login = () => {
                     <div className='lg:h-[170px] lg:w-[2px] xs:h-[2px] xs:w-[150px] lg:ms-2' style={{background: `rgba(102, 102, 102, 0.25)`}}/>
                 </div>
                 <div className='lg:mt-[3rem] xs:mt-[-4rem]'>
-                    <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'><img src={Google} /> Continue with Google</button>
+                      {/* <GoogleLogin
+                        clientId="YOUR_GOOGLE_CLIENT_ID"
+                        buttonText="Continue with Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                        render={renderProps => ( */}
+                          <button
+                            // onClick={renderProps.onClick}
+                            // disabled={renderProps.disabled}
+                            className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'
+                            onClick={handleGoogleAuth}>
+                            <img src={Google} alt="Google Icon" />
+                            Continue with Google
+                          </button>
+                        {/* )}
+                      /> */}
                     <button className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[24px] text-[#333] text-[16px] font-[400]'><img src={facebook} /> Continue with Facebook</button>
                 </div>     
             </div>
@@ -148,6 +122,8 @@ const Login = () => {
             <img src={img} width='524px' height='900px'/>
        </div>
     </div>
+
+    <ToastContainer position="fixed top-0 left-0 flex justify-start items-left" closeOnClick={false} />
     </div>
   );
 };

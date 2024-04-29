@@ -1,5 +1,10 @@
-import * as types from '../Constant/UserConstant'
+import * as types from '../Constant/Types'
 import axios from 'axios'
+import toast from 'react-hot-toast'
+import { header, authHeader } from '../Context/Header'
+// import { setCredentials } from '../../src/Auth/Slice/userSlice';
+// import { setCredentials } from '../../src/Auth/Slice/userSlice'
+
 
 
 // LOGIN A USER
@@ -7,55 +12,82 @@ export const login = (email, password) => async(dispatch) => {
     try {
         dispatch({ type: types.LOGIN_REQUEST })
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password }, { headers: header })
+        if(data.status === 'ok') {
+            dispatch({type: types.LOGIN_SUCCESS, payload: data.data})
+            // const firstName = data.data.email.split("@")[0];
+            toast.success(`Welcome Back`, {position: "top-right"})
+        } else {
+            dispatch({type: types.LOGIN_FAIL, payload: data.error})
         }
-
-        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password }, config)
-
-        dispatch({
-            type: types.LOGIN_SUCCESS,
-            payload: data.user,
-        })
     } catch (error) {
-        dispatch({
-            type: types.LOGIN_FAIL,
-            payload: error.response.data.message
+        const message = error.response ? error.response.data.message : "something went wrong"
+        dispatch({type: types.LOGIN_FAIL, payload: message})
+        toast.error(message, {
+            position: "top-right"
         })
     }
 }
 
 //REGISTER A USER
-export const register = ( userName, email, password ) => async (dispatch) => {
+export const register = ( user ) => async (dispatch) => {
+
     try {
+        console.log(user)
         dispatch({ type: types.REGISTER_USER_REQUEST })
-
-        const config = {
-            headers: {
-                'Content-type': 'multipart/form-data'
-            }
+        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/signup', user)
+        if(data.status === 'ok') {
+            dispatch({type: types.REGISTER_USER_SUCCESS, payload: data.data})
+            toast.success("user registered successfully", {
+                position: "top-right"
+            })
+        } else {
+            dispatch({type: types.REGISTER_USER_FAIL, payload: data.error})
         }
-
-        const { data } = await axios.post('http://localhost:8080/api/v1/auth/register', { userName, email, password }, config)
-
-        dispatch({
-            type: types.REGISTER_USER_SUCCESS,
-            payload: data.user,
-        })
-
     } catch (error) {
-        dispatch({
-            type: types.REGISTER_USER_FAIL,
-            payload: error.response.data.message
+        const message = error.response ? error.response.data.message : "something went wrong"
+        dispatch({type: types.REGISTER_USER_FAIL, payload: message})
+        toast.error(message, {
+            position: "top-right"
         })
     }
 }
 
-//Clear Errors
-export const clearErrors = () => async (dispatch) => {
-    dispatch ({
-        type: types.CLEAR_ERRORS
-    })
+export const logout = () => (dispatch) => {
+    dispatch({type: types.LOGIN_LOGOUT})
 }
+
+export const googleAuth = () => async (dispatch) => {
+
+    try {
+        // console.log(user)
+        dispatch({ type: types.GOOGLE_AUTH_REQUEST })
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+            withCredentials: true
+        })
+        console.log('message displayed', res)
+        // dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
+        if(res.status === 'ok') {
+            dispatch({type: types.GOOGLE_AUTH_SUCCESS, payload: data.data}),
+            toast.success("user registered successfully", {
+                position: "top-right"
+            })
+        } else {
+            dispatch({type: types.GOOGLE_AUTH_FAIL, payload: data.error})
+        }
+    } catch (error) {
+        const message = error.response ? error.response.data.message : "something went wrong"
+        dispatch({type: types.GOOGLE_AUTH_FAIL, payload: message})
+        toast.error(message, {
+            position: "top-right"
+        })
+    }
+}
+
+
+//Clear Errors
+// export const clearErrors = () => async (dispatch) => {
+//     dispatch ({
+//         type: types.CLEAR_ERRORS
+//     })
+// }

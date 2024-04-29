@@ -6,6 +6,7 @@ import fash24 from '../../../../assets/images/fash24.png'
 import Footer from '../Component/Footer';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
 
@@ -17,14 +18,14 @@ const Contact = () => {
   }, []);
 
    // State variables for each heading
-const [heading1, setHeading1] = useState({ id: 'heading1', text: 'Contact', color: '#4a573e' });
-const [heading2, setHeading2] = useState({ id: 'heading2', text: 'I’m a paragraph. Click here to add your own text.', color: '#4a573e' });
-const [heading3, setHeading3] = useState({ id: 'heading3', text: 'Visit Our Flagship Store', color: '#4a573e' });
-const [heading4, setHeading4] = useState({ id: 'heading4', text: '500 Terry Francine Street San Francisco, CA 94158', color: '#4a573e' });
-const [heading5, setHeading5] = useState({ id: 'heading5', text: 'Mail:', color: '#4a573e' });
-const [heading6, setHeading6] = useState({ id: 'heading6', text: 'info@mysite.com', color: '#4a573e' });
-const [heading7, setHeading7] = useState({ id: 'heading7', text: 'Tel:', color: '#4a573e' });
-const [heading8, setHeading8] = useState({ id: 'heading8', text: '123-456-7890', color: '#4a573e' });
+const [heading25, setHeading25] = useState({ id: 'heading25', text: 'Contact', color: '#4a573e' });
+const [heading26, setHeading26] = useState({ id: 'heading26', text: 'I’m a paragraph. Click here to add your own text.', color: '#4a573e' });
+const [heading27, setHeading27] = useState({ id: 'heading27', text: 'Visit Our Flagship Store', color: '#4a573e' });
+const [heading28, setHeading28] = useState({ id: 'heading28', text: '500 Terry Francine Street San Francisco, CA 94158', color: '#4a573e' });
+const [heading29, setHeading29] = useState({ id: 'heading29', text: 'Mail:', color: '#4a573e' });
+const [heading30, setHeading30] = useState({ id: 'heading30', text: 'info@mysite.com', color: '#4a573e' });
+const [heading31, setHeading31] = useState({ id: 'heading31', text: 'Tel:', color: '#4a573e' });
+const [heading32, setHeading32] = useState({ id: 'heading32', text: '123-456-7890', color: '#4a573e' });
 
 // Define state variables for up to 10 headings
 // Add additional headings as needed...
@@ -58,54 +59,98 @@ const handleCancelClick = () => {
     setModalOpen(false);
 };
 
- // UPLOADING OF TEXT TO BACKEND
-// Function to upload text to the backend
-const uploadImagesAndText = async (textArray) => {
-    // Create a new FormData object
+ // IMAGE EDITING
+ const [file1, setFile1] = useState(null);
+ const [file2, setFile2] = useState(null);
+ const [preview, setPreview] = useState(null)
+ const [preview2, setPreview2] = useState(null)
+
+ const handleFile1Change = (e) => {
+     setFile1(e.target.files[0]);
+ };
+ const handleFile2Change = (e) => {
+     setFile2(e.target.files[0]);
+ };
+
+ const handleImageChange = (e) => {
+     const selectedImage = e.target.files[0];
+     if (selectedImage) {
+         setFile1(selectedImage)
+         const reader = new FileReader();
+         reader.onload = () => {
+             setPreview(reader.result);
+         };
+     reader.readAsDataURL(selectedImage);
+     }
+ };
+ const handleImageChange2 = (e) => {
+     const selectedImage2 = e.target.files[0];
+     if (selectedImage2) {
+         setFile2(selectedImage2)
+         const reader = new FileReader();
+         reader.onload = () => {
+         setPreview2(reader.result);
+         };
+         reader.readAsDataURL(selectedImage2);
+     }
+ };
+  // SAVING DATA TO BACKEND
+  const handleUpload = async () => {
     const formData = new FormData();
-  
-    // Append each text item (including ID, text, and color) to the FormData object
-    textArray.forEach(({ id, text, color }, index) => {
-        formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-    });
-  
-    try {
-        // Send the POST request with FormData
-        const response = await axios.patch('https://good-pear-butterfly-gown.cyclic.app/api/user/upload_file/nameOfStore', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-  
-        // Handle the server response
-        console.log('Response from server:', response.data);
-        alert('Template saved successfully!');
-    } catch (error) {
-        // Handle any errors
-        console.error('Error saving template', error);
-        alert('Error saving template', error);
-    }
-  };
-  
-  // Function to handle the "Save" button click
-  const handleSaveClick = () => {
-  
-    // Create an array of text items from the state variables
+    formData.append('selectedImage46', file1);
+    formData.append('selectedImage47', file2);
+
     const textArray = [
-        heading1,
-        heading2,
-        heading3,
-        heading4,
-        heading5,
-        heading6,
-        heading7,
-        heading8,
-        // Add additional text state variables here if needed...
-    ];
-  
-    // Call the uploadImagesAndText function with the array of text
-    uploadImagesAndText(textArray);
-  };
+      JSON.stringify(heading25),
+      JSON.stringify(heading26),
+      JSON.stringify(heading27),
+      JSON.stringify(heading28), 
+      JSON.stringify(heading29),
+      JSON.stringify(heading30),
+      JSON.stringify(heading31),
+      JSON.stringify(heading32),
+    // Add additional text state variables here if needed...
+  ];
+
+  console.log(textArray);
+    
+    // Append each text item (including ID, text, and color) to the FormData object
+    // textArray.forEach(({ id, text, color }, index) => {
+    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
+    // });
+    // formData.append('texts', textArray)
+    let joiner = textArray.join("*")
+    formData.append('template', 'DayDream');
+    formData.append('texts', joiner);
+    console.log(formData);
+
+    try {
+        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        console.log(response.data);
+
+        if (response.data) {
+            const data = await response.json();
+            console.log('Files uploaded:', data.files);
+            setTimeout(() => {
+                toast.success('Changes saved successfully.');
+              }, 1000);
+        } else {
+            console.error('Upload failed:', response.statusText);
+            setTimeout(() => {
+                toast.error('Changes saved successfully.');
+              }, 1000);
+        }
+    } catch (error) {
+        console.error('Error uploading files:', error);
+        toast.error('Error uploading files:');
+    }
+};
+
 
   return (
     <Transition
@@ -115,39 +160,44 @@ const uploadImagesAndText = async (textArray) => {
         enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar handleSaveClick={handleSaveClick}/>
+            <TemplateEditNavbar />
             <div className='bg-[#fff] mt-[7rem]'>
                 <div className='mt-[7rem] xs:mt-[3.9rem]'>
                     <Navbar/>
                 </div>
                 <div className='lg:mt-[20rem] xs:mt-[15rem] lg:px-0 xs:px-[30px]'>
-                    <h1 className='lg:text-[40px] xs:text-[30px] font-[100] text-center italic font-Namdhinggo hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading1, setHeading1)} style={{ color: heading1.color}}>{heading1.text}</h1>
-                    <p className='lg:text-[17px] xs:text-[19px] font-Namdhinggo font-[100] italic text-center mt-3 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading2, setHeading2)} style={{ color: heading2.color}}>{heading2.text}</p>
+                    <h1 className='lg:text-[40px] xs:text-[30px] font-[100] text-center italic font-Namdhinggo hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading25, setHeading25)} style={{ color: heading25.color}}>{heading25.text}</h1>
+                    <p className='lg:text-[17px] xs:text-[19px] font-Namdhinggo font-[100] italic text-center mt-3 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading26, setHeading26)} style={{ color: heading26.color}}>{heading26.text}</p>
                 </div>
                     <div className='lg:mb-[5rem]'>
                         <div className='lg:px-[40px] lg:mt-[7rem]'>
                             <div className='lg:flex items-center'>
                                 <div className='bg-[#385354] lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[100vh]'>
                                     <div className='lg:pt-[8rem] lg:ps-[5rem] xs:pt-[5rem] lg:px-0 xs:px-[40px]'>
-                                        <img src={fash23} className='relative' />
-                                        <img src={fash24} className='absolute lg:mt-[-31rem] lg:ms-[4rem] xs:mt-[-20rem] xs:ms-[2rem] lg:w-[30%] xs:w-[75%]' />
+                                        <input type="file" onChange={handleImageChange} /> 
+                                        <img src={preview || fash23} className='relative' />
+
+                                        <div className='absolute lg:mt-[-31rem] lg:ms-[4rem] xs:mt-[-20rem] xs:ms-[2rem] lg:w-[30%] xs:w-[75%]'>
+                                            <input type="file" onChange={handleImageChange2} /> 
+                                            <img src={preview2 || fash24}  />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='bg-[#F2EDE6] lg:w-[50vw] xs:w-[100vw] lg:pb-0 xs:pb-[5rem] lg:h-[170vh]'>
                                     <div className='lg:pt-[8rem] lg:ps-[4rem] xs:px-[2rem] xs:pt-[5rem] pr-[4rem]'>
-                                        <h1 className='text-start font-Namdhinggo italic xs:text-[26px] lg:text-[24px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading3, setHeading3)} style={{ color: heading3.color}}>{heading3.text}</h1>
+                                        <h1 className='text-start font-Namdhinggo italic xs:text-[26px] lg:text-[24px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading27, setHeading27)} style={{ color: heading27.color}}>{heading27.text}</h1>
                                         <div className='lg:flex gap-[1rem] items-center pr-[5rem] mt-4'>
                                            <div>
-                                                <p className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] lg:w-[70%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading4, setHeading4)} style={{ color: heading4.color}}>{heading4.text}</p>
+                                                <p className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] lg:w-[70%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading28, setHeading28)} style={{ color: heading28.color}}>{heading28.text}</p>
                                            </div>
                                             <div>
                                                 <p className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'>
-                                                    <span className='font-[600] lg:text-[16px] xs:text-[17px] font-Namdhinggo italic hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading5, setHeading5)} style={{ color: heading5.color}}>{heading5.text}</span> 
-                                                    <span className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading6, setHeading6)} style={{ color: heading6.color}}>{heading6.text}</span></p>
+                                                    <span className='font-[600] lg:text-[16px] xs:text-[17px] font-Namdhinggo italic hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading29, setHeading29)} style={{ color: heading29.color}}>{heading29.text}</span> 
+                                                    <span className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading30, setHeading30)} style={{ color: heading30.color}}>{heading30.text}</span></p>
                                                 <p className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center -mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'>
-                                                    <span className='font-[600] lg:text-[16px] xs:text-[17px] font-Namdhinggo italic hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading7, setHeading7)} style={{ color: heading7.color}}>{heading7.text}
+                                                    <span className='font-[600] lg:text-[16px] xs:text-[17px] font-Namdhinggo italic hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading31, setHeading31)} style={{ color: heading31.color}}>{heading31.text}
                                                     </span> 
-                                                   <span className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px] hover:w-[100%]' onClick={() => openModal(heading8, setHeading8)} style={{ color: heading8.color}}>{heading8.text}</span></p>
+                                                   <span className='text-start font-Namdhinggo italic lg:text-[16px] xs:text-[17px] font-[100] flex gap-1 items-center hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px] hover:w-[100%]' onClick={() => openModal(heading32, setHeading32)} style={{ color: heading32.color}}>{heading32.text}</span></p>
                                             </div>
                                         </div>
                                         <div>

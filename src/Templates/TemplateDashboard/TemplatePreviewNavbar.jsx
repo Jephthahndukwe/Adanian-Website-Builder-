@@ -24,7 +24,9 @@ const TemplatePreviewNavbar = ({ setScreenSize }) => {
     return (
         <div className="pt-[10px] mb-5 pb-[20px] px-[20px] shadow-md lg:flex justify-between items-center">
             <div className='flex items-center lg:gap-[16px] xs:gap-[35px]'>
-                <img src={Logo} className='lg:w-[150px] xs:w-[100px]' />
+                <Link to='/website/templates'>
+                    <img src={Logo} className='lg:w-[150px] xs:w-[100px]' />
+                </Link>
                 <div className='h-[45px] w-[1px] bg-[#eaeaea]'/>
                 <Link to='/website/templates' className='flex gap-[8px] hover:text-[#FB9613] text-[#00AABC] no-underline items-center text-[13px] font-[400]'><FaArrowLeft /> Back to Templates</Link>
            </div>

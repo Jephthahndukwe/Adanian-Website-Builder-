@@ -16,6 +16,8 @@ import Footer from '../Component/Footer'
 import { Transition } from '@headlessui/react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import axios from 'axios';
+import toast from 'react-hot-toast'
+
 
 
 const Homepage = () => {
@@ -33,7 +35,7 @@ const Homepage = () => {
     }
   };
 
-
+    // TEXT EDITING
     // State variables for each heading
     const [heading1, setHeading1] = useState({ id: 'heading1', text: 'Comfy Chic Loungewear', color: '#f2ede6' });
     const [heading2, setHeading2] = useState({ id: 'heading2', text: 'I’m a paragraph. Click here to add your text', color: '#f2ede6' });
@@ -77,7 +79,7 @@ const Homepage = () => {
     };
 
 
-    // IMAGE EDTING
+    // IMAGE EDITING
     const [file1, setFile1] = useState(null);
     const [file2, setFile2] = useState(null);
     const [file3, setFile3] = useState(null);
@@ -133,7 +135,7 @@ const Homepage = () => {
   const handleImageChange3 = (e) => {
     const selectedImage3 = e.target.files[0];
     if (selectedImage3) {
-      setFile3(selectedImage2)
+      setFile3(selectedImage3)
       const reader = new FileReader();
       reader.onload = () => {
         setPreview3(reader.result);
@@ -230,232 +232,57 @@ const handleImageChange11 = (e) => {
   }
 };
 
-
-
-
-  // IMAGE EDITING
-  const useImageUpload = (setImage, setErrorMessage, maxSize, maxWidth, maxHeight, inputId) => {
-    return (e) => {
-        const selectedFile = e.target.files[0];
-
-        // Check if file size is within limits
-        if (selectedFile.size > maxSize) {
-            setErrorMessage(`File size exceeds ${maxSize / (1024 * 1024)}MB. Please select a smaller file.`);
-            setTimeout(() => {
-                setErrorMessage('');
-            }, 10000); // Hide the error message after 10 seconds
-            return;
-        }
-
-        // Check if image dimensions are within limits
-        const img = new Image();
-        img.onload = function () {
-            if (this.width > maxWidth || this.height > maxHeight) {
-                setErrorMessage(`Image dimensions exceed ${maxWidth}x${maxHeight} pixels. Please select a smaller image.`);
-                setTimeout(() => {
-                    setErrorMessage('');
-                }, 10000); // Hide the error message after 10 seconds
-                return;
-            }
-            const imageUrl = URL.createObjectURL(selectedFile);
-            setImage(imageUrl);
-            setErrorMessage('');
-        };
-        img.src = URL.createObjectURL(selectedFile);
-    };
-};
-
-const handleImageClick = (inputId) => {
-    document.getElementById(inputId).click();
-};
-
-      const [selectedImage, setSelectedImage] = useState(fash);
-      const [errorMessage, setErrorMessage] = useState('');
-
-      const onSelectFile = useImageUpload(setSelectedImage, setErrorMessage, 2 * 1024 * 1024, 675, 1160, 'fileInput');
-
-      const handleImageClick1 = (e) => {
-          // setSelectedImage(e.target.files[0]);
-          handleImageClick('fileInput');
-
-          // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile(e); // Call the function you defined for handling file selection
-        }
-      };
-
-
-      const [selectedImage2, setSelectedImage2] = useState(fash2);
-      const [errorMessage2, setErrorMessage2] = useState('');
-
-      const onSelectFile2 = useImageUpload(setSelectedImage2, setErrorMessage2, 2 * 1024 * 1024, 675, 1160, 'fileInput2');
-
-      const handleImageClick2 = () => {
-        // setSelectedImage2(e.target.files[0]);
-          handleImageClick('fileInput2');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile2(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage3, setSelectedImage3] = useState(fash3);
-      const [errorMessage3, setErrorMessage3] = useState('');
-
-      const onSelectFile3 = useImageUpload(setSelectedImage3, setErrorMessage3, 2 * 1024 * 1024, 498, 629, 'fileInput3');
-
-      const handleImageClick3 = () => {
-        // setSelectedImage3(e.target.files[0]);
-          handleImageClick('fileInput3');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile3(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage4, setSelectedImage4] = useState(fash4);
-      const [errorMessage4, setErrorMessage4] = useState('');
-
-      const onSelectFile4 = useImageUpload(setSelectedImage4, setErrorMessage4, 2 * 1024 * 1024, 497, 497, 'fileInput4');
-
-      const handleImageClick4 = () => {
-        // setSelectedImage4(e.target.files[0]);
-          handleImageClick('fileInput4');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile4(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage5, setSelectedImage5] = useState(fash5);
-      const [errorMessage5, setErrorMessage5] = useState('');
-
-      const onSelectFile5 = useImageUpload(setSelectedImage5, setErrorMessage5, 2 * 1024 * 1024, 673, 1080, 'fileInput5');
-
-      const handleImageClick5 = () => {
-        // setSelectedImage5(e.target.files[0]);
-          handleImageClick('fileInput5');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile5(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage6, setSelectedImage6] = useState(fash6);
-      const [errorMessage6, setErrorMessage6] = useState('');
-
-      const onSelectFile6 = useImageUpload(setSelectedImage6, setErrorMessage6, 2 * 1024 * 1024, 347, 453,      'fileInput6');
-
-      const handleImageClick6 = () => {
-        // setSelectedImage6(e.target.files[0]);
-          handleImageClick('fileInput6');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile6(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage7, setSelectedImage7] = useState(fash7);
-      const [errorMessage7, setErrorMessage7] = useState('');
-
-      const onSelectFile7 = useImageUpload(setSelectedImage7, setErrorMessage7, 2 * 1024 * 1024, 1080, 1080,      'fileInput7');
-
-      const handleImageClick7 = () => {
-        // setSelectedImage7(e.target.files[0]);
-          handleImageClick('fileInput7');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile7(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage8, setSelectedImage8] = useState(fash8);
-      const [errorMessage8, setErrorMessage8] = useState('');
-
-      const onSelectFile8 = useImageUpload(setSelectedImage8, setErrorMessage8, 2 * 1024 * 1024, 1080, 1080,      'fileInput8');
-
-      const handleImageClick8 = () => {
-        // setSelectedImage8(e.target.files[0]);
-          handleImageClick('fileInput8');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile8(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage9, setSelectedImage9] = useState(fash9);
-      const [errorMessage9, setErrorMessage9] = useState('');
-
-      const onSelectFile9 = useImageUpload(setSelectedImage9, setErrorMessage9, 2 * 1024 * 1024, 1080, 1080,      'fileInput9');
-
-      const handleImageClick9 = () => {
-        // setSelectedImage9(e.target.files[0]);
-          handleImageClick('fileInput9');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile9(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage10, setSelectedImage10] = useState(fash10);
-      const [errorMessage10, setErrorMessage10] = useState('');
-
-      const onSelectFile10 = useImageUpload(setSelectedImage10, setErrorMessage10, 2 * 1024 * 1024, 1080, 1080,      'fileInput10');
-
-      const handleImageClick10 = () => {
-        // setSelectedImage10(e.target.files[0]);
-          handleImageClick('fileInput10');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile10(e); // Call the function you defined for handling file selection
-        }
-      };
-
-      const [selectedImage11, setSelectedImage11] = useState(fash11);
-      const [errorMessage11, setErrorMessage11] = useState('');
-
-      const onSelectFile11 = useImageUpload(setSelectedImage11, setErrorMessage11, 2 * 1024 * 1024, 1080, 1080,      'fileInput11');
-
-      const handleImageClick11 = () => {
-        // setSelectedImage11(e.target.files[0]);
-          handleImageClick('fileInput11');
-
-           // Handle the file selection
-        if (e.target && e.target.files && e.target.files[0]) {
-          // Use the selected file to perform the operations you want
-          onSelectFile11(e); // Call the function you defined for handling file selection
-        }
-      };
-
-
+// SAVING DATA TO BACKEND
       const handleUpload = async () => {
         const formData = new FormData();
-        formData.append('selectedImage', file1);
+        formData.append('selectedImage1', file1);
         formData.append('selectedImage2', file2);
+        formData.append('selectedImage3', file3);
+        formData.append('selectedImage4', file4);
+        formData.append('selectedImage5', file5);
+        formData.append('selectedImage6', file6);
+        formData.append('selectedImage7', file7);
+        formData.append('selectedImage8', file8);
+        formData.append('selectedImage9', file9);
+        formData.append('selectedImage10', file10);
+        formData.append('selectedImage11', file11);
 
+      //   const textArray = [
+      //     JSON.stringify(heading1),
+      //     JSON.stringify(heading2),
+      //     JSON.stringify(heading3),
+      //     JSON.stringify(heading4), 
+      //     JSON.stringify(heading5),
+      //     JSON.stringify(heading6),
+      //     JSON.stringify(heading7),
+      //     JSON.stringify(heading8),
+      //     JSON.stringify(heading9),
+      //     // Add additional text state variables here if needed...
+      // ];   
+
+      const texts = {
+        heading1: heading1,
+        heading2: heading2,
+        heading3: heading3,
+        heading4: heading4,
+        heading5: heading5,
+        heading6: heading6,
+        heading7: heading7,
+        heading8: heading8,
+        heading9: heading9,
+      }
+
+      console.log(texts);
+
+
+      let stringifiedObject = JSON.stringify(texts);
+        // let joiner = textArray.join("*")
+        formData.append('template', 'DayDream');
+        formData.append('texts', stringifiedObject);
         console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chika Store', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -463,117 +290,28 @@ const handleImageClick = (inputId) => {
 
             console.log(response.data);
 
-            if (response.data.data.status == 'ok') {
-                const data = await response.json();
-                console.log('Files uploaded:', data.files);
-                alert('Files uploaded:');
-            } else {
-                console.error('Upload failed:', response.statusText);
-                alert('Upload failed:');
-            }
+            setTimeout(() => {
+              toast.success('Changes saved successfully.');
+            }, 1000);
+
+            // if (response.data) {
+            //     const data = await response.json();
+            //     console.log('Files uploaded:', data.files);
+            //     setTimeout(() => {
+            //       toast.success('Changes saved successfully.');
+            //     }, 500);
+            // } else {
+            //     console.error('Upload failed:', response.statusText);
+            //     setTimeout(() => {
+            //       toast.error('Changes Failed. Try again later!');
+            //         return;
+            //     })
+            // }
         } catch (error) {
             console.error('Error uploading files:', error);
             alert('Error uploading files:');
         }
     };
-
-     // UPLOADING OF IMAGES AND TEXT TO BACKEND
-// Function to upload images and text to the backend
-// const uploadImagesAndText = async () => {
-//   // Create a new FormData object
-//   const formData = new FormData();
-
-//   // Append each image to the FormData object
-//   // imagesArray.forEach((image, index) => {
-//   //     if (image) {
-//   //         // Append each image file using a unique key based on its index
-//   //         formData.append(`image${index + 1}`, image);
-//   //     }
-//   // });
-//   formData.append('selectedImage', selectedImage);
-//   formData.append('selectedImage2', selectedImage2);
-//   formData.append('selectedImage3', selectedImage3);
-//   formData.append('selectedImage4', selectedImage4);
-//   formData.append('selectedImage5', selectedImage5);
-//   formData.append('selectedImage6', selectedImage6);
-//   formData.append('selectedImage7', selectedImage7);
-//   formData.append('selectedImage8', selectedImage8);
-//   formData.append('selectedImage9', selectedImage9);
-//   formData.append('selectedImage10', selectedImage10);
-//   formData.append('selectedImage11', selectedImage11);
-
-//   // Append each text item (including ID, text, and color) to the FormData object
-//   // textArray.forEach(({ id, text, color }, index) => {
-//   //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-//   // });
-
-//   try {
-//       // Send the POST request with FormData
-//       const response = await axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file', formData, {
-//           headers: {
-//               'Content-Type': 'multipart/form-data',
-//           },
-//       });
-
-
-//       if (response.ok) {
-//         const data = await response.json();
-//         console.log('Files uploaded:', data.files);
-//         alert('Files uploaded:');
-//     } else {
-//         console.error('Upload failed:', response.statusText);
-//         alert('Upload failed:');
-//     }
-
-//       // Handle the server response
-//       // console.log('Response from server:', response.data);
-//       // alert('Template saved successfully!');
-//   } catch (error) {
-//       // Handle any errors
-//       console.error('Error saving template', error);
-//       alert('Error saving template', error);
-//   }
-// };
-
-// Function to handle the "Save" button click
-// const handleSaveClick = () => {
-//   // Create an array of selected images from the state variables
-//   const imagesArray = [
-//       selectedImage,
-//       selectedImage2,
-//       selectedImage3,
-//       selectedImage4,
-//       selectedImage5,
-//       selectedImage6,
-//       selectedImage7,
-//       selectedImage8,
-//       selectedImage9,
-//       selectedImage10,
-//       selectedImage11,
-//   ];
-
-//   console.log(imagesArray);
-
-//   // Create an array of text items from the state variables
-//   // const textArray = [
-//   //     heading1,
-//   //     heading2,
-//   //     heading3,
-//   //     heading4,
-//   //     heading5,
-//   //     heading6,
-//   //     heading7,
-//   //     heading8,
-//   //     heading9,
-//   //     // Add additional text state variables here if needed...
-//   // ];
-
-//   // console.log(textArray);
-
-//   // Call the uploadImagesAndText function with the array of images and text
-
-//   uploadImagesAndText(imagesArray);
-// };
 
   return (
     <Transition
@@ -606,13 +344,81 @@ const handleImageClick = (inputId) => {
 
             </div>
             <div className='lg:px-[80px] xs:px-[20px] lg:mt-[10rem] xs:mt-[5rem]'>
-                <div className='flex flex-wrap items-center justify-between'>
-                  <div className='relative overflow-hidden w-[40%]'>
+                <div className='lg:flex items-center justify-between'>
+                  <div className='relative overflow-hidden lg:w-[40%]'>
                   <input type="file" onChange={handleImageChange3} />
                   <img src={preview3 || fash3} className='object-cover transition duration-300 transform hover:scale-105 w-[100%]' />
                     <h2 className='font-Namdhinggo font-[100] lg:text-[30px] xs:text-[25px] w-[100%] italic mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px] hover:w-[100%]' onClick={() => openModal(heading3, setHeading3)} style={{ color: heading3.color}}>{heading3.text}</h2>
-                       {/* Popup modal */}
-                        {isModalOpen && (
+                </div>
+                  <div className='lg:mt-[-8rem] xs:mt-[5rem] lg:relative lg:overflow-hidden lg:w-[40%]'>
+                    <input type="file" onChange={handleImageChange4} />
+                      <img 
+                          src={preview4 || fash4} className='object-cover transition duration-300 transform hover:scale-105 lg:w-[50%]'
+                      />
+                    <h2 className='font-Namdhinggo lg:text-[30px] xs:text-[25px] w-[100%] font-[100] italic mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading4, setHeading4)} style={{ color: heading4.color}}>{heading4.text}</h2>
+                  </div>
+                </div>
+            </div>
+            <div className='lg:flex items-center lg:mt-[10rem] xs:mt-[-7rem]'>
+                <div 
+                  style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview5 || fash5})`, backgroundPosition: 'start', backgroundRepeat: 'no-repeat',}} className='lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[155vh] object-contain lg:block xs:hidden'
+                >
+                  <input type="file" onChange={handleImageChange5} />
+                </div>
+                <div style={{ backgroundImage: `url(${preview5 || fash5})`,  backgroundPosition: 'start', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }} className='w-[100vw] h-[155vh] object-contain lg:hidden xs:block mt-[15rem]'>
+                  <input type="file" onChange={handleImageChange5} className='lg:hidden xs:block' />
+                </div>
+
+              <div className='bg-[#822D12] lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[95vh] lg:mt-0 xs:mt-[-27rem]'>
+                  <div className='lg:pt-[18rem] xs:pt-[4rem]'>
+                      <h2 className='font-Namdhinggo text-[16px] font-[100] italic text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading5, setHeading5)} style={{ color: heading5.color}}>{heading5.text}</h2>
+                      <div className='lg:ps-[10rem] xs:ps-[2.8rem] pt-[1rem]'>
+                        <div>
+                        <input type="file" onChange={handleImageChange6} />
+                            <img 
+                              src={preview6 || fash6}  className='lg:w-[70%] xs:w-[90%]'
+                            />
+                        <h1 className='lg:mt-[-17rem] xs:mt-[-15rem] italic font-Namdhinggo lg:text-[63px] xs:text-[47px] xs:ms-[-2rem] lg:ms-[-4rem] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading6, setHeading6)} style={{ color: heading6.color}}>{heading6.text}</h1>
+                        </div>
+                        <p className='mt-[14rem] lg:ps-[8.5rem] xs:ps-[5.5rem]'><Link to='/DayDreamEditLookbook' className='text-[#f2ede6] hover:text-[#f2ede6] lg:text-[17px] xs:text-[22px] font-Namdhinggo font-[100] italic'>View More</Link></p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div className='pt-[8rem] bg-[#F2EDE6] lg:px-0 xs:px-[20px]'>
+                  <h1 className='text-center font-Namdhinggo font-[100] italic lg:text-[35px] xs:text-[38px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'  onClick={() => openModal(heading7, setHeading7)} style={{ color: heading7.color}}>{heading7.text}</h1>
+                  <div className='flex flex-wrap items-center relative overflow-hidden gap-[1rem] px-[10px] lg:ms-[4rem] mt-[5rem]'>
+                    <div className='lg:w-[18%] xs:w-[100%]'>
+                      <input type="file" onChange={handleImageChange7} />
+                      <img src={preview7 || fash7}  className='object-cover transition duration-300 transform hover:scale-105' />
+                    </div>
+                    <div className='lg:w-[18%] xs:w-[100%]'>
+                      <input type="file" onChange={handleImageChange8} />
+                      <img src={preview8 ||fash8}  className='object-cover transition duration-300 transform hover:scale-105' />
+                    </div>
+                   <div className='lg:w-[18%] xs:w-[100%]'>
+                      <input type="file" onChange={handleImageChange9} />
+                      <img src={preview9 || fash9}  className='object-cover transition duration-300 transform hover:scale-105' />
+                   </div>
+                    <div className='lg:w-[18%] xs:w-[100%]'>
+                      <input type="file" onChange={handleImageChange10} />
+                      <img src={preview10 || fash10}  className='object-cover transition duration-300 transform hover:scale-105' />
+                    </div>
+                    <div className='lg:w-[18%] xs:w-[100%]'>
+                      <input type="file" onChange={handleImageChange11} />
+                      <img src={preview11 || fash11}  className='object-cover transition duration-300 transform hover:scale-105' />
+                    </div>
+                  </div>
+                  <div className='mt-[10rem] pb-[3rem]'>
+                    <h1 className='text-center text-[33px] font-Namdhinggo italic font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading8, setHeading8)} style={{ color: heading8.color}}>{heading8.text}</h1>
+                    <p className='text-center text-[22px] mt-2 font-Namdhinggo font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading9, setHeading9)} style={{ color: heading9.color}}>{heading9.text}</p>
+                    <hr className='lg:w-[80%] xs:w-[100%] h-[2px] bg-[#4a573e] lg:ms-[10rem] mt-[4rem]'/>
+                  </div>
+              </div>
+              <Footer/>
+            
+            {/* Popup modal */}
+            {isModalOpen && (
                           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-hidden">
                             <div className="bg-[#fff] px-[20px] py-[10px] rounded-[5px] shadow-lg w-[50%]">
                             <p className="mb-4">Edit text:</p>
@@ -639,140 +445,6 @@ const handleImageClick = (inputId) => {
                             </div>
                           </div>
                         )}
-                </div>
-                  <div className='lg:mt-[-8rem] xs:mt-[5rem] relative overflow-hidden w-[40%]'>
-                  {errorMessage4 && <p style={{ color: 'red' }}>{errorMessage4}</p>}
-                    {selectedImage4 ? (
-                      <img 
-                          src={selectedImage4} className='object-cover transition duration-300 transform hover:scale-105 w-[50%]' onClick={handleImageClick4}
-                      />
-                    ) : (
-
-                      <img 
-                          src={selectedImage4} className='object-cover transition duration-300 transform hover:scale-105 w-[100%]' onClick={() => document.getElementById('fileInput4').click()}
-                      />
-                    )}
-                    <input id="fileInput4" type='file' name='images' onChange={onSelectFile4} style={{ display: 'none' }}/>
-
-                    <h2 className='font-Namdhinggo lg:text-[30px] xs:text-[25px] w-[100%] font-[100] italic mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading4, setHeading4)} style={{ color: heading4.color}}>{heading4.text}</h2>
-                  </div>
-                </div>
-            </div>
-            {errorMessage5 && <p style={{ color: 'red' }}>{errorMessage5}</p>}
-            {errorMessage6 && <p style={{ color: 'red' }}>{errorMessage6}</p>}
-            <div className='lg:flex items-center lg:mt-[10rem] xs:mt-[-7rem]'>
-              {selectedImage5 ? (
-                <div 
-                  style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${selectedImage5})`, backgroundPosition: 'start', backgroundRepeat: 'no-repeat',}} className='lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[155vh] object-contain lg:block xs:hidden' onClick={handleImageClick5}
-                />
-              ) : (
-
-                <div 
-                  style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${selectedImage5})`, backgroundPosition: `start`, backgroundRepeat: `no-repeat` }} className='lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[155vh] object-contain lg:block xs:hidden' onClick={() => document.getElementById('fileInput5').click()}
-                />
-              )}
-                <input id="fileInput5" type='file' name='images' onChange={onSelectFile5} style={{ display: 'none' }}/>
-
-                {selectedImage5 ? (
-                  <img 
-                    src={selectedImage5}  className='w-[100vw] h-[155vh] object-contain lg:hidden xs:block' onClick={handleImageClick5}
-                  />
-                ) : (
-                  <img
-                    src={selectedImage5}  className='w-[100vw] h-[155vh] object-contain lg:hidden xs:block' onClick={() => document.getElementById('fileInput5').click()}
-                  />
-                )}
-                <input id="fileInput5" type='file' name='images' onChange={onSelectFile5} style={{ display: 'none' }}/>
-
-              <div className='bg-[#822D12] lg:w-[50vw] xs:w-[100vw] lg:h-[170vh] xs:h-[95vh] lg:mt-0 xs:mt-[-14rem]'>
-                  <div className='lg:pt-[18rem] xs:pt-[4rem]'>
-                      <h2 className='font-Namdhinggo text-[16px] font-[100] italic text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading5, setHeading5)} style={{ color: heading5.color}}>{heading5.text}</h2>
-                      <div className='lg:ps-[10rem] xs:ps-[2.8rem] pt-[1rem]'>
-                        <div>
-                        {selectedImage6 ? (
-                            <img 
-                              src={selectedImage6}  className='lg:w-[70%] xs:w-[90%]' onClick={handleImageClick6}
-                            />
-                          ) : (
-                            <img
-                              src={selectedImage6}  className='lg:w-[70%] xs:w-[90%]' onClick={() => document.getElementById('fileInput6').click()}
-                            />
-                          )}
-                          <input id="fileInput6" type='file' name='images' onChange={onSelectFile6} style={{ display: 'none' }}/>
-                        <h1 className='lg:mt-[-17rem] xs:mt-[-15rem] italic font-Namdhinggo lg:text-[63px] xs:text-[47px] xs:ms-[-2rem] lg:ms-[-4rem] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading6, setHeading6)} style={{ color: heading6.color}}>{heading6.text}</h1>
-                        </div>
-                        <p className='mt-[14rem] lg:ps-[8.5rem] xs:ps-[5.5rem]'><Link to='/DayDreamEditLookbook' className='text-[#f2ede6] hover:text-[#f2ede6] lg:text-[17px] xs:text-[22px] font-Namdhinggo font-[100] italic'>View More</Link></p>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            <div className='pt-[8rem] bg-[#F2EDE6] lg:px-0 xs:px-[20px]'>
-                  <h1 className='text-center font-Namdhinggo font-[100] italic lg:text-[35px] xs:text-[38px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'  onClick={() => openModal(heading7, setHeading7)} style={{ color: heading7.color}}>{heading7.text}</h1>
-                  {errorMessage7 && <p style={{ color: 'red' }}>{errorMessage7}</p>}
-                  {errorMessage8 && <p style={{ color: 'red' }}>{errorMessage8}</p>}
-                  {errorMessage9 && <p style={{ color: 'red' }}>{errorMessage9}</p>}
-                  {errorMessage10 && <p style={{ color: 'red' }}>{errorMessage10}</p>}
-                  {errorMessage11 && <p style={{ color: 'red' }}>{errorMessage11}</p>}
-                  <div className='flex flex-wrap items-center relative overflow-hidden gap-[1rem] px-[10px] lg:ms-[4rem] mt-[5rem]'>
-                    {selectedImage7 ? (
-                      <img
-                        src={selectedImage7}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={handleImageClick7}
-                      />
-                    ) : (
-                      <img
-                        src={selectedImage7}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={() => document.getElementById('fileInput7').click()}
-                      />
-                    )}
-                    <input id="fileInput7" type='file' name='images' onChange={onSelectFile7} style={{ display: 'none' }}/>
-                    {selectedImage8 ? (
-                      <img
-                        src={selectedImage8}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={handleImageClick8}
-                      />
-                    ) : (
-                      <img
-                        src={selectedImage8}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={() => document.getElementById('fileInput8').click()}
-                      />
-                    )}
-                    <input id="fileInput8" type='file' name='images' onChange={onSelectFile8} style={{ display: 'none' }}/>
-                    {selectedImage9 ? (
-                      <img
-                        src={selectedImage9}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={handleImageClick9}
-                      />
-                    ) : (
-                      <img
-                        src={selectedImage9}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={() => document.getElementById('fileInput9').click()}
-                      />
-                    )}
-                    <input id="fileInput9" type='file' name='images' onChange={onSelectFile9} style={{ display: 'none' }}/>
-                    {selectedImage10 ? (
-                      <img
-                        src={selectedImage10}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={handleImageClick10}
-                      />
-                    ) : (
-                      <img
-                        src={selectedImage10}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={() => document.getElementById('fileInput10').click()}
-                      />
-                    )}
-                    <input id="fileInput10" type='file' name='images' onChange={onSelectFile10} style={{ display: 'none' }}/>
-                    {selectedImage11 ? (
-                      <img
-                        src={selectedImage11}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={handleImageClick11}
-                      />
-                    ) : (
-                      <img
-                        src={selectedImage11}  className='lg:w-[18%] xs:w-[100%] object-cover transition duration-300 transform hover:scale-105' onClick={() => document.getElementById('fileInput11').click()}
-                      />
-                    )}
-                    <input id="fileInput11" type='file' name='images' onChange={onSelectFile11} style={{ display: 'none' }}/>
-                  </div>
-                  <div className='mt-[10rem] pb-[3rem]'>
-                    <h1 className='text-center text-[33px] font-Namdhinggo italic font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading8, setHeading8)} style={{ color: heading8.color}}>{heading8.text}</h1>
-                    <p className='text-center text-[22px] mt-2 font-Namdhinggo font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading9, setHeading9)} style={{ color: heading9.color}}>{heading9.text}</p>
-                    <hr className='lg:w-[80%] xs:w-[100%] h-[2px] bg-[#4a573e] lg:ms-[10rem] mt-[4rem]'/>
-                  </div>
-              </div>
-              <Footer/>
-            
           </div>
         </div>
     </div>

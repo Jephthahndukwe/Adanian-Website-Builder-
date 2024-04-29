@@ -2,50 +2,63 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
+const LinkModal = ({ onSave, onCancel }) => {
+    const [url, setUrl] = useState('');
+  
+    const handleSave = () => {
+      onSave(url);
+      setUrl('');
+    };
+  
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black opacity-50"></div>
+        <div className="bg-white rounded-lg p-6 z-10">
+          <input
+            type="text"
+            placeholder="Enter URL"
+            className="border border-gray-300 rounded-md p-2 w-full mb-4"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+          <div className="flex justify-end">
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+              onClick={handleSave}
+            >
+              Save
+            </button>
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+
 const Navbar = () => {
 
   const [show, setShow] = useState(false)
 
-  const [editableElement, setEditableElement] = useState(null);
-  const [editorContent, setEditorContent] = useState('');
-  const [dragging, setDragging] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
 
-  useEffect(() => {
-       // Load content from local storage when component mounts
-       const savedContent = localStorage.getItem('editorContent');
-       if (savedContent) {
-       setEditorContent(savedContent);
-       }
-  }, []);
-
-  const handleElementClick = (event) => {
-       const element = event.target;
-       setEditableElement(element);
-       setEditorContent(element.innerHTML);
+  const openModal = () => {
+    setModalVisible(true);
   };
 
-  useEffect(() => {
-       const handleClickOutside = (event) => {
-       if (editableElement && !editableElement.contains(event.target)) {
-            // Clicked outside the editable element, remove the editor
-            setEditableElement(null);
-       }
-       };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
-       document.addEventListener('click', handleClickOutside);
-
-       return () => {
-       document.removeEventListener('click', handleClickOutside);
-       };
-  }, [editableElement]);
-
-  const handleEditorChange = (content) => {
-       if (editableElement) {
-       editableElement.innerHTML = content;
-       setEditorContent(content);
-       // Save the edited content to local storage
-       localStorage.setItem('editorContent', content);
-       }
+  const handleSaveUrl = (url) => {
+    setLinkUrl(url);
+    closeModal();
   };
 
 
@@ -55,7 +68,7 @@ const Navbar = () => {
         <div className='lg:flex justify-between items-center lg:pb-[50px] xs:pb-5 lg:pt-0 xs:pt-5 lg:px-[100px] xs:px-[20px]'>
           {/* <h1><Link to='/LawrenceHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] text-[30px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1> */}
           <div className='flex justify-between items-center'>
-              <div onClick={handleElementClick} className='hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'>
+              <div className='hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'>
                 <h1><Link to='/LawrenceEditHome' className='font-Namdhinggo text-[#20303c] hover:text-[#20303c] lg:text-[30px] xs:text-[22px] tracking-[0.8rem] leading-[24px] font-[100] no-underline'>LAWRENCE</Link></h1>
               </div>
               <FaBars onClick={() => setShow(true)} className='text-[#7c6c50] text-[22px] lg:hidden xs:block'/>
@@ -67,7 +80,16 @@ const Navbar = () => {
                   <li className='text-[#20303c] text-[16px] leading-[24px] font-[400]'><Link to='/LawrenceEditAbout' className='text-[#20303c] text-[16px] leading-[24px] font-[400] no-underline hover:text-[#20303c]'>About</Link></li>
                   <li className='text-[#20303c] text-[16px] leading-[24px] font-[400]'><Link to='/LawrenceEditContact' className='text-[#20303c] text-[16px] leading-[24px] font-[400] no-underline hover:text-[#20303c]'>Contact</Link></li>
               </ul>
-              <button className='text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[10px] px-[30px]'>Order Online</button>
+              {/* <button className='text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[10px] px-[30px]'>Order Online</button> */}
+            <div className='linkHover'>
+                <p className='bg-[#c7c5c0] rounded-[100px] px-[10px] text-center py-[5px] text-[12px] absolute -mt-[37px] pHovered transition-opacity duration-300 transform cursor-pointer' onClick={openModal}>Click to edit URL</p>
+                <Link to={linkUrl} target={`_${linkUrl}`} className='text-[#fff] text-[16px] font-[300] bg-[#7c6c50] py-[10px] px-[30px] no-underline hover:text-[#fff]'>
+                    Order Online
+                </Link>
+            </div>
+            {modalVisible && (
+                <LinkModal onSave={handleSaveUrl} onCancel={closeModal} />
+            )}
           </div>
       </div>
 
@@ -88,31 +110,6 @@ const Navbar = () => {
       </div>
       : null
       }
-
-        {editableElement && (
-            <div
-                className="editor-wrapper fixed h-[50vh] flex justify-center items-center top-0 left-[3rem]"
-            >
-                <Editor
-                    initialValue={editorContent}
-                    apiKey="weyuzxfz4rnkmcfm9egz0vqo4qwek3fq6aucwzeudmatw48t"
-                    init={{
-                        height: 150,
-                        menubar: false,
-                        plugins: [
-                            'advlist autolink lists link image charmap print preview anchor',
-                            'searchreplace visualblocks code fullscreen',
-                            'insertdatetime media table paste code help wordcount',
-                        ],
-                        toolbar:
-                            'undo redo | formatselect | bold italic backcolor | \
-                            alignleft aligncenter alignright alignjustify | \
-                            bullist numlist outdent indent | removeformat | help',
-                    }}
-                    onEditorChange={handleEditorChange}
-                />
-            </div>
-        )}
     </div>
   )
 }

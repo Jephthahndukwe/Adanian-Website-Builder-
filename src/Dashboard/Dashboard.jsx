@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import Step1  from "./Steps/Step1"
@@ -6,10 +6,42 @@ import { Link } from 'react-router-dom';
 import { FaPencilAlt } from "react-icons/fa";
 import TemplateMap from "./TemplateMap"
 import Question from "./Steps/Question";
+import { useDispatch, useSelector } from 'react-redux';
+import { googleAuth, logout } from '../../Redux/Action/UserAction';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { setCredentials } from '../Auth/Slice/userSlice';
+
 
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
+
+    const dispatch = useDispatch();
+
+    // const { user, loading } = useSelector(state => state.googleAuth)
+
+    // const getUser = async () => {
+    //     try {
+    //         const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+    //             withCredentials: true
+    //         })
+    //         dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
+    //     } catch (error) {
+    //         toast.error(error?.data?.message || error?.error)
+    //     }
+    // }
+
+    useEffect(() => {
+
+        dispatch(googleAuth());
+        // toast
+
+    }, [dispatch])
+
+    const logoutHandler = () => {
+        dispatch(logout())
+      }
 
   return (
     <div>
@@ -19,7 +51,7 @@ const Dashboard = () => {
                 <Sidebar className='xs:hidden lg:block'/>
 
                 <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%] mt-[3rem] mb-[3rem]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
-                   <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                    
+                   {/* <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                     */}
                     <Step1/>
 
                     <div className="mt-[53px] px-[18px]">

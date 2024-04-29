@@ -9,176 +9,202 @@ import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 
 const About = () => {
 
-    const [editableElement, setEditableElement] = useState(null);
-    const [editorContent, setEditorContent] = useState('');
-    const [dragging, setDragging] = useState(false);
+   // State variables for each heading
+const [heading67, setHeading67] = useState({ id: 'heading67', text: 'About Us', color: '#000' });
+const [heading68, setHeading68] = useState({ id: 'heading68', text: 'The Restaurant', color: '#fff' });
+const [heading69, setHeading69] = useState({ id: 'heading69', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you. This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out', color: '#fff' });
+const [heading70, setHeading70] = useState({ id: 'heading70', text: 'Our Kitchen', color: '#000' });
+const [heading71, setHeading71] = useState({ id: 'heading71', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
 
-    useEffect(() => {
-         // Load content from local storage when component mounts
-         const savedContent = localStorage.getItem('editorContent');
-         if (savedContent) {
-         setEditorContent(savedContent);
-         }
-    }, []);
+// Define state variables for up to 10 headings
+// Add additional headings as needed...
 
-    const handleElementClick = (event) => {
-         const element = event.target;
-         setEditableElement(element);
-         setEditorContent(element.innerHTML);
-    };
+const [isModalOpen, setModalOpen] = useState(false);
+const [currentHeading, setCurrentHeading] = useState(null);
+const [inputText, setInputText] = useState('');
+const [inputColor, setInputColor] = useState('');
 
-    useEffect(() => {
-         const handleClickOutside = (event) => {
-         if (editableElement && !editableElement.contains(event.target)) {
-              // Clicked outside the editable element, remove the editor
-              setEditableElement(null);
-         }
+// Function to open the modal for editing a specific heading
+const openModal = (heading, setHeadingState) => {
+    setCurrentHeading({ heading, setHeadingState });
+    setInputText(heading.text);
+    setInputColor(heading.color);
+    setModalOpen(true);
+};
+
+// Function to handle save button click
+const handleSave = () => {
+    // Update the current heading based on the input values
+    currentHeading.setHeadingState({
+        ...currentHeading.heading,
+        text: inputText,
+        color: inputColor,
+    });
+    setModalOpen(false);
+};
+
+// Function to handle cancel button click
+const handleCancelClick = () => {
+    setModalOpen(false);
+};
+
+
+ // IMAGE EDITING
+ const [file1, setFile1] = useState(null);
+ const [file2, setFile2] = useState(null);
+ const [preview, setPreview] = useState(null)
+ const [preview2, setPreview2] = useState(null)
+
+ const handleFile1Change = (e) => {
+     setFile1(e.target.files[0]);
+ };
+ const handleFile2Change = (e) => {
+     setFile2(e.target.files[0]);
+ };
+
+ const handleImageChange = (e) => {
+     const selectedImage = e.target.files[0];
+     if (selectedImage) {
+         setFile1(selectedImage)
+         const reader = new FileReader();
+         reader.onload = () => {
+             setPreview(reader.result);
          };
-
-         document.addEventListener('click', handleClickOutside);
-
-         return () => {
-         document.removeEventListener('click', handleClickOutside);
+     reader.readAsDataURL(selectedImage);
+     }
+ };
+ const handleImageChange2 = (e) => {
+     const selectedImage2 = e.target.files[0];
+     if (selectedImage2) {
+         setFile2(selectedImage2)
+         const reader = new FileReader();
+         reader.onload = () => {
+         setPreview2(reader.result);
          };
-    }, [editableElement]);
-
-    const handleEditorChange = (content) => {
-         if (editableElement) {
-         editableElement.innerHTML = content;
-         setEditorContent(content);
-         // Save the edited content to local storage
-         localStorage.setItem('editorContent', content);
-         }
-    };
+         reader.readAsDataURL(selectedImage2);
+     }
+ };    
 
 
-    // IMAGE EDITING
-    const useImageUpload = (setImage, setErrorMessage, maxSize, maxWidth, maxHeight) => {
-        return (event) => {
-            const selectedFile = event.target.files[0];
+  // SAVING DATA TO BACKEND
+  const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append('selectedImage1', file1);
+    formData.append('selectedImage2', file2);
+
+    const textArray = [
+      JSON.stringify(heading68),
+      JSON.stringify(heading69),
+      JSON.stringify(heading70),
+      JSON.stringify(heading71),
+    // Add additional text state variables here if needed...
+  ];
+
+  console.log(textArray);
     
-            // Check if file size is within limits
-            if (selectedFile.size > maxSize) {
-                setErrorMessage(`File size exceeds ${maxSize / (1024 * 1024)}MB. Please select a smaller file.`);
-                setTimeout(() => {
-                    setErrorMessage('');
-                }, 10000); // Hide the error message after 10 seconds
-                return;
+    // Append each text item (including ID, text, and color) to the FormData object
+    // textArray.forEach(({ id, text, color }, index) => {
+    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
+    // });
+    // formData.append('texts', textArray)
+    let joiner = textArray.join("*")
+    formData.append('template', 'Lawrence');
+    formData.append('texts', joiner);
+    console.log(formData);
+
+    try {
+        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
-    
-            // Check if image dimensions are within limits
-            const img = new Image();
-            img.onload = function () {
-                if (this.width > maxWidth || this.height > maxHeight) {
-                    setErrorMessage(`Image dimensions exceed ${maxWidth}x${maxHeight} pixels. Please select a smaller image.`);
-                    setTimeout(() => {
-                        setErrorMessage('');
-                    }, 10000); // Hide the error message after 10 seconds
-                    return;
-                }
-                const imageUrl = URL.createObjectURL(selectedFile);
-                setImage(imageUrl);
-                setErrorMessage('');
-            };
-            img.src = URL.createObjectURL(selectedFile);
-        };
-    };
-    
-    const handleImageClick = (inputId) => {
-        document.getElementById(inputId).click();
-    };
-    
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
-    
-    const onSelectFile = useImageUpload(setSelectedImage, setErrorMessage, 2 * 1024 * 1024, 3264, 4928);
-    
-    const handleImageClick1 = () => {
-        handleImageClick('fileInput1');
-    };
-    
-    const [selectedImage2, setSelectedImage2] = useState(null);
-    const [errorMessage2, setErrorMessage2] = useState('');
-    
-    const onSelectFile2 = useImageUpload(setSelectedImage2, setErrorMessage2, 2 * 1024 * 1024, 555, 800);
-    
-    const handleImageClick2 = () => {
-        handleImageClick('fileInput2');
-    };
-    
+        });
+
+        console.log(response.data);
+
+        if (response.data) {
+            setTimeout(() => {
+                toast.success('Reservation page saved successfully');
+            }, 500);
+        } else {
+            setTimeout(() => {
+                toast.error('Failed to save template, Please try again later.');
+            }, 500);
+        }
+
+        // if (response.data) {
+        //     const data = await response.json();
+        //     console.log('Files uploaded:', data.files);
+        //     alert('Files uploaded:');
+        // } else {
+        //     console.error('Upload failed:', response.statusText);
+        //     alert('Upload failed:');
+        // }
+    } catch (error) {
+        console.error('Error uploading files:', error);
+        setTimeout(() => {
+            toast.error('Failed to save template, Please try again later.');
+        }, 500);
+    }
+};
 
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplateEditNavbar handleUpload={handleUpload}/>
         <div className='bg-[#faf8f1] pt-[2rem]'>
             <Navbar/>
             <div>
                 <div className='bg-[#a89d8a] py-[70px] lg:px-[180px] xs:px-[50px] w-[90vw]'>
-                    <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>About Us</h2>
+                    <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading67, setHeading67)} style={{ color: heading67.color}}>{heading67.text}</h2>
                 </div>
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                {selectedImage ? (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${selectedImage})`,  backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed mt-[5rem]' onClick={handleImageClick}>
-                         <div className='lg:flex justify-center items-center h-[100vh] lg:px-0 xs:px-[20px] lg:pt-0 xs:pt-[5rem]'>
-                            <div>
-                                <h2 className='font-Namdhinggo lg:text-[50px] xs:text-[40px] lg:ms-[32rem] lg:text-start xs:text-center text-[#fff] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>The Restaurant</h2>
-                                <p className='text-[#fff] lg:text-[16px] xs:text-[14.5px] mt-[2rem] lg:ms-[18rem] lg:w-[55%] leading-[28px] text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you. This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out</p>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${restro4})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed mt-[5rem]' onClick={() => document.getElementById('fileInput').click()}>
+                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview || restro4})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed mt-[5rem]'>
+                    <input type="file" onChange={handleImageChange} />
                         <div className='lg:flex justify-center items-center h-[100vh] lg:px-0 xs:px-[20px] lg:pt-0 xs:pt-[5rem]'>
                             <div>
-                                <h2 className='font-Namdhinggo lg:text-[50px] xs:text-[40px] lg:ms-[32rem] lg:text-start xs:text-center text-[#fff] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>The Restaurant</h2>
-                                <p className='text-[#fff] lg:text-[16px] xs:text-[14.5px] mt-[2rem] lg:ms-[18rem] lg:w-[55%] leading-[28px] text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you. This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out</p>
+                                <h2 className='font-Namdhinggo lg:text-[50px] xs:text-[40px] lg:ps-[32rem] lg:text-start xs:text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px]' onClick={() => openModal(heading68, setHeading68)} style={{ color: heading68.color}}>{heading68.text}</h2>
+                                <p className='lg:text-[16px] xs:text-[14.5px] mt-[2rem] lg:ms-[18rem] lg:w-[55%] leading-[28px] text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading69, setHeading69)} style={{ color: heading69.color}}>{heading69.text}</p>
                             </div>
                         </div>
                     </div>
-                )}
-                <input id="fileInput" type='file' name='images' onChange={onSelectFile} style={{ display: 'none' }} />
-                {errorMessage2 && <p style={{ color: 'red' }}>{errorMessage2}</p>}
                 <div className='lg:flex justify-center items-center gap-[4rem] lg:px-[100px] xs:px-[10px] mt-[5rem] pb-[6rem]'>
                     <div>
-                        {/* <img src={restro5} className='w-[180vw]' /> */}
-                        {selectedImage2 ? (
-                            <img src={selectedImage2} alt="Selected Image" className="w-[180vw]" onClick={handleImageClick2} />
-                        ) : (
-                            <img src={restro5} alt="Frame" className="w-[180vw]" onClick={() => document.getElementById('fileInput2').click()} />
-                        )}
-                            <input id="fileInput2" type='file' name='images' onChange={onSelectFile2} style={{ display: 'none' }} />
+                        <input type="file" onChange={handleImageChange2} />
+                        <img src={preview2 || restro5} alt="Frame" className="w-[180vw]" />
                     </div>
                     <div className='lg:mt-0 xs:mt-[4rem]'>
-                        <h1 className='text-[45px] font-Namdhinggo lg:text-start xs:text-center lg:ms-[12rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>Our Kitchen</h1>
-                        <p className='mt-[2rem] text-center text-[16px] leading-[24px] lg:ms-[5rem] text-[#7c6c50] lg:w-[80%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={handleElementClick}>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.</p>
+                        <h1 className='text-[45px] font-Namdhinggo lg:text-start xs:text-center lg:ps-[12rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px]' onClick={() => openModal(heading70, setHeading70)} style={{ color: heading70.color}}>{heading70.text}</h1>
+                        <p className='mt-[2rem] text-center text-[16px] leading-[24px] lg:ms-[5rem] text-[#7c6c50] lg:w-[80%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading71, setHeading71)} style={{ color: heading71.color}}>{heading71.text}</p>
                     </div>
                 </div>
             </div>
         </div>
             <Footer/>
 
-            {editableElement && (
-                <div
-                    className="editor-wrapper fixed h-[50vh] flex justify-center items-center top-0 left-[3rem]"
-                >
-                    <Editor
-                        initialValue={editorContent}
-                        apiKey="weyuzxfz4rnkmcfm9egz0vqo4qwek3fq6aucwzeudmatw48t"
-                        init={{
-                            height: 150,
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount',
-                            ],
-                            toolbar:
-                                'undo redo | formatselect | bold italic backcolor | \
-                                alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | help',
-                        }}
-                        onEditorChange={handleEditorChange}
-                    />
+             {/* Popup modal */}
+         {isModalOpen && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-hidden pt-[5%]">
+                <div className="bg-[#fff] px-[20px] py-[10px] rounded-[5px] shadow-lg w-[50%]">
+                <p className="mb-4">Edit text:</p>
+                <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                <p className="mb-4">Change text color:</p>
+                <input
+                    type="color"
+                    value={inputColor}
+                    onChange={(e) => setInputColor(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                {/* Save and Cancel buttons */}
+                <div className='flex justify-end space-x-4'>
+                    <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                    <button onClick={handleCancelClick} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                </div>
+                </div>
                 </div>
             )}
     </div>

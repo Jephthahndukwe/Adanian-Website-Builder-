@@ -5,9 +5,10 @@ import restro2 from '../../../../assets/images/restro2.png'
 import restro3 from '../../../../assets/images/restro3.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
-import { Editor } from '@tinymce/tinymce-react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Homepage = () => {
@@ -18,229 +19,223 @@ const Homepage = () => {
   const navigate = useNavigate()
 
 
-    const [editableElement, setEditableElement] = useState(null);
-    const [editorContent, setEditorContent] = useState('');
-    const [isPublished, setIsPublished] = useState(false);
-    
+   // State variables for each heading
+const [heading1, setHeading1] = useState({ id: 'heading1', text: 'Restaurant & Bar', color: '#7c6c50' });
+const [heading2, setHeading2] = useState({ id: 'heading2', text: 'Est. 2035', color: '#7c6c50' });
+const [heading3, setHeading3] = useState({ id: 'heading3', text: 'Made With Love. Simply Delicious', color: '#000' });
+const [heading4, setHeading4] = useState({ id: 'heading4', text: 'I’m a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#7c6c50' });
+const [heading5, setHeading5] = useState({ id: 'heading5', text: 'A Fresh and Seasonal Cuisine', color: '#000' });
+const [heading6, setHeading6] = useState({ id: 'heading6', text: 'I’m a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#7c6c50' });
+const [heading7, setHeading7] = useState({ id: 'heading7', text: 'Reserve a Table', color: '#000' });
+const [heading8, setHeading8] = useState({ id: 'heading8', text: 'A Fresh and Seasonal Cuisine', color: '#000' });
 
+// Define state variables for up to 10 headings
+// Add additional headings as needed...
 
+const [isModalOpen, setModalOpen] = useState(false);
+const [currentHeading, setCurrentHeading] = useState(null);
+const [inputText, setInputText] = useState('');
+const [inputColor, setInputColor] = useState('');
 
-    useEffect(() => {
-        // Load saved data from localStorage on component mount
-        const savedData = JSON.parse(localStorage.getItem('homepageData'));
-        if (savedData) {
-            setEditorContent(savedData.editorContent || '');
-            setSelectedImage(savedData.selectedImage || '');
-            setSelectedImage2(savedData.selectedImage2 || '');
-            setSelectedImage3(savedData.selectedImage3 || '');
-        }
-    }, []);
+// Function to open the modal for editing a specific heading
+const openModal = (heading, setHeadingState) => {
+    setCurrentHeading({ heading, setHeadingState });
+    setInputText(heading.text);
+    setInputColor(heading.color);
+    setModalOpen(true);
+};
 
-    // Load template content from local storage on component mount
-    useEffect(() => {
-        const savedContent = localStorage.getItem('homepageContent');
-        if (savedContent) {
-            setEditorContent(savedContent);
-        }
-    }, []);
+// Function to handle save button click
+const handleSave = () => {
+    // Update the current heading based on the input values
+    currentHeading.setHeadingState({
+        ...currentHeading.heading,
+        text: inputText,
+        color: inputColor,
+    });
+    setModalOpen(false);
+};
 
-    // Save changes to local storage whenever editorContent changes
-    useEffect(() => {
-        localStorage.setItem('homepageContent', editorContent);
-    }, [editorContent]);
-
-    const handleElementClick = (event) => {
-        const element = event.target;
-        setEditableElement(element);
-        setEditorContent(element.innerHTML);
-    };
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (editableElement && !editableElement.contains(event.target)) {
-                // Clicked outside the editable element, remove the editor
-                setEditableElement(null);
-            }
-        };
-
-        document.addEventListener('click', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, [editableElement]);
-
-    const handleEditorChange = (content, editor) => {
-        if (editableElement) {
-            editableElement.innerHTML = content;
-            setEditorContent(content);
-            // Automatically save the content to local storage
-            localStorage.setItem('homepageContent', content);
-        }
-    };
+// Function to handle cancel button click
+const handleCancelClick = () => {
+    setModalOpen(false);
+};
 
        // IMAGE EDITING
-    const useImageUpload = (setImage, setErrorMessage, maxSize, maxWidth, maxHeight) => {
-        return (event) => {
-            const selectedFile = event.target.files[0];
-    
-            // Check if file size is within limits
-            if (selectedFile.size > maxSize) {
-                setErrorMessage(`File size exceeds ${maxSize / (1024 * 1024)}MB. Please select a smaller file.`);
-                setTimeout(() => {
-                    setErrorMessage('');
-                }, 10000); // Hide the error message after 10 seconds
-                return;
-            }
-    
-            // Check if image dimensions are within limits
-            const img = new Image();
-            img.onload = function () {
-                if (this.width > maxWidth || this.height > maxHeight) {
-                    setErrorMessage(`Image dimensions exceed ${maxWidth}x${maxHeight} pixels. Please select a smaller image.`);
-                    setTimeout(() => {
-                        setErrorMessage('');
-                    }, 10000); // Hide the error message after 10 seconds
-                    return;
-                }
-                const imageUrl = URL.createObjectURL(selectedFile);
-                setImage(imageUrl);
-                setErrorMessage('');
-            };
-            img.src = URL.createObjectURL(selectedFile);
-        };
+    const [file1, setFile1] = useState(null);
+    const [file2, setFile2] = useState(null);
+    const [file3, setFile3] = useState(null);
+    const [preview, setPreview] = useState(null)
+    const [preview2, setPreview2] = useState(null)
+    const [preview3, setPreview3] = useState(null)
+
+    const handleFile1Change = (e) => {
+        setFile1(e.target.files[0]);
     };
-    
-    const handleImageClick = (inputId) => {
-        document.getElementById(inputId).click();
-    };
-    
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
-    
-    const onSelectFile = useImageUpload(setSelectedImage, setErrorMessage, 2 * 1024 * 1024, 5139, 3426);
-    
-    const handleImageClick1 = () => {
-        handleImageClick('fileInput1');
-    };
-    
-    const [selectedImage2, setSelectedImage2] = useState(null);
-    const [errorMessage2, setErrorMessage2] = useState('');
-    
-    const onSelectFile2 = useImageUpload(setSelectedImage2, setErrorMessage2, 2 * 1024 * 1024, 555, 800);
-    
-    const handleImageClick2 = () => {
-        handleImageClick('fileInput2');
+    const handleFile2Change = (e) => {
+        setFile2(e.target.files[0]);
     };
 
-    const [selectedImage3, setSelectedImage3] = useState(null);
-    const [errorMessage3, setErrorMessage3] = useState('');
-    
-    const onSelectFile3 = useImageUpload(setSelectedImage3, setErrorMessage3, 2 * 1024 * 1024, 628, 440);
-    
-    const handleImageClick3 = () => {
-        handleImageClick('fileInput3');
+    const handleImageChange = (e) => {
+        const selectedImage = e.target.files[0];
+        if (selectedImage) {
+            setFile1(selectedImage)
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreview(reader.result);
+            };
+        reader.readAsDataURL(selectedImage);
+        }
     };
+    const handleImageChange2 = (e) => {
+        const selectedImage2 = e.target.files[0];
+        if (selectedImage2) {
+            setFile2(selectedImage2)
+            const reader = new FileReader();
+            reader.onload = () => {
+            setPreview2(reader.result);
+            };
+            reader.readAsDataURL(selectedImage2);
+        }
+    };
+    const handleImageChange3 = (e) => {
+        const selectedImage3 = e.target.files[0];
+        if (selectedImage3) {
+            setFile3(selectedImage3)
+            const reader = new FileReader();
+            reader.onload = () => {
+            setPreview3(reader.result);
+            };
+            reader.readAsDataURL(selectedImage3);
+        }
+    };
+
+    // SAVING DATA TO BACKEND
+ const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append('selectedImage1', file1);
+    formData.append('selectedImage2', file1);
+    formData.append('selectedImage3', file1);
+
+    const textArray = [
+      JSON.stringify(heading1),
+      JSON.stringify(heading2),
+      JSON.stringify(heading3),
+      JSON.stringify(heading4),
+      JSON.stringify(heading5),
+      JSON.stringify(heading6),
+      JSON.stringify(heading7),
+      JSON.stringify(heading8),
+    // Add additional text state variables here if needed...
+  ];
+
+  console.log(textArray);
+    
+    // Append each text item (including ID, text, and color) to the FormData object
+    // textArray.forEach(({ id, text, color }, index) => {
+    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
+    // });
+    // formData.append('texts', textArray)
+    let joiner = textArray.join("*")
+    formData.append('template', 'Lawrence');
+    formData.append('texts', joiner);
+    console.log(formData);
+
+    try {
+        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chico Restro', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        console.log(res.data);
+
+        if (res.data) {
+            setTimeout(() => {
+                toast.success('Homepage saved successfully');
+            }, 500);
+        } else {
+            setTimeout(() => {
+                toast.error('Failed to save template, Please try again later.');
+            }, 500);
+        }
+
+        // if (response.data) {
+        //     const data = await response.json();
+        //     console.log('Files uploaded:', data.files);
+        //     alert('Files uploaded:');
+        // } else {
+        //     console.error('Upload failed:', response.statusText);
+        //     alert('Upload failed:');
+        // }
+    } catch (error) {
+        console.error('Error uploading files:', error);
+        setTimeout(() => {
+            toast.error('Failed to save template, Please try again later.');
+        }, 500);
+    }
+};
+
 
 
 
 // Define the handleSave function in your Homepage component
-const handleSave = () => {
-    // Gather the necessary data to be saved (e.g., editor content, selected images)
-    const dataToSave = new FormData();
-    dataToSave.append('editorContent', editorContent);
-    dataToSave.append('selectedImage', selectedImage);
-    dataToSave.append('selectedImage2', selectedImage2);
-    dataToSave.append('selectedImage3', selectedImage3);
-    // Add other relevant data as needed
+// const handleSave = () => {
+//     // Gather the necessary data to be saved (e.g., editor content, selected images)
+//     const dataToSave = new FormData();
+//     dataToSave.append('editorContent', editorContent);
+//     dataToSave.append('selectedImage', selectedImage);
+//     dataToSave.append('selectedImage2', selectedImage2);
+//     dataToSave.append('selectedImage3', selectedImage3);
+//     // Add other relevant data as needed
 
-    // Save data to localStorage
-    localStorage.setItem('images', JSON.stringify(dataToSave));
+//     // Save data to localStorage
+//     localStorage.setItem('images', JSON.stringify(dataToSave));
 
-    // Send data to backend for further processing
-    axios.post('https://ayoba.adanianlabs.io/api/user/upload_file', dataToSave)
-        .then(response => {
-            alert('Template successfully saved. Try previewing the template.')
-            console.log('Homepage saved successfully');
-        })
-        .catch(error => {
-            console.error('Error saving homepage:', error);
-            alert('Failed to save template, Please try again later.')
-        });
-};
-
-// Define the handlePreview function in your Homepage component
-const handlePreview = () => {
-    // Retrieve the saved content from local storage
-    const savedContent = localStorage.getItem('homepageContent');
-    // Construct the URL for the preview page
-    const previewUrl = `/preview/${encodeURIComponent(savedContent)}`;
-    // Redirect to the preview page
-    navigate(previewUrl);
-};
-
-// Define the handlePublish function in your Homepage component
-const handlePublish = async () => {
-    try {
-        // Send a request to the backend to publish the template
-        const response = await axios.post('/api/publish', { content: editorContent });
-        const publishedUrl = response.data.publishedUrl;
-        setIsPublished(true);
-        alert(`Template published successfully at: ${publishedUrl}`);
-    } catch (error) {
-        console.error('Error publishing template:', error);
-        alert('Failed to publish template. Please try again later.');
-    }
-};
+//     // Send data to backend for further processing
+//     axios.post('https://ayoba.adanianlabs.io/api/user/upload_file', dataToSave)
+//         .then(response => {
+//             alert('Template successfully saved. Try previewing the template.')
+//             console.log('Homepage saved successfully');
+//         })
+//         .catch(error => {
+//             console.error('Error saving homepage:', error);
+//             alert('Failed to save template, Please try again later.')
+//         });
+// };
 
   return (
     <>
-    <TemplateEditNavbar  
-        onSave={handleSave} 
-        onPreview={handlePreview} 
-        onPublish={handlePublish} />
+    <TemplateEditNavbar handleUpload={handleUpload} />
         <div className='bg-[#faf8f1] pt-[2rem]'>
             <Navbar/>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <div className='lg:flex gap-[3rem]'>
-              {selectedImage ? (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${selectedImage})`,  backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='lg:w-[90%] xs:w-[100%] h-[100vh] bg-fixed' onClick={handleImageClick} />
-                ) : (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${restro})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='lg:w-[90%] xs:w-[100%] h-[100vh] bg-fixed' onClick={() => document.getElementById('fileInput').click()} />
-                )}
-                <input id="fileInput" type='file' name='images' onChange={onSelectFile} style={{ display: 'none' }} />
+                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview || restro})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='lg:w-[90%] xs:w-[100%] h-[100vh] bg-fixed'>
+                        <input type="file" onChange={handleImageChange} />
+                    </div>
               <div className='lg:hidden xs:block mt-[5rem]'>
-                <h2 className='text-[#7c6c50] text-[25px] text-center font-[400] font-Namdhinggo'>Restaurant & Bar</h2>
-                <h2 className='text-[#7c6c50] text-[25px] text-center font-[400] font-Namdhinggo'>Est. 2035</h2>
+                <h2 className='text-[25px] text-center font-[400] font-Namdhinggo' onClick={() => openModal(heading1, setHeading1)} style={{ color: heading1.color}}>{heading1.text}</h2>
+                <h2 className='text-[25px] text-center font-[400] font-Namdhinggo' onClick={() => openModal(heading2, setHeading2)} style={{ color: heading2.color}}>{heading2.text}</h2>
               </div>
               <div className='lg:block xs:hidden'>
                     <h2 
                         className='text-[#7c6c50] text-[20px] font-[400] font-Namdhinggo hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' 
-                        style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)` }} 
-                        onClick={handleElementClick}
-                    >
-                        Restaurant & Bar
+                        style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)`, color: heading1.color }} 
+                        onClick={() => openModal(heading1, setHeading1)}>{heading1.text}
                     </h2>
                 <div className='h-[50%] w-[1px] bg-[#7c6c50] mt-[3rem] ms-[0.7rem]' />
-                <h2 className='text-[#7c6c50] text-[20px] font-[400] font-Namdhinggo mt-[3rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)` }}
-                     onClick={handleElementClick}
-                >
-                    Est. 2035
+                <h2 className='text-[#7c6c50] text-[20px] font-[400] font-Namdhinggo mt-[3rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' style={{ writingMode: `vertical-rl`, textOrientation: `mixed`, transform: `rotate(180deg)`, color: heading2.color }}
+                     onClick={() => openModal(heading2, setHeading2)}>{heading2.text}
                 </h2>
               </div>
             </div>
-            {errorMessage2 && <p style={{ color: 'red' }}>{errorMessage2}</p>}
             <div className='lg:flex justify-center items-center gap-[4rem] lg:px-[100px] mt-[4rem]'>
                 <div>
                     <h1 className='text-[45px] font-Namdhinggo lg:text-start xs:text-center lg:w-[75%] lg:ms-[1rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                        onClick={handleElementClick}
-                    >
-                        Made With Love. Simply Delicious
+                       onClick={() => openModal(heading3, setHeading3)} style={{ color: heading3.color}}>{heading3.text}
                     </h1>
                     <p className='mt-[2rem] lg:ms-0 xs:ms-[2rem] text-center text-[16px] leading-[24px] text-[#7c6c50] w-[85%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                        onClick={handleElementClick}
-                    >
-                        I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
+                        onClick={() => openModal(heading4, setHeading4)} style={{ color: heading4.color}}>{heading4.text}
                     </p>
                     <h3 className='mt-[3rem] flex justify-center items-center lg:ms-[-7rem]'>
                         <Link to='/LawrenceEditMenu' className='text-[#fff] text-[16px] font-[400] no-underline hover:text-[#fff] hover:bg-[#493f30] bg-[#7c6c50] py-[15px] px-[50px]'
@@ -250,30 +245,21 @@ const handlePublish = async () => {
                     </h3>
                 </div>
                 <div className='lg:mt-0 xs:mt-[7rem]'>
-                    {selectedImage2 ? (
-                        <img src={selectedImage2} alt="Selected Image" className="w-[100vw]" onClick={handleImageClick2} />
-                    ) : (
-                        <img src={restro2} alt="Frame" className="w-[100vw]" onClick={() => document.getElementById('fileInput2').click()} />
-                    )}
-                        <input id="fileInput2" type='file' name='images' onChange={onSelectFile2} style={{ display: 'none' }} />
+                        <input type="file" onChange={handleImageChange2} />
+                        <img src={preview2 || restro2} alt="Frame" className="w-[100vw]" />
                 </div>
             </div>
             <div>
-            {errorMessage3 && <p style={{ color: 'red' }}>{errorMessage3}</p>}
-            {selectedImage3 ? (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${selectedImage3})`,  backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed lg:mt-[5rem] xs:mt-[10rem]' onClick={handleImageClick3}>
+                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview3 || restro3})`,  backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed lg:mt-[5rem] xs:mt-[10rem]'>
+                    <input type="file" onChange={handleImageChange3} />
                         <div className='flex justify-center items-center h-[100vh] text-content'>
                             <div className='bg-[#faf8f1] py-[70px] lg:px-[30px] px-[20px] lg:w-[50%] xs:w-[90%] flex justify-center items-center'>
                                 <div>
                                     <h1 className='text-center lg:text-[40px] xs:text-[27px] lg:leading-[55px] xs:leading-[40px] font-[200] lg:w-[60%] lg:ms-[7rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                                    onClick={handleElementClick}
-                                    >
-                                        A Fresh and Seasonal Cuisine
+                                    onClick={() => openModal(heading5, setHeading5)} style={{ color: heading5.color}}>{heading5.text}
                                     </h1>
                                     <p className='mt-[2rem] lg:ms-[5rem] text-center text-[16px] leading-[24px] text-[#7c6c50] lg:w-[70%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                                        onClick={handleElementClick}
-                                    >
-                                        I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
+                                        onClick={() => openModal(heading6, setHeading6)} style={{ color: heading6.color}}>{heading6.text}
                                     </p>
                                     <h3 className='mt-[3rem] flex justify-center items-center'>
                                         <Link to='/LawrenceEditAbout' className='text-[#fff] text-[16px] hover:text-[#fff] font-[400] no-underline bg-[#7c6c50] hover:bg-[#493f30] py-[15px] px-[50px]'
@@ -285,44 +271,13 @@ const handlePublish = async () => {
                             </div>
                         </div>
                     </div>
-                ) : (
-                    <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${restro3})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed lg:mt-[5rem] xs:mt-[10rem]' onClick={() => document.getElementById('fileInput3').click()}>
-                        <div className='flex justify-center items-center h-[100vh] text-content'>
-                            <div className='bg-[#faf8f1] py-[70px] lg:px-[30px] px-[20px] lg:w-[50%] xs:w-[90%] flex justify-center items-center'>
-                                <div>
-                                    <h1 className='text-center lg:text-[40px] xs:text-[27px] lg:leading-[55px] xs:leading-[40px] font-[200] lg:w-[60%] lg:ms-[7rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                                    onClick={handleElementClick}
-                                    >
-                                        A Fresh and Seasonal Cuisine
-                                    </h1>
-                                    <p className='mt-[2rem] lg:ms-[5rem] text-center text-[16px] leading-[24px] text-[#7c6c50] lg:w-[70%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                                        onClick={handleElementClick}
-                                    >
-                                        I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
-                                    </p>
-                                    <h3 className='mt-[3rem] flex justify-center items-center'>
-                                        <Link to='/LawrenceEditAbout' className='text-[#fff] text-[16px] hover:text-[#fff] font-[400] no-underline bg-[#7c6c50] hover:bg-[#493f30] py-[15px] px-[50px]'
-                                        >
-                                            About Lawrence
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                <input id="fileInput3" type='file' name='images' onChange={onSelectFile3} style={{ display: 'none' }} />
             </div>
             <div className='mt-[4rem] py-[30px] pb-[90px] lg:px-0 xs:px-[20px]'>
                 <h2 className='font-Namdhinggo text-center font-[100] lg:text-[50px] xs:text-[40px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                     onClick={handleElementClick}
-                >   
-                    Reserve a Table
+                  onClick={() => openModal(heading7, setHeading7)} style={{ color: heading7.color}}>{heading7.text}
                 </h2>
                 <h3 className='text-center lg:text-[16px] xs:text-[14px] leading-[24px] font-[400] lg:mt-5 xs:mt-4 hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]'
-                    onClick={handleElementClick}
-                >
-                    To help us find the best table for you, select the preferred party size, date, and time of your reservation.
+                    onClick={() => openModal(heading8, setHeading8)} style={{ color: heading8.color}}>{heading8.text}
                 </h3>
                 <form className='lg:flex justify-center gap-[1rem] items-center mt-[5rem]'>
                     <span>
@@ -409,34 +364,38 @@ const handlePublish = async () => {
                 </form>
             </div>
             <Footer/>
-        </div>
-        {editableElement && (
-                <div
-                    className="editor-wrapper fixed h-[50vh] flex justify-center items-center top-0 left-[3rem]"
-                >
-                    <Editor
-                        initialValue={editorContent}
-                        apiKey="weyuzxfz4rnkmcfm9egz0vqo4qwek3fq6aucwzeudmatw48t"
-                        init={{
-                            height: 150,
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount',
-                            ],
-                            toolbar:
-                                'undo redo | formatselect | bold italic backcolor | \
-                                alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | help',
-                        }}
-                        onEditorChange={handleEditorChange}
-                    />
+
+             {/* Popup modal */}
+             {isModalOpen && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-hidden pt-[5%]">
+                <div className="bg-[#fff] px-[20px] py-[10px] rounded-[5px] shadow-lg w-[50%]">
+                <p className="mb-4">Edit text:</p>
+                <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                <p className="mb-4">Change text color:</p>
+                <input
+                    type="color"
+                    value={inputColor}
+                    onChange={(e) => setInputColor(e.target.value)}
+                    className='border p-2 w-full mb-4'
+                />
+                <br /><br />
+                {/* Save and Cancel buttons */}
+                <div className='flex justify-end space-x-4'>
+                    <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                    <button onClick={handleCancelClick} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                </div>
+                </div>
                 </div>
             )}
+        </div>
 
-            
-
+        <ToastContainer position="fixed top-0 left-0 flex justify-start items-left w-[120%]" closeOnClick={true} />
     </>
   )
 }
