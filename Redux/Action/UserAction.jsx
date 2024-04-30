@@ -63,7 +63,7 @@ export const googleAuth = () => async (dispatch) => {
         // console.log(user)
         dispatch({ type: types.GOOGLE_AUTH_REQUEST })
         const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
-            withCredentials: 'include'
+            withCredentials: true
         })
         console.log('message displayed', res)
         // dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
