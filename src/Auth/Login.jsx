@@ -31,11 +31,11 @@ const Login = () => {
 
  
 
-  // useEffect(() => {
-  //   if(user) {
-  //     navigate('/dashboard')
-  //   }
-  // }, user, navigate)
+  useEffect(() => {
+    if(user) {
+      navigate('/dashboard')
+    }
+  }, user, navigate)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -48,7 +48,6 @@ const Login = () => {
         window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
     } catch (err) {
         toast.error(err?.data?.message || err.error)
-
     }
 }
 
