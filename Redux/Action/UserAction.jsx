@@ -62,14 +62,14 @@ export const googleAuth = () => async (dispatch) => {
     try {
         // console.log(user)
         dispatch({ type: types.GOOGLE_AUTH_REQUEST })
-        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+        const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
             withCredentials: true
         })
         console.log('message displayed', res)
         // dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
         if(res.status === 'ok') {
             dispatch({type: types.GOOGLE_AUTH_SUCCESS, payload: data.data}),
-            toast.success("user registered successfully", {
+            toast.success("user displayed successfully", {
                 position: "top-right"
             })
         } else {
