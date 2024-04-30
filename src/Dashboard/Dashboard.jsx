@@ -21,39 +21,25 @@ const Dashboard = () => {
 
     // const { user, loading } = useSelector(state => state.googleAuth)
 
-    const getUser = async () => {
-        try {
-            const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
-                withCredentials: true
-            })
-            // dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
-            if(res.status === 'ok') {
-                dispatch(res.data.user),
-                toast.success("user displayed successfully", {
-                    position: "top-right"
-                })
-            } else {
-                toast.error("error displaying user", {
-                    position: "top-right"
-                })
-                // dispatch({type: types.GOOGLE_AUTH_FAIL, payload: data.error})
-            }
-        } catch (error) {
-            toast.error("error displaying user", {
-                position: "top-right"
-            })
-            // toast.error(error?.data?.message || error?.error)
-        }
-    }
+    // const getUser = async () => {
+    //     try {
+    //         const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+    //             withCredentials: true
+    //         })
+    //         dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
+    //     } catch (error) {
+    //         toast.error(error?.data?.message || error?.error)
+    //     }
+    // }
 
     console.log(document.cookie);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     dispatch(googleAuth());
-    //     // toast
+        dispatch(googleAuth());
+        // toast
 
-    // }, [dispatch])
+    }, [dispatch])
 
     const logoutHandler = () => {
         dispatch(logout())
