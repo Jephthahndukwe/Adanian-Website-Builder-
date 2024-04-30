@@ -31,11 +31,11 @@ const Login = () => {
 
  
 
-  // useEffect(() => {
-  //   if(user) {
-  //     navigate('/dashboard')
-  //   }
-  // }, user, navigate)
+  useEffect(() => {
+    if(user) {
+      navigate('/dashboard')
+    }
+  }, user, navigate)
 
   const submitHandler = (e) => {
     e.preventDefault()
