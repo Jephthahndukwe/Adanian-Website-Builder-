@@ -28,11 +28,6 @@ const Dashboard = () => {
             })
             console.log(res.data)
             dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
-            if(res.data) {
-                toast.success('fetched successful')
-            } else {
-                toast.error(error?.data?.message || error?.error, 'fetched failed')
-            }
         } catch (error) {
             toast.error(error?.data?.message || error?.error)
         }
@@ -50,9 +45,9 @@ const Dashboard = () => {
 
     // }, [dispatch])
 
-    const logoutHandler = () => {
-        dispatch(logout())
-      }
+    // const logoutHandler = () => {
+    //     dispatch(logout())
+    //   }
 
   return (
     <div>
