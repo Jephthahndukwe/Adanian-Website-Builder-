@@ -23,11 +23,12 @@ const Dashboard = () => {
 
     const getUser = async () => {
         try {
-            const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+            const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
                 withCredentials: true
             })
+            console.log(res.data)
             dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
-            if(res.data.success) {
+            if(res.data) {
                 toast.success('fetched successful')
             } else {
                 toast.error(error?.data?.message || error?.error, 'fetched failed')
