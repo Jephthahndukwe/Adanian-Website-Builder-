@@ -9,14 +9,12 @@ export const authReducer = (state = { user: {} }, action) => {
             }
         case types.LOGIN_SUCCESS:
             return {
-                ...state,
                 loading: false,
                 success: action.payload.success,
                 user: action.payload
             }
         case types.LOGIN_FAIL:
             return {
-                ...state,
                 loading: false,
                 user: null,
                 error: action.payload
