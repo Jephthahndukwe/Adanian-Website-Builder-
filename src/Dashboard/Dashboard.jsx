@@ -27,10 +27,19 @@ const Dashboard = () => {
                 withCredentials: true
             })
             dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
+            if(res.data.success) {
+                toast.success('fetched successful')
+            } else {
+                toast.error(error?.data?.message || error?.error, 'fetched failed')
+            }
         } catch (error) {
             toast.error(error?.data?.message || error?.error)
         }
     }
+
+    useEffect(() => {
+        getUser()
+    }, [])
 
     console.log(document.cookie);
 
