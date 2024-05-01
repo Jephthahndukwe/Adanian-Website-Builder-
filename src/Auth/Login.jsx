@@ -44,7 +44,7 @@ const Login = () => {
 
   const handleGoogleAuth = async () => {
     try {
-        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google/callback'
         // const google = await axios.get('https://ayoba.adanianlabs.io/api/user/auth/google', {withCredentials: true})
     } catch (err) {
         toast.error(err?.data?.message || err.error)
