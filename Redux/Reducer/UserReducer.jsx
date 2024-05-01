@@ -1,10 +1,11 @@
 import * as types from '../Constant/Types'
 
-export const authReducer = (state = { loading: false }, action) => {
+export const authReducer = (state = { user: {} }, action) => {
     switch(action.type) {
         case types.LOGIN_REQUEST:
             return {
                 loading: true,
+                user: null
             }
         case types.LOGIN_SUCCESS:
             return {
