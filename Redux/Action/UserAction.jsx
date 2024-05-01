@@ -14,15 +14,18 @@ export const login = (email, password) => async(dispatch) => {
 
         const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password }, { headers: header })
         if(data.status === 'ok') {
-            dispatch({type: types.LOGIN_SUCCESS, payload: data.data})
-            // const firstName = data.data.email.split("@")[0];
+            dispatch({
+                type: types.LOGIN_SUCCESS, 
+                payload: data.data
+            })
             toast.success(`Welcome Back`, {position: "top-right"})
-        } else {
-            dispatch({type: types.LOGIN_FAIL, payload: data.error})
         }
     } catch (error) {
         const message = error.response ? error.response.data.message : "something went wrong"
-        dispatch({type: types.LOGIN_FAIL, payload: message})
+        dispatch({
+            type: types.LOGIN_FAIL, 
+            payload: message
+        })
         toast.error(message, {
             position: "top-right"
         })
