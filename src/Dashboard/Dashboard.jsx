@@ -21,25 +21,24 @@ const Dashboard = () => {
 
     // const { user, loading } = useSelector(state => state.googleAuth)
 
-    // const getUser = async () => {
-    //     try {
-    //         const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
-    //             withCredentials: true
-    //         })
-    //         dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
-    //     } catch (error) {
-    //         toast.error(error?.data?.message || error?.error)
-    //     }
-    // }
+    const getUser = async () => {
+        try {
+            const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success`, {
+                withCredentials: true
+            })
+            dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
+        } catch (error) {
+            toast.error(error?.data?.message || error?.error)
+        }
+    }
 
     console.log(document.cookie);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch(googleAuth());
-        // toast
+    //     dispatch(googleAuth());
 
-    }, [dispatch])
+    // }, [dispatch])
 
     const logoutHandler = () => {
         dispatch(logout())
