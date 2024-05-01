@@ -10,6 +10,7 @@ import { login } from '../../Redux/Action/UserAction'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 
 const Login = () => {
@@ -45,8 +46,8 @@ const Login = () => {
 
   const handleGoogleAuth = async () => {
     try {
-        // window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
-        const google = await axios.get('https://ayoba.adanianlabs.io/api/user/auth/google', {withCredentials: true})
+        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+        // const google = await axios.get('https://ayoba.adanianlabs.io/api/user/auth/google', {withCredentials: true})
     } catch (err) {
         toast.error(err?.data?.message || err.error)
     }
