@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../Redux/Action/UserAction'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
 
 
 const Login = () => {
@@ -42,9 +43,10 @@ const Login = () => {
   }
 
 
-  const handleGoogleAuth = () => {
+  const handleGoogleAuth = async () => {
     try {
-        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+        // window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+        const google = await axios.get('https://ayoba.adanianlabs.io/api/user/auth/google', {withCredentials: true})
     } catch (err) {
         toast.error(err?.data?.message || err.error)
     }
@@ -99,8 +101,6 @@ const Login = () => {
                         cookiePolicy={'single_host_origin'}
                         render={renderProps => ( */}
                           <button
-                            // onClick={renderProps.onClick}
-                            // disabled={renderProps.disabled}
                             className='flex gap-3 w-[354px] h-[50px] py-[15.5px] px-[55px] justify-center items-center rounded-[40px] border-[1px] border-solid border-[#333] bg-[#fff] mt-[85px] text-[#333] text-[16px] font-[400]'
                             onClick={handleGoogleAuth}>
                             <img src={Google} alt="Google Icon" />
