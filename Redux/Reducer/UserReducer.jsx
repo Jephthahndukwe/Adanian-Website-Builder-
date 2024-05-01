@@ -4,7 +4,6 @@ export const authReducer = (state = { loading: false }, action) => {
     switch(action.type) {
         case types.LOGIN_REQUEST:
             return {
-                ...state,
                 loading: true,
             }
         case types.LOGIN_SUCCESS:
