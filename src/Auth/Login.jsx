@@ -30,11 +30,24 @@ const Login = () => {
   const { user, error } = userAuth
 
 
+  // useEffect(() => {
+  //   if(user) {
+  //     navigate('/dashboard')
+  //   }
+  // }, user, navigate)
+
   useEffect(() => {
+
     if(user) {
       navigate('/dashboard')
     }
-  }, user, navigate)
+  
+    if(error) {
+      toast.error(error);
+      // dispatch(clearErrors());
+    }
+
+  }, [user, error, navigate])
 
   const submitHandler = (e) => {
     e.preventDefault()
