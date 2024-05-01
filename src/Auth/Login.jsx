@@ -7,8 +7,6 @@ import img from '../assets/images/loginImg.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../Redux/Action/UserAction'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
@@ -121,8 +119,6 @@ const Login = () => {
             <img src={img} width='524px' height='900px'/>
        </div>
     </div>
-
-    <ToastContainer position="fixed top-0 left-0 flex justify-start items-left" closeOnClick={false} />
     </div>
   );
 };
