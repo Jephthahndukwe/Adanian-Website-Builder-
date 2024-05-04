@@ -94,6 +94,11 @@ const handleCancelClick = () => {
          reader.readAsDataURL(selectedImage2);
      }
  };
+
+
+ const store = useSelector((state) => state.store)
+ const { storeDetails } = store
+
   // SAVING DATA TO BACKEND
   const handleUpload = async () => {
     const formData = new FormData();
@@ -125,7 +130,7 @@ const handleCancelClick = () => {
     console.log(formData);
 
     try {
-        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+        const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

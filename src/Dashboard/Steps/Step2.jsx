@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 import PropTypes from 'prop-types';
 
 
-const Step2 = ({ formDataStep2, handleInputChangeStep2, nextStep, prevStep }) => {  
+const Step2 = ({ nameOfStore, handleInputChangeStep2, nextStep, prevStep }) => {  
     
   return (
     <div>
@@ -14,11 +14,11 @@ const Step2 = ({ formDataStep2, handleInputChangeStep2, nextStep, prevStep }) =>
                 <h3 className="text-[#000] text-[17px] font-[500]">What’s the name of your store?</h3>
                 <input 
                     type="text" 
-                    value={formDataStep2}
+                    value={nameOfStore}
                     onChange={handleInputChangeStep2} 
                     placeholder="My store" 
                     required 
-                    className="mt-[15px] font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3" 
+                    className="font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3" 
                     style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
                 />
                 <div className="flex justify-between items-center mt-[24px]">
@@ -36,7 +36,7 @@ const Step2 = ({ formDataStep2, handleInputChangeStep2, nextStep, prevStep }) =>
 
 
 Step2.propTypes = {
-    formDataStep2: PropTypes.string.isRequired,
+    nameOfStore: PropTypes.string.isRequired,
     handleInputChangeStep2: PropTypes.bool.isRequired,
     prevStep: PropTypes.bool.isRequired,
     nextStep: PropTypes.bool.isRequired,

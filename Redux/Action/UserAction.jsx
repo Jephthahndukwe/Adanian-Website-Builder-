@@ -88,9 +88,26 @@ export const googleAuth = () => async (dispatch) => {
 }
 
 
-//Clear Errors
-// export const clearErrors = () => async (dispatch) => {
-//     dispatch ({
-//         type: types.CLEAR_ERRORS
-//     })
-// }
+// CREATING OF STORE
+export const storeAuth = (created_by, category, nameOfStore, template) => async (dispatch) => {
+    try {
+        dispatch({ type: types.STORE_REQUEST });
+        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', {created_by, category, nameOfStore, template})
+        console.log(data)
+        if(data.status === 'ok') {
+            dispatch({type: types.STORE_SUCCESS, payload: data.data})
+            toast.success("Store Created Successfully", {
+                position: "top-right"
+            })
+        } else {
+            dispatch({type: types.STORE_FAIL, payload: data.error})
+            toast.error(data.error, { position: "top-right" });
+        }
+    } catch (error) {
+        const message = error.response ? error.response.data.message : "something went wrong"
+        dispatch({type: types.STORE_FAIL, payload: message})
+        toast.error(message, {
+            position: "top-right"
+        })
+    }
+}

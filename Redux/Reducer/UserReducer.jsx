@@ -5,16 +5,17 @@ export const authReducer = (state = { user: {} }, action) => {
         case types.LOGIN_REQUEST:
             return {
                 loading: true,
-                user: null
             }
         case types.LOGIN_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 success: action.payload.success,
                 user: action.payload
             }
         case types.LOGIN_FAIL:
             return {
+                ...state,
                 loading: false,
                 user: null,
                 error: action.payload
@@ -31,7 +32,6 @@ export const userRegister = (state = {}, action) => {
     switch (action.type) {
         case types.REGISTER_USER_REQUEST:
             return {
-                ...state,
                 loading: true,
             }
         case types.REGISTER_USER_SUCCESS:
@@ -77,6 +77,38 @@ export const googleAuth = (state = {}, action) => {
                 error: action.payload
             }
         case types.GOOGLE_AUTH_RESET:
+            return {}
+
+        default:
+            return state
+    }
+}
+
+
+// CREATING OF STORE
+export const store = (state = {}, action) => {
+    switch(action.type) {
+        case types.STORE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+        case types.STORE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                storeDetails: action.payload,
+                error: null
+            }
+        case types.STORE_FAIL:
+            return {
+                ...state,
+                loading: false,
+                storeDetails: null,
+                error: action.payload
+            }
+        case types.STORE_RESET:
             return {}
 
         default:

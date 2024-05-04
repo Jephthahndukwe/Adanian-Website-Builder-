@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { authReducer, googleAuth, userRegister } from './UserReducer';
+import { authReducer, googleAuth, store, userRegister } from './UserReducer';
 
 const rootReducer = combineReducers({
     userAuth: authReducer,
     userRegister: userRegister,
-    googleAuth: googleAuth
+    googleAuth: googleAuth,
+    store: store
 })
 
 export { rootReducer }

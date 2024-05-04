@@ -30,43 +30,26 @@ const Login = () => {
   const { user, error } = userAuth
 
 
-  // useEffect(() => {
-  //   if(user) {
-  //     navigate('/dashboard')
-  //   }
-  // }, user, navigate)
-
   useEffect(() => {
-
     if(user) {
       navigate('/dashboard')
     }
-  
-    if(error) {
-      toast.error(error);
-      // dispatch(clearErrors());
-    }
+  }, user)
 
-  }, [user, error, navigate])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    dispatch(login(email, password));
   }
 
 
   const handleGoogleAuth = async () => {
     try {
         window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google/callback'
-        // const google = await axios.get('https://ayoba.adanianlabs.io/api/user/auth/google', {withCredentials: true})
     } catch (err) {
         toast.error(err?.data?.message || err.error)
     }
 }
-
-// const google = () => {
-//   window.open("https://ayoba.adanianlabs.io/api/user/auth/google", "_self");
-// };
 
 
   return (

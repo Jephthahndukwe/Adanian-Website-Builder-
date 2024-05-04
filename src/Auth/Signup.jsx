@@ -75,7 +75,7 @@ const Signup = () => {
 
   const handleGoogleAuth = () => {
     try {
-        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google'
+        window.location.href = 'https://ayoba.adanianlabs.io/api/user/auth/google/callback'
     } catch (err) {
         toast.error(err?.data?.message || err.error)
 

@@ -17,6 +17,7 @@ import { Transition } from '@headlessui/react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import axios from 'axios';
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 
 
@@ -232,6 +233,9 @@ const handleImageChange11 = (e) => {
   }
 };
 
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
 // SAVING DATA TO BACKEND
       const handleUpload = async () => {
         const formData = new FormData();
@@ -246,19 +250,6 @@ const handleImageChange11 = (e) => {
         formData.append('selectedImage9', file9);
         formData.append('selectedImage10', file10);
         formData.append('selectedImage11', file11);
-
-      //   const textArray = [
-      //     JSON.stringify(heading1),
-      //     JSON.stringify(heading2),
-      //     JSON.stringify(heading3),
-      //     JSON.stringify(heading4), 
-      //     JSON.stringify(heading5),
-      //     JSON.stringify(heading6),
-      //     JSON.stringify(heading7),
-      //     JSON.stringify(heading8),
-      //     JSON.stringify(heading9),
-      //     // Add additional text state variables here if needed...
-      // ];   
 
       const texts = {
         heading1: heading1,
@@ -282,7 +273,7 @@ const handleImageChange11 = (e) => {
         console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chika Store', formData, {
+            const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -290,26 +281,21 @@ const handleImageChange11 = (e) => {
 
             console.log(response.data);
 
-            setTimeout(() => {
-              toast.success('Changes saved successfully.');
-            }, 1000);
+            // setTimeout(() => {
+            //   toast.success('Changes saved successfully.');
+            // }, 1000);
 
-            // if (response.data) {
-            //     const data = await response.json();
-            //     console.log('Files uploaded:', data.files);
-            //     setTimeout(() => {
-            //       toast.success('Changes saved successfully.');
-            //     }, 500);
-            // } else {
-            //     console.error('Upload failed:', response.statusText);
-            //     setTimeout(() => {
-            //       toast.error('Changes Failed. Try again later!');
-            //         return;
-            //     })
-            // }
+            if (response.data) {
+                // const data = await response.json();
+                console.log('Files uploaded:', data.files);
+                toast.success('Changes saved successfully.');
+            } else {
+                console.error('Upload failed:', response.statusText);
+                toast.error('Changes Failed. Try again later!');
+            }
         } catch (error) {
             console.error('Error uploading files:', error);
-            alert('Error uploading files:');
+            toast.error('Error uploading files:');
         }
     };
 

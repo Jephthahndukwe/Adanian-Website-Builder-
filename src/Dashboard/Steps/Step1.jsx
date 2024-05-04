@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Step2 from "./Step2";
 import Step3 from './Step3'
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { storeAuth } from "../../../Redux/Action/UserAction";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,16 +13,16 @@ import 'react-toastify/dist/ReactToastify.css';
 const Step1 = () => {
 
     const [currentStep, setCurrentStep] = useState(1);
-    const [formDataStep1, setFormDataStep1] = useState({
+    const [category, setCategory] = useState({
         answer: '',
     });
-    const [formDataStep2, setFormDataStep2] = useState('');
-    const [formDataStep3, setFormDataStep3] = useState('');
+    const [nameOfStore, setNameOfStore] = useState('');
+    const [template, setTemplate] = useState('');
 
      // Function to handle input change for Step 1 form
      const handleInputChangeStep1 = (e) => {
         const { name, value } = e.target;
-        setFormDataStep1(prevState => ({
+        setCategory(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -28,12 +30,12 @@ const Step1 = () => {
 
     const handleInputChangeStep2 = (e) => {
         const value = e.target.value;
-        setFormDataStep2(value);
+        setNameOfStore(value);
     };
 
     const handleInputChangeStep3 = (e) => {
         const value = e.target.value;
-        setFormDataStep3(value);
+        setTemplate(value);
     };
 
     const nextStep = () => {
@@ -45,48 +47,68 @@ const Step1 = () => {
     };
 
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    
-        // Retrieve user ID from local storage
-        // const userId = localStorage.getItem('userId');
-    
-        // Make the POST request including `created_by`
-        const requestBody = {
-            // created_by: userId,
-            category: formDataStep1.answer,
-            nameOfStore: formDataStep2,
-            template: formDataStep3,
-        };
-    
-        try {
-            const response = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', requestBody, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-    
-            console.log('Response:', response);
-    
-            // if (response.status === 200) {
-                console.log('Form submitted successfully');
-                // alert('Form submitted successfully');
-                setTimeout(() => {
-                    toast.success('Form submitted successfully');
-                }, 500);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-            // } 
-        } catch (error) {
-            console.error('Error:', error);
-            if (error.response) {
-                console.error('Server response:', error.response.data);
-                // alert('Server response:', error.response.data);
-                setTimeout(() => {
-                    toast.error('Store name already exist!', error.response.data);
-                }, 500);
-            }
-        }
-    };
+    const userAuth = useSelector((state) => state.userAuth)
+    const { user } = userAuth
+
+    const [created_by, setCreated_by] = useState(user._id)
+
+
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        dispatch(storeAuth(created_by, category.answer, nameOfStore, template))
+        navigate('/website')
+      }
+
+
+
+
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    
+    //     // Make the POST request including `created_by`
+    //     const requestBody = {
+    //         created_by: user,
+    //         category: formDataStep1.answer,
+    //         nameOfStore: formDataStep2,
+    //         template: formDataStep3,
+    //     };
+    
+    //     try {
+    //         const response = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', requestBody, {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+    
+    //         console.log('Response:', response);
+    
+    //         // if (response.status === 200) {
+    //             console.log('Form submitted successfully');
+    //             // alert('Form submitted successfully');
+    //             setTimeout(() => {
+    //                 toast.success('Form submitted successfully');
+    //             }, 500);
+
+    //         // } 
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         if (error.response) {
+    //             console.error('Server response:', error.response.data);
+    //             // alert('Server response:', error.response.data);
+    //             setTimeout(() => {
+    //                 toast.error('Store name already exist!', error.response.data);
+    //             }, 1000);
+    //         }
+    //     }
+    // };
     
 
 
@@ -113,7 +135,7 @@ const Step1 = () => {
                             <input 
                                 type="text" 
                                 name="answer" 
-                                value={formDataStep1.otherField}
+                                value={category.otherField}
                                 onChange={handleInputChangeStep1} 
                                 placeholder="Enter you business or website type" 
                                 required 
@@ -133,7 +155,7 @@ const Step1 = () => {
                                 <h3 className="text-[#000] text-[10px] font-[300]">Note: you can change this anytime</h3>
                                 <div className="flex gap-[16px] items-center">
                                     <button style={{ border: `0.5px solid #0AADBF` }} className="rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#0AADBF] text-[12px] font-[400]">Cancel</button>
-                                    <button type="submit" disabled={!formDataStep1.answer} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Next</button>
+                                    <button type="submit" disabled={!category.answer} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +167,7 @@ const Step1 = () => {
                         <Step2 
                             nextStep={nextStep} 
                             prevStep={prevStep} 
-                            formDataStep2={formDataStep2} 
+                            nameOfStore={nameOfStore} 
                             handleInputChangeStep2={handleInputChangeStep2} 
                         />
                     )}
@@ -155,12 +177,10 @@ const Step1 = () => {
                         <Step3 
                             nextStep={handleSubmit}
                             prevStep={prevStep} 
-                            formDataStep3={formDataStep3} 
+                            template={template} 
                             handleInputChangeStep3={handleInputChangeStep3} 
                         />
                     )}
-
-<ToastContainer position="fixed top-0 left-0 flex justify-start items-left" closeOnClick={true} />
 
     </div>
   )

@@ -50,14 +50,15 @@ const Dashboard = () => {
     console.log(document.cookie);
 
     // useEffect(() => {
-
     //     dispatch(googleAuth());
-
     // }, [dispatch])
 
     // const logoutHandler = () => {
     //     dispatch(logout())
     //   }
+
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
 
   return (
     <div>
@@ -81,10 +82,11 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-[16px]">
+                                {/* <h1>{storeDetails.nameOfStore}</h1> */}
                             {
                                 TemplateMap.map((index) => (
                                     <div key={index.id}>
-                                        <div className="mt-[2rem] cursor-pointer" onClick={() => setShow(true)}>
+                                        <div className="mt-[2rem]">
                                             <img src={index.Image} className="w-[317px] h-[218.75px] fill" />
                                             <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{index.heading}</h2>
                                             <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{index.text}</h3>
@@ -93,9 +95,9 @@ const Dashboard = () => {
                                 ))
                             }
                         </div>
-                        {
+                        {/* {
                             show ? <Question show={show} setShow={setShow} /> : null
-                        }
+                        } */}
                     </div>
                 </div>
             </div>
