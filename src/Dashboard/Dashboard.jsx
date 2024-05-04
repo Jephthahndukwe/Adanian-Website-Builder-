@@ -18,14 +18,14 @@ const Dashboard = () => {
   const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-    const userId = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
 
-    console.log(userId);
+    console.log(id);
 
     const getUser = async () => {
         try {
-            fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${userId}`, {
+            fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
