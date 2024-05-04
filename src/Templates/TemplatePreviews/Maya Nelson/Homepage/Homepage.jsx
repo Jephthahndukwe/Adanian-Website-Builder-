@@ -59,7 +59,7 @@ const Homepage = () => {
       enterFrom="opacity-0"
       enterTo="opacity-100"
     >
-        {data && (
+        {/* {data && ( */}
     <div>
         <TemplatePreviewNavbar/>
         <div className='lg:mt-[-3rem]'>
@@ -105,7 +105,7 @@ const Homepage = () => {
             </div>
         </div>
     </div>
-        )}
+        {/* )} */}
     </Transition>
   )
 }
