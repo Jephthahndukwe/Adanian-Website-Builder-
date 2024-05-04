@@ -87,6 +87,31 @@ export const googleAuth = () => async (dispatch) => {
     }
 }
 
+// LOGIN A USER
+// export const userDetails = (email, password) => async(dispatch) => {
+//     try {
+//         dispatch({ type: types.LOGIN_REQUEST })
+
+//         const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/login', { email, password }, { headers: header })
+//         if(data.status === 'ok') {
+//             dispatch({
+//                 type: types.LOGIN_SUCCESS, 
+//                 payload: data.data
+//             })
+//             toast.success(`Welcome Back`, {position: "top-right"})
+//         }
+//     } catch (error) {
+//         const message = error.response ? error.response.data.message : "something went wrong"
+//         dispatch({
+//             type: types.LOGIN_FAIL, 
+//             payload: message
+//         })
+//         toast.error(message, {
+//             position: "top-right"
+//         })
+//     }
+// }
+
 
 // CREATING OF STORE
 export const storeAuth = (created_by, category, nameOfStore, template) => async (dispatch) => {

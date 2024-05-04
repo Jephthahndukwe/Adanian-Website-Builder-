@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import Step1  from "./Steps/Step1"
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaPencilAlt } from "react-icons/fa";
 import TemplateMap from "./TemplateMap"
 import Question from "./Steps/Question";
@@ -21,9 +21,11 @@ const Dashboard = () => {
 
     // const { user, loading } = useSelector(state => state.googleAuth)
 
+    const {userId} = useParams()
+
     const getUser = async () => {
         try {
-            fetch('https://ayoba.adanianlabs.io/api/user/google/success', {
+            fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
