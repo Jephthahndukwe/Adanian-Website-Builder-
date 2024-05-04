@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import Step1  from "./Steps/Step1"
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { FaPencilAlt } from "react-icons/fa";
 import TemplateMap from "./TemplateMap"
 import Question from "./Steps/Question";
@@ -18,10 +18,8 @@ const Dashboard = () => {
   const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-
-    // const { user, loading } = useSelector(state => state.googleAuth)
-
     const {userId} = useParams()
+    const navigate = useNavigate();
 
     console.log(userId);
 
@@ -34,9 +32,16 @@ const Dashboard = () => {
                 },
                     credentials: 'include', // Include cookies in the request
                 })
-                .then(response => response.json())
-                .then(data => console.log('Response Data:', data))
-                .catch(error => console.error('Error:', error));
+                // .then(response => response.json())
+                // .then(data => console.log('Response Data:', data))
+                // .catch(error => console.error('Error:', error));
+                if(response.data) {
+                    console.log(response.data);
+                    toast.success('Welcome')
+                } else {
+                    console.log(response.error);
+                    toast.error('Error Happened')
+                }
             // const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
             //     withCredentials: true
             // })
