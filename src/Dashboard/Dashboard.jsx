@@ -34,7 +34,7 @@ const Dashboard = () => {
                 })
                 .then(response => response.json())
                 .then(data => console.log('Response Data:', data), toast.success(data))
-                .catch(error => console.error('Error:', error), toast.error(error));
+                .catch(error => console.error('Error:', error));
                 // if(response) {
                 //     console.log(response.data);
                 //     toast.success('Welcome')
