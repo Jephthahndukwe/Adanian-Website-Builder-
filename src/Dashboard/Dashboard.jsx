@@ -23,6 +23,8 @@ const Dashboard = () => {
 
     const {userId} = useParams()
 
+    console.log(userId);
+
     const getUser = async () => {
         try {
             fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${userId}`, {
