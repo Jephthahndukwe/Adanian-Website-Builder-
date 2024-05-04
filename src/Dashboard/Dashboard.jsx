@@ -32,16 +32,16 @@ const Dashboard = () => {
                 },
                     credentials: 'include', // Include cookies in the request
                 })
-                // .then(response => response.json())
-                // .then(data => console.log('Response Data:', data))
-                // .catch(error => console.error('Error:', error));
-                if(response.data) {
-                    console.log(response.data);
-                    toast.success('Welcome')
-                } else {
-                    console.log(response.error);
-                    toast.error('Error Happened')
-                }
+                .then(response => response.json())
+                .then(data => console.log('Response Data:', data))
+                .catch(error => console.error('Error:', error));
+                // if(response) {
+                //     console.log(response.data);
+                //     toast.success('Welcome')
+                // } else {
+                //     console.log(response.error);
+                //     toast.error('Error Happened')
+                // }
             // const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
             //     withCredentials: true
             // })
