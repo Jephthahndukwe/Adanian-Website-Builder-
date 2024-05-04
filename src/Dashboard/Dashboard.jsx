@@ -19,10 +19,8 @@ const Dashboard = () => {
 
     const dispatch = useDispatch();
     const {id} = useParams();
-    const navigate = useNavigate();
 
-    console.log(id);
-
+    
     const getUser = async () => {
         try {
             fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
@@ -35,18 +33,6 @@ const Dashboard = () => {
                 .then(response => response.json())
                 .then(data => console.log('Response Data:', data))
                 .catch(error => console.error('Error:', error));
-                // if(response) {
-                //     console.log(response.data);
-                //     toast.success('Welcome')
-                // } else {
-                //     console.log(response.error);
-                //     toast.error('Error Happened')
-                // }
-            // const res = await axios.get('https://ayoba.adanianlabs.io/api/user/google/success', {
-            //     withCredentials: true
-            // })
-            // console.log(res.data)
-            // dispatch(setCredentials({ ...res.data.user._json, _id: res.data._id, isAdmin: res.data.user.isAdmin }))
         } catch (error) {
             toast.error(error?.data?.message || error?.error)
         }
@@ -55,12 +41,6 @@ const Dashboard = () => {
     useEffect(() => {
         getUser()
     }, [])
-
-    console.log(document.cookie);
-
-    // useEffect(() => {
-    //     dispatch(googleAuth());
-    // }, [dispatch])
 
     // const logoutHandler = () => {
     //     dispatch(logout())

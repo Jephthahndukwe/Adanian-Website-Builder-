@@ -27,7 +27,11 @@ const Homepage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get('https://ayoba.adanianlabs.io/api/user/getwebsite/Chika Store');
-      setData(response.data);
+      // setData(response.data);
+
+      if(response.data.template == 'Maya Nelson') {
+          setData(response.data);
+      }
 
       console.log(response.data)
 
