@@ -33,8 +33,8 @@ const Dashboard = () => {
                     credentials: 'include', // Include cookies in the request
                 })
                 .then(response => response.json())
-                .then(data => console.log('Response Data:', data))
-                .catch(error => console.error('Error:', error));
+                .then(data => console.log('Response Data:', data), toast.success(data))
+                .catch(error => console.error('Error:', error), toast.error(error));
                 // if(response) {
                 //     console.log(response.data);
                 //     toast.success('Welcome')
