@@ -131,7 +131,7 @@ function App() {
 
 
           {/* DASHBOARD ROUTES */}
-          <Route path='dashboard/:id' element={ <Dashboard/> } />
+          <Route path='dashboard/:id?' element={ <Dashboard/> } />
           <Route path='dashboard' element={ <Dashboard/> } />
           <Route path='appplugins' element={ <AppPlugins/> } />
           <Route path='website' element={ <Website/> } />
