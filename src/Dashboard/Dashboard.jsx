@@ -26,9 +26,6 @@ const Dashboard = () => {
     const getUser = async () => {
         try {
             const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 credentials: 'include', // Include cookies in the request
             })
             // fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
