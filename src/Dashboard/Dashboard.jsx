@@ -25,16 +25,13 @@ const Dashboard = () => {
 
     const getUser = async () => {
         try {
-            const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
-                credentials: 'include', // Include cookies in the request
-            })
-            // fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //         credentials: 'include', // Include cookies in the request
-            //     })
+            fetch(`https://ayoba.adanianlabs.io/api/user/google/success/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    credentials: 'include', // Include cookies in the request
+                })
                 .then(response => response.json())
                 .then(data => console.log('Response Data:', data))
                 .catch(error => console.error('Error:', error));
