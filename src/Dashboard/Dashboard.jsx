@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-    const {userId} = useParams()
+    const userId = useParams();
     const navigate = useNavigate();
 
     console.log(userId);
