@@ -35,7 +35,7 @@ const Step1 = () => {
 
     const handleInputChangeStep3 = (e) => {
         const value = e.target.value;
-        setTemplate(value);
+        setOption(value);
     };
 
     const nextStep = () => {
