@@ -8,6 +8,7 @@ import { Transition } from '@headlessui/react';
 import Footer from '../Components/Footer'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 const Homepage = () => {
 
