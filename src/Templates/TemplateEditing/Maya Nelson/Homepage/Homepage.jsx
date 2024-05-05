@@ -139,7 +139,7 @@ const Homepage = () => {
     const store = useSelector((state) => state.store)
     const { storeDetails } = store
 
-    console.log(storeDetails);
+    console.log(storeDetails)
 
     const getWebsite = async () => {
       try {
@@ -156,7 +156,9 @@ const Homepage = () => {
     }
 
     useEffect(() => {
-      getWebsite()
+      if(storeDetails) {
+        getWebsite()
+      }
   }, [])
 
 
