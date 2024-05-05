@@ -25,7 +25,7 @@ import PropTypes from 'prop-types';
 
 
 
-const Step3 = ({ template, handleInputChangeStep3, nextStep, prevStep }) => {  
+const Step3 = ({ option, handleInputChangeStep3, nextStep, prevStep }) => {  
 
     // const [activeIndex, setActiveIndex] = useState(null);
 
@@ -48,7 +48,7 @@ const Step3 = ({ template, handleInputChangeStep3, nextStep, prevStep }) => {
 
                   <input 
                     type="text" 
-                    value={template}
+                    value={option}
                     onChange={handleInputChangeStep3}
                     placeholder="Yes or No" 
                     required 
@@ -81,7 +81,7 @@ const Step3 = ({ template, handleInputChangeStep3, nextStep, prevStep }) => {
 
 
 Step3.propTypes = {
-    template: PropTypes.string.isRequired,
+    option: PropTypes.string.isRequired,
     handleInputChangeStep3: PropTypes.bool.isRequired,
     prevStep: PropTypes.bool.isRequired,
     nextStep: PropTypes.bool.isRequired,

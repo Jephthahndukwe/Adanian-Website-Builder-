@@ -17,7 +17,7 @@ const Step1 = () => {
         answer: '',
     });
     const [nameOfStore, setNameOfStore] = useState('');
-    const [template, setTemplate] = useState('');
+    const [option, setOption] = useState('');
 
      // Function to handle input change for Step 1 form
      const handleInputChangeStep1 = (e) => {
@@ -62,7 +62,7 @@ const Step1 = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        dispatch(storeAuth(created_by, category.answer, nameOfStore, template))
+        dispatch(storeAuth(created_by, category.answer, nameOfStore, option))
         navigate('/website')
       }
 
@@ -177,7 +177,7 @@ const Step1 = () => {
                         <Step3 
                             nextStep={handleSubmit}
                             prevStep={prevStep} 
-                            template={template} 
+                            option={option}
                             handleInputChangeStep3={handleInputChangeStep3} 
                         />
                     )}

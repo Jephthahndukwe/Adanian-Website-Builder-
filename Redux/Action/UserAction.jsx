@@ -114,10 +114,10 @@ export const googleAuth = () => async (dispatch) => {
 
 
 // CREATING OF STORE
-export const storeAuth = (created_by, category, nameOfStore, template) => async (dispatch) => {
+export const storeAuth = (created_by, category, nameOfStore, option) => async (dispatch) => {
     try {
         dispatch({ type: types.STORE_REQUEST });
-        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', {created_by, category, nameOfStore, template})
+        const { data } = await axios.post('https://ayoba.adanianlabs.io/api/user/createsite', {created_by, category, nameOfStore, option})
         console.log(data)
         if(data.status === 'ok') {
             dispatch({type: types.STORE_SUCCESS, payload: data.data})
