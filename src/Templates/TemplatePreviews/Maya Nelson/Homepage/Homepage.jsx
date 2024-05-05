@@ -20,13 +20,16 @@ const Homepage = () => {
 
   const [data, setData] = useState(null);
 
+  const store = useSelector((state) => state.store)
+  const { storeDetails } = store
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://ayoba.adanianlabs.io/api/user/getwebsite/Chika Store');
+      const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}`);
       // setData(response.data);
 
       if(response.data.template == 'Maya Nelson') {
