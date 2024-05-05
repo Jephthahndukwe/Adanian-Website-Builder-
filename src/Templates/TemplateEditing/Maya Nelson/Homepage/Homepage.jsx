@@ -8,6 +8,7 @@ import Footer from '../Components/Footer'
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 const Homepage = () => {
 
