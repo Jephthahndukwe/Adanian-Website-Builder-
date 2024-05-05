@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar'
 import portfo1 from '../../../../assets/images/portfo1.png'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Transition } from '@headlessui/react';
 import Footer from '../Components/Footer'
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
@@ -12,6 +12,8 @@ import toast from 'react-hot-toast'
 const Homepage = () => {
 
     const [show, setShow] = useState(false);
+
+    const navigate = useNavigate()
 
   useEffect(() => {
     // Set show to true after the component is mounted to trigger the animation
@@ -132,6 +134,27 @@ const Homepage = () => {
             alert('Error uploading files:');
         }
     };
+
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Maya Nelson') {
+          // navigate('/dashboard')
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      getWebsite()
+  }, [])
 
 
   return (
