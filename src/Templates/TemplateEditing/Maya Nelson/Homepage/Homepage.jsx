@@ -105,7 +105,7 @@ const Homepage = () => {
         console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chika Store', formData, {
+            const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -138,6 +138,8 @@ const Homepage = () => {
 
     const store = useSelector((state) => state.store)
     const { storeDetails } = store
+
+    console.log(storeDetails);
 
     const getWebsite = async () => {
       try {
