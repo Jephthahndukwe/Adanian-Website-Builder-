@@ -23,15 +23,15 @@ const Sidebar = () => {
                 <hr className="w-[231px] h-[4px] mt-[8px] bg-[#fff]"/>
             </div>
             <div className="mt-[32px]">
-                <h1 className="text-[#000] text-[16px] font-[400]">Set Up</h1>
+                {/* <h1 className="text-[#000] text-[16px] font-[400]">Set Up</h1> */}
                 <Link to='/Dashboard' className="text-[#000] text-[16px] font-[400] no-underline">Home</Link>
                 <Link to='/appplugins' className="no-underline"><h1 className="text-[#000] text-[16px] font-[400] mt-2">App and Plug-ins</h1></Link>
-                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#fff]"/>
+                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#999898]"/>
             </div>
-            <div className="mt-[32px]">
+            {/* <div className="mt-[32px]">
                 <h1 className="text-[#000] text-[16px] font-[400]">Portfolio</h1>
                 <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]">New</h1>
-                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#fff]"/>
+                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#999898]"/>
             </div>
             <div className="mt-[32px]">
                 <h1 className="text-[#000] text-[16px] font-[400]">Contacts</h1>
@@ -39,15 +39,15 @@ const Sidebar = () => {
                 <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]">Automations</h1>
                 <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]">Analytics</h1>
                 <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]">Payment and shipping</h1>
-                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#fff]"/>
+                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#999898]"/>
             </div>
             <div className="mt-[32px]">
                 <h1 className="text-[#000] text-[16px] font-[400]">Settings</h1>
                 <h1 className="text-[#000] text-[16px] font-[400] mt-[7px]">Developers Tools</h1>
-                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#fff]"/>
-            </div>
+                <hr className="w-[231px] h-[4px] mt-[10px] bg-[#999898]"/>
+            </div> */}
         </div>
-        <div className="bg-[#35314C] rounded-[5px] flex items-center gap-[12px] mt-[10rem] w-[230px] py-[12px] px-[24px]">
+        <div className="bg-[#35314C] rounded-[5px] relative bottom-0 flex items-center gap-[12px] mt-[10rem] w-[230px] h-[50px] py-[5px] px-[24px]">
             <img src={Avatar} />
             <h1 className="text-[#fff] text-[12px] font-[400]">{truncatedText}</h1>
             <img src={group}/>
