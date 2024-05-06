@@ -13,7 +13,7 @@ import group from '../assets/icons/group.svg'
     const truncatedText = truncateText(text, 13);
 
 
-const Sidebar = ({ logoutHandler }) => {
+const Sidebar = () => {
   return (
     <div className="lg:grid xs:hidden gap-[24px] overflow-auto overflow-y-scroll bg-[#ECECEC] w-[271px] h-[100%] pt-[32px] pb-[24px] px-[9px]"  style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
         <div>
@@ -47,7 +47,7 @@ const Sidebar = ({ logoutHandler }) => {
                 <hr className="w-[231px] h-[4px] mt-[10px] bg-[#999898]"/>
             </div> */}
         </div>
-        <div className="bg-[#35314C] rounded-[5px] relative bottom-0 flex items-center gap-[12px] mt-[10rem] w-[230px] h-[50px] py-[5px] px-[24px] cursor-pointer" onClick={logoutHandler}>
+        <div className="bg-[#35314C] rounded-[5px] relative bottom-0 flex items-center gap-[12px] mt-[10rem] w-[230px] h-[50px] py-[5px] px-[24px] cursor-pointer">
             <img src={Avatar} />
             <h1 className="text-[#fff] text-[12px] font-[400]">{truncatedText}</h1>
             <img src={group}/>
