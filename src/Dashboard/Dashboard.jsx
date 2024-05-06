@@ -10,11 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { googleAuth, logout } from '../../Redux/Action/UserAction';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { setCredentials } from '../Auth/Slice/userSlice';
+import imageData from '../Templates/TemplateDashboard/TemplatesMap';
 
 
-
-const Dashboard = () => {
+const Dashboard = ({imageData}) => {
   const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
@@ -101,17 +100,23 @@ const Dashboard = () => {
                                 ))
                             } */}
 
-                            {savedTemplates.length > 0 ? (
-                                    savedTemplates.map((template, index) => (
-                                    <div key={index}>
-                                        <img src={template.data.data.images.selectedImage1} alt={`Template ${index}`} />
-                                        {/* <h2>{template.heading}</h2> */}
-                                        {/* <p>{template.text}</p> */}
-                                    </div>
-                                    ))
-                                ) : (
-                                    <p>No saved templates found.</p>
-                                )}
+                            {
+                            imageData && imageData.templates && imageData.templates.length > 0 ? (
+                                imageData.templates.map((template, index) => (
+                                <div key={index} className="mt-[2rem]">
+                                    <img
+                                    src={template.image}
+                                    className="w-[317px] h-[218.75px] fill object-cover transition duration-300 transform hover:scale-105"
+                                    />
+                                    <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{template.heading}</h2>
+                                    <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{template.text}</h3>
+                                </div>
+                                ))
+                            ) : (
+                                // You can render a message or any other fallback content here
+                                <div>No saved templates available.</div>
+                            )
+                            }
                         </div>
                         {/* {
                             show ? <Question show={show} setShow={setShow} /> : null
