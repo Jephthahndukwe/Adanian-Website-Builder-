@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 
 const Resume = () => {
@@ -19,14 +20,21 @@ const Resume = () => {
 
   const [data, setData] = useState(null);
 
+  const store = useSelector((state) => state.store)
+  const { storeDetails } = store
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://ayoba.adanianlabs.io/api/user/getwebsite/Chika Store');
-      setData(response.data);
+      const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}`);
+      // setData(response.data);
+
+      if(response.data.template == 'Maya Nelson') {
+          setData(response.data);
+      }
 
       console.log(response.data)
 
@@ -74,28 +82,28 @@ const Resume = () => {
                             <div className='bg-[#fff] w-[100%] mt-[3rem] py-[50px] lg:pt-[-50rem] lg:px-[40px] xs:px-[20px] pr-[50px]'>
                                 <div className='lg:flex justify-between items-center'>
                                     <div className='w-[50%] lg:mt-[-5rem]'>
-                                        <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data.data && data.data.texts && data.data.texts.heading7 ? data.data.texts.heading7.color : "#1E88E5" }}>{data.data && data.data.texts && data.data.texts.heading7 ? data.data.texts.heading7.text : '2035 - Present'}</h2>
-                                        <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data.data && data.data.texts && data.data.texts.heading8 ? data.data.texts.heading8.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading8 ? data.data.texts.heading8.text : 'JOB POSITION'}</h2>
-                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading9 ? data.data.texts.heading9.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading9 ? data.data.texts.heading9.text : 'Company Name'}</h2>
-                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading10 ? data.data.texts.heading10.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading10 ? data.data.texts.heading10.text : 'Company Location'}</h2>
+                                        <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading7 ? data.data.texts.heading7.color : "#1E88E5" }}>{data && data.data && data.data.texts && data.data.texts.heading7 ? data.data.texts.heading7.text : '2035 - Present'}</h2>
+                                        <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data && data.data && data.data.texts && data.data.texts.heading8 ? data.data.texts.heading8.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading8 ? data.data.texts.heading8.text : 'JOB POSITION'}</h2>
+                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading9 ? data.data.texts.heading9.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading9 ? data.data.texts.heading9.text : 'Company Name'}</h2>
+                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading10 ? data.data.texts.heading10.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading10 ? data.data.texts.heading10.text : 'Company Location'}</h2>
                                     </div>
                                     <div className='lg:w-[50%] xs:w-[100%] mt-[4rem]'>
-                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data.data && data.data.texts && data.data.texts.heading11 ? data.data.texts.heading11.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading11 ? data.data.texts.heading11.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
-                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data.data && data.data.texts && data.data.texts.heading12 ? data.data.texts.heading12.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading12 ? data.data.texts.heading12.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
+                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading11 ? data.data.texts.heading11.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading11 ? data.data.texts.heading11.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
+                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data && data.data && data.data.texts && data.data.texts.heading12 ? data.data.texts.heading12.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading12 ? data.data.texts.heading12.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className='bg-[#fff] w-[100%] mt-[3rem] py-[50px] lg:pt-[-50rem] lg:px-[40px] xs:px-[20px] pr-[50px]'>
                                 <div className='lg:flex justify-between items-center'>
                                     <div className='w-[50%] lg:mt-[-5rem]'>
-                                        <h2 className='text-[22px] font-Urbanist text-blue-600 font-[800]'>2035 - Present</h2>
-                                        <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data.data && data.data.texts && data.data.texts.heading13 ? data.data.texts.heading13.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading13 ? data.data.texts.heading13.text : 'JOB POSITION'}</h2>
-                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading14 ? data.data.texts.heading14.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading14 ? data.data.texts.heading14.text : 'Company Name'}</h2>
-                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading15 ? data.data.texts.heading15.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading15 ? data.data.texts.heading15.text : 'Company Location'}</h2>
+                                        <h2 className='text-[22px] font-Urbanist text-blue-600 font-[800]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading13 ? data.data.texts.heading13.color : "#1E88E5" }}>{data && data.data && data.data.texts && data.data.texts.heading13 ? data.data.texts.heading13.text : '2035 - Present'}</h2>
+                                        <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data && data.data && data.data.texts && data.data.texts.heading14 ? data.data.texts.heading14.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading14 ? data.data.texts.heading14.text : 'JOB POSITION'}</h2>
+                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading15 ? data.data.texts.heading15.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading15 ? data.data.texts.heading15.text : 'Company Name'}</h2>
+                                        <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading16 ? data.data.texts.heading16.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading16 ? data.data.texts.heading16.text : 'Company Location'}</h2>
                                     </div>
                                     <div className='lg:w-[50%] xs:w-[100%] mt-[4rem]'>
-                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data.data && data.data.texts && data.data.texts.heading16 ? data.data.texts.heading16.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading16 ? data.data.texts.heading16.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
-                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data.data && data.data.texts && data.data.texts.heading17 ? data.data.texts.heading17.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading17 ? data.data.texts.heading17.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
+                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading17 ? data.data.texts.heading17.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading17 ? data.data.texts.heading17.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
+                                        <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data && data.data && data.data.texts && data.data.texts.heading18 ? data.data.texts.heading18.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading18 ? data.data.texts.heading18.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,66 +113,66 @@ const Resume = () => {
                             <div className='bg-[#fff] w-[100%] mt-[3rem] py-[50px] lg:pt-[-50rem] lg:px-[40px] xs:px-[20px] pr-[50px]'>
                                 <div className='lg:flex justify-between items-center'>
                                 <div className='w-[50%] lg:mt-[-5rem]'>
-                                    <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data.data && data.data.texts && data.data.texts.heading18 ? data.data.texts.heading18.color : "#1E88E5" }}>{data.data && data.data.texts && data.data.texts.heading18 ? data.data.texts.heading18.text : '2035 - 2035'}</h2>
-                                    <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data.data && data.data.texts && data.data.texts.heading19 ? data.data.texts.heading19.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading19 ? data.data.texts.heading19.text : 'UNIVERSITY NAME'}</h2>
-                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading20 ? data.data.texts.heading20.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading20 ? data.data.texts.heading20.text : 'Degree Level'}</h2>
-                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading21 ? data.data.texts.heading21.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading21 ? data.data.texts.heading21.text : 'University Location'}</h2>
+                                    <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading19 ? data.data.texts.heading19.color : "#1E88E5" }}>{data && data.data && data.data.texts && data.data.texts.heading19 ? data.data.texts.heading19.text : '2035 - 2035'}</h2>
+                                    <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data && data.data && data.data.texts && data.data.texts.heading20 ? data.data.texts.heading20.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading20 ? data.data.texts.heading20.text : 'UNIVERSITY NAME'}</h2>
+                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading21 ? data.data.texts.heading21.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading21 ? data.data.texts.heading21.text : 'Degree Level'}</h2>
+                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading22 ? data.data.texts.heading22.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading22 ? data.data.texts.heading22.text : 'University Location'}</h2>
                                 </div>
                                 <div className='lg:w-[50%] xs:w-[100%] mt-[4rem]'>
-                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data.data && data.data.texts && data.data.texts.heading22 ? data.data.texts.heading22.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading22 ? data.data.texts.heading22.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
-                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data.data && data.data.texts && data.data.texts.heading23 ? data.data.texts.heading23.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading23 ? data.data.texts.heading23.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
+                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading23 ? data.data.texts.heading23.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading23 ? data.data.texts.heading23.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
+                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data && data.data && data.data.texts && data.data.texts.heading24 ? data.data.texts.heading24.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading24 ? data.data.texts.heading24.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
                                 </div>
                                 </div>
                             </div>
                             <div className='bg-[#fff] w-[100%] mt-[3rem] py-[50px] lg:pt-[-50rem] lg:px-[40px] xs:px-[20px] pr-[50px]'>
                                 <div className='lg:flex justify-between items-center'>
                                 <div className='w-[50%] lg:mt-[-5rem]'>
-                                    <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data.data && data.data.texts && data.data.texts.heading24 ? data.data.texts.heading24.color : "#1E88E5" }}>{data.data && data.data.texts && data.data.texts.heading24 ? data.data.texts.heading24.text : '2035 - 2035'}</h2>
-                                    <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data.data && data.data.texts && data.data.texts.heading25 ? data.data.texts.heading25.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading25 ? data.data.texts.heading25.text : 'UNIVERSITY NAME'}</h2>
-                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading26 ? data.data.texts.heading26.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading26 ? data.data.texts.heading26.text : 'Degree Level'}</h2>
-                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data.data && data.data.texts && data.data.texts.heading27 ? data.data.texts.heading27.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading27 ? data.data.texts.heading27.text : 'University Location'}</h2>
+                                    <h2 className='text-[22px] font-Urbanist font-[800]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading25 ? data.data.texts.heading25.color : "#1E88E5" }}>{data && data.data && data.data.texts && data.data.texts.heading25 ? data.data.texts.heading25.text : '2035 - 2035'}</h2>
+                                    <h2 className='text-[18px] font-Urbanist font-[300] mt-2' style={{ color: data && data.data && data.data.texts && data.data.texts.heading26 ? data.data.texts.heading26.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading26 ? data.data.texts.heading26.text : 'UNIVERSITY NAME'}</h2>
+                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading27 ? data.data.texts.heading27.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading27 ? data.data.texts.heading27.text : 'Degree Level'}</h2>
+                                    <h2 className='text-[14px] font-Urbanist font-[400] mt-3' style={{ color: data && data.data && data.data.texts && data.data.texts.heading28 ? data.data.texts.heading28.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading28 ? data.data.texts.heading28.text : 'University Location'}</h2>
                                 </div>
                                 <div className='lg:w-[50%] xs:w-[100%] mt-[4rem]'>
-                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data.data && data.data.texts && data.data.texts.heading28 ? data.data.texts.heading28.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading28 ? data.data.texts.heading28.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
-                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data.data && data.data.texts && data.data.texts.heading29 ? data.data.texts.heading29.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading29 ? data.data.texts.heading29.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
+                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[105%]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading29 ? data.data.texts.heading29.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading29 ? data.data.texts.heading29.text : 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font.'}</p>
+                                    <p className='lg:text-[16px] xs:text-[18px] font-Urbanist leading-[26px] lg:w-[110%] mt-4' style={{ color: data && data.data && data.data.texts && data.data.texts.heading30 ? data.data.texts.heading30.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading30 ? data.data.texts.heading30.text : 'I’m a great place for you to tell a story and let your users know a little more about you.'}</p>
                                 </div>
                                 </div>
                             </div>
                         </div>
                         <div className='bg-[#fff] w-[100%] mt-[3rem] py-[50px] pt-[-50rem] lg:px-[40px] xs:px-[20px] pr-[50px]'>
-                            <h2 className='text-[25px] font-Urbanist font-[800]' style={{ color: data.data && data.data.texts && data.data.texts.heading30 ? data.data.texts.heading30.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading30 ? data.data.texts.heading30.text : 'Professional skillset'}</h2>
+                            <h2 className='text-[25px] font-Urbanist font-[800]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading31 ? data.data.texts.heading31.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading31 ? data.data.texts.heading31.text : 'Professional skillset'}</h2>
                             <div className='flex flex-wrap gap-[4rem] items-center mt-4'>
                                 <div className='flex gap-2 justify-center items-center'>
                                     <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading31 ? data.data.texts.heading31.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading31 ? data.data.texts.heading31.text : 'Entrepreneurial Mindset'}</h1>
+                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading32 ? data.data.texts.heading32.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading32 ? data.data.texts.heading32.text : 'Entrepreneurial Mindset'}</h1>
                                 </div>
                                 <div className='flex gap-2 justify-center items-center lg:mt-0 xs:mt-[-4rem]'>
                                     <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading32 ? data.data.texts.heading32.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading32 ? data.data.texts.heading32.text : 'Go-to-Market Planning'}</h1>
+                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading33 ? data.data.texts.heading33.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading33 ? data.data.texts.heading33.text : 'Go-to-Market Planning'}</h1>
                                 </div>
                                 <div className='flex gap-2 justify-center items-center lg:mt-[-4rem] xs:mt-[-6rem]'>
                                     <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading33 ? data.data.texts.heading33.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading33 ? data.data.texts.heading33.text : 'Teamwork & Collaboration'}</h1>
+                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading34 ? data.data.texts.heading34.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading34 ? data.data.texts.heading34.text : 'Teamwork & Collaboration'}</h1>
                                 </div>
                                 <div className='flex gap-2 justify-center items-center lg:mt-[-4rem] xs:mt-[-8rem] lg:-ms-5'>
                                     <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading34 ? data.data.texts.heading34.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading34 ? data.data.texts.heading34.text : 'Digital Analytics'}</h1>
+                                    <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading35 ? data.data.texts.heading35.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading35 ? data.data.texts.heading35.text : 'Digital Analytics'}</h1>
                                 </div>
                             </div>
                             <div className='w-[80%]'>
-                                <h2 className='text-[25px] font-Urbanist font-[800] lg:mt-[5rem]' style={{ color: data.data && data.data.texts && data.data.texts.heading35 ? data.data.texts.heading35.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading35 ? data.data.texts.heading35.text : 'Languages'}</h2>
+                                <h2 className='text-[25px] font-Urbanist font-[800] lg:mt-[5rem]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading36 ? data.data.texts.heading36.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading36 ? data.data.texts.heading36.text : 'Languages'}</h2>
                                 <div className='flex flex-wrap gap-[4rem] items-center mt-4'>
                                     <div className='flex gap-2 justify-center items-center'>
                                         <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading36 ? data.data.texts.heading36.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading36 ? data.data.texts.heading36.text : 'English (native)'}</h1>
+                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading37 ? data.data.texts.heading37.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading37 ? data.data.texts.heading37.text : 'English (native)'}</h1>
                                     </div>
                                     <div className='flex gap-2 justify-center items-center lg:mt-0 xs:mt-[-4rem]'>
                                         <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading37 ? data.data.texts.heading37.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading37 ? data.data.texts.heading37.text : 'French (proficient)'}</h1>
+                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading38 ? data.data.texts.heading38.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading38 ? data.data.texts.heading38.text : 'French (proficient)'}</h1>
                                     </div>
                                     <div className='flex gap-2 justify-center items-center lg:mt-[-4rem] xs:mt-[-6rem]'>
                                         <span className='bg-blue-600 py-[0px] h-[15px] px-[8px]'/>
-                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data.data && data.data.texts && data.data.texts.heading38 ? data.data.texts.heading38.color : "#000" }}>{data.data && data.data.texts && data.data.texts.heading38 ? data.data.texts.heading38.text : 'Spanish (proficient)'}</h1>
+                                        <h1 className='text-[14px] font-Urbanist font-[400] mt-[10px]' style={{ color: data && data.data && data.data.texts && data.data.texts.heading39 ? data.data.texts.heading39.color : "#000" }}>{data && data.data && data.data.texts && data.data.texts.heading39 ? data.data.texts.heading39.text : 'Spanish (proficient)'}</h1>
                                     </div>
                                 </div>
                             </div>

@@ -7,8 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 
 const Homepage = () => {
@@ -110,6 +110,9 @@ const handleCancelClick = () => {
         }
     };
 
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
     // SAVING DATA TO BACKEND
  const handleUpload = async () => {
     const formData = new FormData();
@@ -117,32 +120,28 @@ const handleCancelClick = () => {
     formData.append('selectedImage2', file1);
     formData.append('selectedImage3', file1);
 
-    const textArray = [
-      JSON.stringify(heading1),
-      JSON.stringify(heading2),
-      JSON.stringify(heading3),
-      JSON.stringify(heading4),
-      JSON.stringify(heading5),
-      JSON.stringify(heading6),
-      JSON.stringify(heading7),
-      JSON.stringify(heading8),
-    // Add additional text state variables here if needed...
-  ];
+    const texts = {
+        heading1: heading1,
+        heading2: heading2,
+        heading3: heading3,
+        heading4: heading4,
+        heading5: heading5,
+        heading6: heading6,
+        heading7: heading7,
+        heading8: heading8,
+      }
 
-  console.log(textArray);
-    
-    // Append each text item (including ID, text, and color) to the FormData object
-    // textArray.forEach(({ id, text, color }, index) => {
-    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-    // });
-    // formData.append('texts', textArray)
-    let joiner = textArray.join("*")
-    formData.append('template', 'Lawrence');
-    formData.append('texts', joiner);
-    console.log(formData);
+      console.log(texts);
+
+
+        let stringifiedObject = JSON.stringify(texts);
+        // let joiner = textArray.join("*")
+        formData.append('template', 'Lawrence');
+        formData.append('texts', stringifiedObject);
+        console.log(formData);
 
     try {
-        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chico Restro', formData, {
+        const res = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -151,58 +150,39 @@ const handleCancelClick = () => {
         console.log(res.data);
 
         if (res.data) {
-            setTimeout(() => {
-                toast.success('Homepage saved successfully');
-            }, 500);
+            console.log(res.data)
+            toast.success('Homepage saved successfully');
         } else {
-            setTimeout(() => {
-                toast.error('Failed to save template, Please try again later.');
-            }, 500);
+            console.log(error)
+            toast.error('Failed to save template, Please try again later.');
         }
-
-        // if (response.data) {
-        //     const data = await response.json();
-        //     console.log('Files uploaded:', data.files);
-        //     alert('Files uploaded:');
-        // } else {
-        //     console.error('Upload failed:', response.statusText);
-        //     alert('Upload failed:');
-        // }
     } catch (error) {
         console.error('Error uploading files:', error);
-        setTimeout(() => {
             toast.error('Failed to save template, Please try again later.');
-        }, 500);
     }
 };
 
+console.log(storeDetails)
 
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Lawrence') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
-// Define the handleSave function in your Homepage component
-// const handleSave = () => {
-//     // Gather the necessary data to be saved (e.g., editor content, selected images)
-//     const dataToSave = new FormData();
-//     dataToSave.append('editorContent', editorContent);
-//     dataToSave.append('selectedImage', selectedImage);
-//     dataToSave.append('selectedImage2', selectedImage2);
-//     dataToSave.append('selectedImage3', selectedImage3);
-//     // Add other relevant data as needed
-
-//     // Save data to localStorage
-//     localStorage.setItem('images', JSON.stringify(dataToSave));
-
-//     // Send data to backend for further processing
-//     axios.post('https://ayoba.adanianlabs.io/api/user/upload_file', dataToSave)
-//         .then(response => {
-//             alert('Template successfully saved. Try previewing the template.')
-//             console.log('Homepage saved successfully');
-//         })
-//         .catch(error => {
-//             console.error('Error saving homepage:', error);
-//             alert('Failed to save template, Please try again later.')
-//         });
-// };
 
   return (
     <>
@@ -394,8 +374,6 @@ const handleCancelClick = () => {
                 </div>
             )}
         </div>
-
-        <ToastContainer position="fixed top-0 left-0 flex justify-start items-left w-[120%]" closeOnClick={true} />
     </>
   )
 }

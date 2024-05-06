@@ -4,14 +4,15 @@ import restro6 from '../../../../assets/images/restro6.jpg'
 import Footer from '../Components/Footer'
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
 
      // State variables for each heading
-const [heading72, setHeading72] = useState({ id: 'heading72', text: 'Contact', color: '#000' });
-const [heading73, setHeading73] = useState({ id: 'heading73', text: 'We Welcome Your Feedback', color: '#fff' });
-const [heading74, setHeading74] = useState({ id: 'heading74', text: 'Come Visit Us', color: '#000' });
-const [heading75, setHeading75] = useState({ id: 'heading75', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Body placeholder for text paragraph. A paragraph is a self-contained unit of text.', color: '#000' });
+const [heading73, setHeading73] = useState({ id: 'heading73', text: 'Contact', color: '#000' });
+const [heading74, setHeading74] = useState({ id: 'heading74', text: 'We Welcome Your Feedback', color: '#fff' });
+const [heading75, setHeading75] = useState({ id: 'heading75', text: 'Come Visit Us', color: '#000' });
+const [heading76, setHeading76] = useState({ id: 'heading76', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Body placeholder for text paragraph. A paragraph is a self-contained unit of text.', color: '#000' });
 
 // Define state variables for up to 10 headings
 // Add additional headings as needed...
@@ -71,28 +72,24 @@ const handleImageChange = (e) => {
     const formData = new FormData();
     formData.append('selectedImage1', file1);
 
-    const textArray = [
-      JSON.stringify(heading72),
-      JSON.stringify(heading73),
-      JSON.stringify(heading74),
-      JSON.stringify(heading75),
-    // Add additional text state variables here if needed...
-  ];
+    const texts = {
+        heading73: heading73,
+        heading74: heading74,
+        heading75: heading75,
+        heading76: heading76,
+      }
 
-  console.log(textArray);
-    
-    // Append each text item (including ID, text, and color) to the FormData object
-    // textArray.forEach(({ id, text, color }, index) => {
-    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-    // });
-    // formData.append('texts', textArray)
-    let joiner = textArray.join("*")
-    formData.append('template', 'Lawrence');
-    formData.append('texts', joiner);
-    console.log(formData);
+      console.log(texts);
+
+
+        let stringifiedObject = JSON.stringify(texts);
+        // let joiner = textArray.join("*")
+        formData.append('template', 'Lawrence');
+        formData.append('texts', stringifiedObject);
+        console.log(formData);
 
     try {
-        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+        const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${store.Details.ameOfStore}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -101,30 +98,38 @@ const handleImageChange = (e) => {
         console.log(response.data);
 
         if (response.data) {
-            setTimeout(() => {
-                toast.success('Reservation page saved successfully');
-            }, 500);
+            console.log(response.data)
+            toast.success('Reservation page saved successfully');
         } else {
-            setTimeout(() => {
-                toast.error('Failed to save template, Please try again later.');
-            }, 500);
+            console.log(error)
+            toast.error('Failed to save template, Please try again later.');
         }
-
-        // if (response.data) {
-        //     const data = await response.json();
-        //     console.log('Files uploaded:', data.files);
-        //     alert('Files uploaded:');
-        // } else {
-        //     console.error('Upload failed:', response.statusText);
-        //     alert('Upload failed:');
-        // }
     } catch (error) {
         console.error('Error uploading files:', error);
-        setTimeout(() => {
-            toast.error('Failed to save template, Please try again later.');
-        }, 500);
+        toast.error('Failed to save template, Please try again later.');
     }
 };
+
+console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Lawrence') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
 
   return (
@@ -133,13 +138,13 @@ const handleImageChange = (e) => {
         <div className='bg-[#faf8f1] pt-[2rem]'>
             <Navbar/>
             <div className='bg-[#a89d8a] py-[70px] lg:px-[180px] xs:px-[80px] w-[90vw]'>
-                <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading72, setHeading72)} style={{ color: heading72.color}}>{heading72.text}</h2>
+                <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading73, setHeading73)} style={{ color: heading73.color}}>{heading73.text}</h2>
             </div>
                     <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview || restro6})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[150vh] bg-fixed mt-[5rem]'>
                     <input type="file" onChange={handleImageChange} />
                         <div className='lg:flex justify-center items-center h-[150vh]'>
                             <form className='text-[#fff] lg:pt-0 xs:pt-[5rem]'>
-                                <h1 className='font-Namdhinggo text-[50px] lg:w-[60%] text-center lg:ms-[14rem] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading73, setHeading73)} style={{ color: heading73.color}}>{heading73.text}</h1>
+                                <h1 className='font-Namdhinggo text-[50px] lg:w-[60%] text-center lg:ms-[14rem] hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading74, setHeading74)} style={{ color: heading74.color}}>{heading74.text}</h1>
                             <div className='lg:ms-[7rem] mt-[4rem] lg:px-0 xs:px-[20px]'>
                             <div className='lg:flex gap-[1rem]'>
                                 <span>
@@ -166,8 +171,8 @@ const handleImageChange = (e) => {
                         </div>
                     </div>
             <div className='mt-[7rem] pb-[5rem] lg:px-0 xs:px-[10px]'>
-                <h2 className='text-center font-Namdhinggo text-[45px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading74, setHeading74)} style={{ color: heading74.color}}>{heading74.text}</h2>
-                <p className='text-center lg:w-[37%] lg:ms-[27rem] mt-[2rem] font-Namdhinggo text-[19px] leading-[30px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading75, setHeading75)} style={{ color: heading75.color}}>{heading75.text}</p>
+                <h2 className='text-center font-Namdhinggo text-[45px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading75, setHeading75)} style={{ color: heading75.color}}>{heading75.text}</h2>
+                <p className='text-center lg:w-[37%] lg:ms-[27rem] mt-[2rem] font-Namdhinggo text-[19px] leading-[30px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading76, setHeading76)} style={{ color: heading76.color}}>{heading76.text}</p>
             </div>
         </div>
             <Footer/>

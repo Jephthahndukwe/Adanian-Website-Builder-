@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar'
 import restro7 from '../../../../assets/images/restro7.png'
 import Footer from '../Components/Footer'
-import { Editor } from '@tinymce/tinymce-react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 
 const Menu = () => {
@@ -104,70 +106,70 @@ const handleImageChange = (e) => {
     }
 };
 
+const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
  // SAVING DATA TO BACKEND
  const handleUpload = async () => {
     const formData = new FormData();
     formData.append('selectedImage1', file1);
 
-    const textArray = [
-      JSON.stringify(heading27),
-      JSON.stringify(heading28),
-      JSON.stringify(heading29),
-      JSON.stringify(heading30),
-      JSON.stringify(heading31),
-      JSON.stringify(heading32),
-      JSON.stringify(heading33),
-      JSON.stringify(heading34),
-      JSON.stringify(heading35),
-      JSON.stringify(heading36),
-      JSON.stringify(heading37),
-      JSON.stringify(heading38),
-      JSON.stringify(heading39),
-      JSON.stringify(heading40),
-      JSON.stringify(heading41),
-      JSON.stringify(heading42),
-      JSON.stringify(heading43),
-      JSON.stringify(heading44),
-      JSON.stringify(heading45),
-      JSON.stringify(heading46),
-      JSON.stringify(heading47),
-      JSON.stringify(heading48),
-      JSON.stringify(heading49),
-      JSON.stringify(heading50),
-      JSON.stringify(heading51),
-      JSON.stringify(heading52),
-      JSON.stringify(heading53),
-      JSON.stringify(heading54),
-      JSON.stringify(heading55),
-      JSON.stringify(heading56),
-      JSON.stringify(heading57),
-      JSON.stringify(heading58),
-      JSON.stringify(heading59),
-      JSON.stringify(heading60),
-      JSON.stringify(heading61),
-      JSON.stringify(heading62),
-      JSON.stringify(heading63),
-      JSON.stringify(heading64),
-      JSON.stringify(heading65),
-      JSON.stringify(heading66),
-      JSON.stringify(heading67),
+    const texts = {
+      heading27: heading27,
+      heading28: heading28,
+      heading29: heading29,
+      heading30: heading30,
+      heading31: heading31,
+      heading32: heading32,
+      heading33: heading33,
+      heading34: heading34,
+      heading35: heading35,
+      heading36: heading36,
+      heading37: heading37,
+      heading38: heading38,
+      heading39: heading39,
+      heading40: heading40,
+      heading41: heading41,
+      heading42: heading42,
+      heading43: heading43,
+      heading44: heading44,
+      heading45: heading45,
+      heading46: heading46,
+      heading47: heading47,
+      heading48: heading48,
+      heading49: heading49,
+      heading50: heading50,
+      heading51: heading51,
+      heading52: heading52,
+      heading53: heading53,
+      heading54: heading54,
+      heading55: heading55,
+      heading56: heading56,
+      heading57: heading57,
+      heading58: heading58,
+      heading59: heading59,
+      heading60: heading60,
+      heading61: heading61,
+      heading62: heading62,
+      heading63: heading63,
+      heading64: heading64,
+      heading65: heading65,
+      heading66: heading66,
+      heading67: heading67,
     // Add additional text state variables here if needed...
-  ];
+    };
 
-  console.log(textArray);
-    
-    // Append each text item (including ID, text, and color) to the FormData object
-    // textArray.forEach(({ id, text, color }, index) => {
-    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-    // });
-    // formData.append('texts', textArray)
-    let joiner = textArray.join("*")
+    console.log(texts);
+
+
+    let stringifiedObject = JSON.stringify(texts);
+    // let joiner = textArray.join("*")
     formData.append('template', 'Lawrence');
-    formData.append('texts', joiner);
+    formData.append('texts', stringifiedObject);
     console.log(formData);
 
     try {
-        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+        const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -176,34 +178,42 @@ const handleImageChange = (e) => {
         console.log(response.data);
 
         if (response.data) {
-            setTimeout(() => {
-                toast.success('Menu page saved successfully');
-            }, 500);
+            console.log(response.data)
+            toast.success('Menu page saved successfully');
         } else {
-            setTimeout(() => {
-                toast.error('Failed to save template, Please try again later.');
-            }, 500);
+            console.log(error)
+            toast.error('Failed to save template, Please try again later.');
         }
-
-        // if (response.data) {
-        //     const data = await response.json();
-        //     console.log('Files uploaded:', data.files);
-        //     alert('Files uploaded:');
-        // } else {
-        //     console.error('Upload failed:', response.statusText);
-        //     alert('Upload failed:');
-        // }
     } catch (error) {
         console.error('Error uploading files:', error);
-        setTimeout(() => {
-            toast.error('Failed to save template, Please try again later.');
-        }, 500);
+        toast.error('Failed to save template, Please try again later.');
     }
 };
 
+console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Lawrence') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
+
   return (
     <div>
-        <TemplateEditNavbar/>
+        <TemplateEditNavbar handleUpload={handleUpload}/>
         <div className='bg-[#faf8f1] pt-[2rem] pb-[6rem]'>
             <Navbar/>
             <div>

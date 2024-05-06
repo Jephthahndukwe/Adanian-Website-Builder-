@@ -101,26 +101,22 @@ const handleCancelClick = () => {
         formData.append('selectedImage24', file1);
         formData.append('selectedImage25', file2);
 
-        const textArray = [
-          JSON.stringify(heading18),
-          JSON.stringify(heading19),
-          JSON.stringify(heading20),
-          JSON.stringify(heading21), 
-          JSON.stringify(heading22),
-        // Add additional text state variables here if needed...
-      ];
-
-      console.log(textArray);
-        
-        // Append each text item (including ID, text, and color) to the FormData object
-        // textArray.forEach(({ id, text, color }, index) => {
-        //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-        // });
-        // formData.append('texts', textArray)
-        let joiner = textArray.join("*")
-        formData.append('template', 'DayDream');
-        formData.append('texts', joiner);
-        console.log(formData);
+        const texts = {
+            heading18: heading18,
+            heading19: heading19,
+            heading20: heading20,
+            heading21: heading21,
+            heading22: heading22,
+          }
+    
+          console.log(texts);
+    
+    
+            let stringifiedObject = JSON.stringify(texts);
+            // let joiner = textArray.join("*")
+            formData.append('template', 'DayDream');
+            formData.append('texts', stringifiedObject);
+            console.log(formData);
 
         try {
             const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
@@ -132,22 +128,38 @@ const handleCancelClick = () => {
             console.log(response.data);
 
             if (response.data) {
-                const data = await response.json();
                 console.log('Files uploaded:', data.files);
-                setTimeout(() => {
-                    toast.success('Changes saved successfully.');
-                  }, 1000);
+                toast.success('About page saved successfully.');
             } else {
                 console.error('Upload failed:', response.statusText);
-                setTimeout(() => {
-                    toast.error('Changes saved successfully.');
-                  }, 1000);
+                toast.error('Changes saved successfully.');
             }
         } catch (error) {
             console.error('Error uploading files:', error);
-            toast.error('Error uploading files:');
+            toast.error('Error uploading page');
         }
     };
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Day Dream') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
 
   return (

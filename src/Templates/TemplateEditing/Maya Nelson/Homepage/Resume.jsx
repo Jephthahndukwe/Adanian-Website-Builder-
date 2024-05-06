@@ -6,6 +6,7 @@ import Footer from '../Components/Footer';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 
 const Resume = () => {
@@ -85,6 +86,9 @@ const Resume = () => {
     const handleCancelClick = () => {
         setModalOpen(false);
     };
+    
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
 
       // SAVING DATA TO BACKEND
       const handleUpload = async () => {
@@ -136,7 +140,7 @@ const Resume = () => {
         console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chika Store', formData, {
+            const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -144,28 +148,39 @@ const Resume = () => {
 
             console.log(response.data);
 
-            setTimeout(() => {
-              toast.success('Changes saved successfully.');
-            }, 1000);
-
-            // if (response.data) {
-            //     const data = await response.json();
-            //     console.log('Files uploaded:', data.files);
-            //     setTimeout(() => {
-            //       toast.success('Changes saved successfully.');
-            //     }, 500);
-            // } else {
-            //     console.error('Upload failed:', response.statusText);
-            //     setTimeout(() => {
-            //       toast.error('Changes Failed. Try again later!');
-            //         return;
-            //     })
-            // }
+            if (response.data) {
+                console.log('Files uploaded:', data.files);
+                toast.success('Resume page saved successfully.');
+            } else {
+                console.error('Upload failed:', response.statusText);
+                toast.error('Changes Failed. Try again later!');
+            }
         } catch (error) {
             console.error('Error uploading files:', error);
-            alert('Error uploading files:');
+            toast.error('Error uploading files:');
         }
     };
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Maya Nelson') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
   return (
     <Transition

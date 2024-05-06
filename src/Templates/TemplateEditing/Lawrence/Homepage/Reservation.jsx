@@ -3,8 +3,8 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 const Reservation = () => {
 
@@ -63,47 +63,46 @@ const handleCancelClick = () => {
     setModalOpen(false);
 };
 
+const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
 
      // SAVING DATA TO BACKEND
      const handleUpload = async () => {
         const formData = new FormData();
 
-        const textArray = [
-          JSON.stringify(heading9),
-          JSON.stringify(heading10),
-          JSON.stringify(heading11),
-          JSON.stringify(heading12),
-          JSON.stringify(heading13),
-          JSON.stringify(heading14),
-          JSON.stringify(heading15),
-          JSON.stringify(heading16),
-          JSON.stringify(heading17),
-          JSON.stringify(heading18),
-          JSON.stringify(heading19),
-          JSON.stringify(heading20),
-          JSON.stringify(heading21),
-          JSON.stringify(heading22),
-          JSON.stringify(heading23),
-          JSON.stringify(heading24),
-          JSON.stringify(heading25),
-          JSON.stringify(heading26),
-        // Add additional text state variables here if needed...
-      ];
-
-      console.log(textArray);
-        
-        // Append each text item (including ID, text, and color) to the FormData object
-        // textArray.forEach(({ id, text, color }, index) => {
-        //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-        // });
-        // formData.append('texts', textArray)
-        let joiner = textArray.join("*")
-        formData.append('template', 'Lawrence');
-        formData.append('texts', joiner);
-        console.log(formData);
+        const texts = {
+            heading9: heading9,
+            heading10: heading10,
+            heading11: heading11,
+            heading12: heading12,
+            heading13: heading13,
+            heading14: heading14,
+            heading15: heading15,
+            heading16: heading16,
+            heading17: heading17,
+            heading18: heading18,
+            heading19: heading19,
+            heading20: heading20,
+            heading21: heading21,
+            heading22: heading22,
+            heading23: heading23,
+            heading24: heading24,
+            heading25: heading25,
+            heading26: heading26,
+          }
+    
+          console.log(texts);
+    
+    
+            let stringifiedObject = JSON.stringify(texts);
+            // let joiner = textArray.join("*")
+            formData.append('template', 'Lawrence');
+            formData.append('texts', stringifiedObject);
+            console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+            const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -112,30 +111,36 @@ const handleCancelClick = () => {
             console.log(response.data);
 
             if (response.data) {
-                setTimeout(() => {
-                    toast.success('Reservation page saved successfully');
-                }, 500);
+                toast.success('Reservation page saved successfully');
             } else {
-                setTimeout(() => {
-                    toast.error('Failed to save template, Please try again later.');
-                }, 500);
+                toast.error('Failed to save template, Please try again later.');
             }
-
-            // if (response.data) {
-            //     const data = await response.json();
-            //     console.log('Files uploaded:', data.files);
-            //     alert('Files uploaded:');
-            // } else {
-            //     console.error('Upload failed:', response.statusText);
-            //     alert('Upload failed:');
-            // }
         } catch (error) {
             console.error('Error uploading files:', error);
-            setTimeout(() => {
-                toast.error('Failed to save template, Please try again later.');
-            }, 500);
+            toast.error('Failed to save template, Please try again later.');
         }
     };
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Lawrence') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
   return (
     <div>

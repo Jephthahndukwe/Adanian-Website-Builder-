@@ -29,7 +29,8 @@ const Projects = () => {
     const [heading45, setHeading45] = useState({ id: 'heading45', text: 'Role Title', color: '#000' });
     const [heading46, setHeading46] = useState({ id: 'heading46', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
     const [heading47, setHeading47] = useState({ id: 'heading47', text: 'Project name 03', color: '#1E88E5' });
-    const [heading48, setHeading48] = useState({ id: 'heading48', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
+    const [heading48, setHeading48] = useState({ id: 'heading48', text: 'Role Title.', color: '#000' });
+    const [heading49, setHeading49] = useState({ id: 'heading49', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
     // Define state variables for up to 10 headings
     // Add additional headings as needed...
 
@@ -111,6 +112,10 @@ const Projects = () => {
         }
     };
 
+    
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
     // SAVING DATA TO BACKEND
     const handleUpload = async () => {
         const formData = new FormData();
@@ -140,7 +145,7 @@ const Projects = () => {
         console.log(formData);
 
         try {
-            const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/Chika Store', formData, {
+            const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${storeDetails.nameOfStore}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -148,28 +153,39 @@ const Projects = () => {
 
             console.log(response.data);
 
-            setTimeout(() => {
-              toast.success('Changes saved successfully.');
-            }, 1000);
-
-            // if (response.data) {
-            //     const data = await response.json();
-            //     console.log('Files uploaded:', data.files);
-            //     setTimeout(() => {
-            //       toast.success('Changes saved successfully.');
-            //     }, 500);
-            // } else {
-            //     console.error('Upload failed:', response.statusText);
-            //     setTimeout(() => {
-            //       toast.error('Changes Failed. Try again later!');
-            //         return;
-            //     })
-            // }
+            if (response.data) {
+              console.log('Files uploaded:', data.files);
+              toast.success('Project page saved successfully.');
+            } else {
+              console.error('Upload failed:', response.statusText);
+              toast.error('Changes Failed. Try again later!');
+            }
         } catch (error) {
             console.error('Error uploading files:', error);
-            alert('Error uploading files:');
+            toast.error('Error saving page:');
         }
     };
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Maya Nelson') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
   return (
     <Transition
@@ -229,10 +245,10 @@ const Projects = () => {
                                     <div className='bg-blue-600 px-[5px] py-[10px]'/>
                                     <div>
                                         <h2 className='text-[22px] font-Urbanist font-[900] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading47, setHeading47)} style={{ color: heading47.color}}>{heading47.text}</h2>
-                                        <h2 className='text-[16px] font-Urbanist font-[800]'>Role Title</h2>
+                                        <h2 className='text-[16px] font-Urbanist font-[800]' onClick={() => openModal(heading48, setHeading48)} style={{ color: heading48.color}}>{heading48.text}</h2>
                                     </div>
                                 </div>
-                                <p className='text-[14px] font-Urbanist font-[400] leading-[26px] tracking-[1px] mt-[2rem] lg:ms-[1rem] xs:ms-[-0.5rem] lg:w-[100%] xs:w-[105%] px-[30px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading48, setHeading48)} style={{ color: heading48.color}}>{heading48.text}</p>
+                                <p className='text-[14px] font-Urbanist font-[400] leading-[26px] tracking-[1px] mt-[2rem] lg:ms-[1rem] xs:ms-[-0.5rem] lg:w-[100%] xs:w-[105%] px-[30px] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading49, setHeading49)} style={{ color: heading49.color}}>{heading49.text}</p>
                             </div>
                             <div className='lg:w-[120vw] mt-[-1.8rem]'>
                                 <input type="file" onChange={handleImageChange3} />

@@ -3,18 +3,20 @@ import Navbar from '../Components/Navbar'
 import restro4 from '../../../../assets/images/restro4.jpg'
 import restro5 from '../../../../assets/images/restro5.png'
 import Footer from '../Components/Footer'
-import { Editor } from '@tinymce/tinymce-react';
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar'
+import toast from 'react-hot-toast'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 const About = () => {
 
    // State variables for each heading
-const [heading67, setHeading67] = useState({ id: 'heading67', text: 'About Us', color: '#000' });
-const [heading68, setHeading68] = useState({ id: 'heading68', text: 'The Restaurant', color: '#fff' });
-const [heading69, setHeading69] = useState({ id: 'heading69', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you. This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out', color: '#fff' });
-const [heading70, setHeading70] = useState({ id: 'heading70', text: 'Our Kitchen', color: '#000' });
-const [heading71, setHeading71] = useState({ id: 'heading71', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
+const [heading68, setHeading68] = useState({ id: 'heading68', text: 'About Us', color: '#000' });
+const [heading69, setHeading69] = useState({ id: 'heading69', text: 'The Restaurant', color: '#fff' });
+const [heading70, setHeading70] = useState({ id: 'heading70', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you. This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out', color: '#fff' });
+const [heading71, setHeading71] = useState({ id: 'heading71', text: 'Our Kitchen', color: '#000' });
+const [heading72, setHeading72] = useState({ id: 'heading72', text: 'I’m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.', color: '#000' });
 
 // Define state variables for up to 10 headings
 // Add additional headings as needed...
@@ -85,6 +87,9 @@ const handleCancelClick = () => {
      }
  };    
 
+ const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
 
   // SAVING DATA TO BACKEND
   const handleUpload = async () => {
@@ -92,28 +97,25 @@ const handleCancelClick = () => {
     formData.append('selectedImage1', file1);
     formData.append('selectedImage2', file2);
 
-    const textArray = [
-      JSON.stringify(heading68),
-      JSON.stringify(heading69),
-      JSON.stringify(heading70),
-      JSON.stringify(heading71),
-    // Add additional text state variables here if needed...
-  ];
+    const texts = {
+        heading68: heading68,
+        heading69: heading69,
+        heading70: heading70,
+        heading71: heading71,
+        heading72: heading72,
+      }
 
-  console.log(textArray);
-    
-    // Append each text item (including ID, text, and color) to the FormData object
-    // textArray.forEach(({ id, text, color }, index) => {
-    //     formData.append(`text${index + 1}`, JSON.stringify({ id, text, color }));
-    // });
-    // formData.append('texts', textArray)
-    let joiner = textArray.join("*")
-    formData.append('template', 'Lawrence');
-    formData.append('texts', joiner);
-    console.log(formData);
+      console.log(texts);
+
+
+        let stringifiedObject = JSON.stringify(texts);
+        // let joiner = textArray.join("*")
+        formData.append('template', 'Lawrence');
+        formData.append('texts', stringifiedObject);
+        console.log(formData);
 
     try {
-        const response = axios.patch('https://ayoba.adanianlabs.io/api/user/upload_file/ChikaStore', formData, {
+        const response = axios.patch(`https://ayoba.adanianlabs.io/api/user/upload_file/${store.Details.nameOfStore}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -122,30 +124,38 @@ const handleCancelClick = () => {
         console.log(response.data);
 
         if (response.data) {
-            setTimeout(() => {
-                toast.success('Reservation page saved successfully');
-            }, 500);
+            console.log(response.data)
+            toast.success('Reservation page saved successfully');
         } else {
-            setTimeout(() => {
-                toast.error('Failed to save template, Please try again later.');
-            }, 500);
+            console.log(error)
+            toast.error('Failed to save template, Please try again later.');
         }
-
-        // if (response.data) {
-        //     const data = await response.json();
-        //     console.log('Files uploaded:', data.files);
-        //     alert('Files uploaded:');
-        // } else {
-        //     console.error('Upload failed:', response.statusText);
-        //     alert('Upload failed:');
-        // }
     } catch (error) {
         console.error('Error uploading files:', error);
-        setTimeout(() => {
-            toast.error('Failed to save template, Please try again later.');
-        }, 500);
+        toast.error('Failed to save template, Please try again later.');
     }
 };
+
+console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Lawrence') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
 
   return (
     <div>
@@ -154,14 +164,14 @@ const handleCancelClick = () => {
             <Navbar/>
             <div>
                 <div className='bg-[#a89d8a] py-[70px] lg:px-[180px] xs:px-[50px] w-[90vw]'>
-                    <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading67, setHeading67)} style={{ color: heading67.color}}>{heading67.text}</h2>
+                    <h2 className='font-Namdhinggo text-[60px] font-[100] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading68, setHeading68)} style={{ color: heading68.color}}>{heading68.text}</h2>
                 </div>
                     <div style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${preview || restro4})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }} className='w-[100%] h-[100vh] bg-fixed mt-[5rem]'>
                     <input type="file" onChange={handleImageChange} />
                         <div className='lg:flex justify-center items-center h-[100vh] lg:px-0 xs:px-[20px] lg:pt-0 xs:pt-[5rem]'>
                             <div>
-                                <h2 className='font-Namdhinggo lg:text-[50px] xs:text-[40px] lg:ps-[32rem] lg:text-start xs:text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px]' onClick={() => openModal(heading68, setHeading68)} style={{ color: heading68.color}}>{heading68.text}</h2>
-                                <p className='lg:text-[16px] xs:text-[14.5px] mt-[2rem] lg:ms-[18rem] lg:w-[55%] leading-[28px] text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading69, setHeading69)} style={{ color: heading69.color}}>{heading69.text}</p>
+                                <h2 className='font-Namdhinggo lg:text-[50px] xs:text-[40px] lg:ps-[32rem] lg:text-start xs:text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px]' onClick={() => openModal(heading69, setHeading69)} style={{ color: heading69.color}}>{heading69.text}</h2>
+                                <p className='lg:text-[16px] xs:text-[14.5px] mt-[2rem] lg:ms-[18rem] lg:w-[55%] leading-[28px] text-center hover:border-[1px] hover:border-solid hover:border-[#fff] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading70, setHeading70)} style={{ color: heading70.color}}>{heading70.text}</p>
                             </div>
                         </div>
                     </div>
@@ -171,8 +181,8 @@ const handleCancelClick = () => {
                         <img src={preview2 || restro5} alt="Frame" className="w-[180vw]" />
                     </div>
                     <div className='lg:mt-0 xs:mt-[4rem]'>
-                        <h1 className='text-[45px] font-Namdhinggo lg:text-start xs:text-center lg:ps-[12rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px]' onClick={() => openModal(heading70, setHeading70)} style={{ color: heading70.color}}>{heading70.text}</h1>
-                        <p className='mt-[2rem] text-center text-[16px] leading-[24px] lg:ms-[5rem] text-[#7c6c50] lg:w-[80%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading71, setHeading71)} style={{ color: heading71.color}}>{heading71.text}</p>
+                        <h1 className='text-[45px] font-Namdhinggo lg:text-start xs:text-center lg:ps-[12rem] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px]' onClick={() => openModal(heading71, setHeading71)} style={{ color: heading71.color}}>{heading71.text}</h1>
+                        <p className='mt-[2rem] text-center text-[16px] leading-[24px] lg:ms-[5rem] text-[#7c6c50] lg:w-[80%] hover:border-[1px] hover:border-solid hover:border-[#000] hover:py-[10px] hover:px-[10px]' onClick={() => openModal(heading72, setHeading72)} style={{ color: heading72.color}}>{heading72.text}</p>
                     </div>
                 </div>
             </div>

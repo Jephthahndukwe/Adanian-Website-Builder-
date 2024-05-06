@@ -113,26 +113,16 @@ const Homepage = () => {
 
             console.log(response.data);
 
-            setTimeout(() => {
-              toast.success('Changes saved successfully.');
-            }, 1000);
-
-            // if (response.data) {
-            //     const data = await response.json();
-            //     console.log('Files uploaded:', data.files);
-            //     setTimeout(() => {
-            //       toast.success('Changes saved successfully.');
-            //     }, 500);
-            // } else {
-            //     console.error('Upload failed:', response.statusText);
-            //     setTimeout(() => {
-            //       toast.error('Changes Failed. Try again later!');
-            //         return;
-            //     })
-            // }
+            if (response.data) {
+              console.log('Files uploaded:', data.files);
+              toast.success('Homepage saved successfully.');
+            } else {
+              console.error('Upload failed:', response.statusText);
+              toast.error('Changes Failed. Try again later!');
+            }
         } catch (error) {
             console.error('Error uploading files:', error);
-            alert('Error uploading files:');
+            toast.error('Error uploading page');
         }
     };
 

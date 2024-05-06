@@ -3,6 +3,9 @@ import { Transition } from '@headlessui/react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer'
 import TemplateEditNavbar from '../../../TemplateDashboard/TemplateEditNavbar';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 const Contact = () => {
 
@@ -13,6 +16,30 @@ const Contact = () => {
       setShow(true);
     }, []);
 
+    const store = useSelector((state) => state.store)
+    const { storeDetails } = store
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Maya Nelson') {
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
+
   return (
     <Transition
       show={show}
@@ -21,7 +48,7 @@ const Contact = () => {
       enterTo="opacity-100"
     >
         <div>
-            <TemplateEditNavbar handleUpload={handleUpload}/>
+            <TemplateEditNavbar />
             <div>
                 <div>
                     <Navbar/>

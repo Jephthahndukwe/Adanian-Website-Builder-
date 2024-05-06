@@ -266,7 +266,7 @@ const handleImageChange11 = (e) => {
       console.log(texts);
 
 
-      let stringifiedObject = JSON.stringify(texts);
+        let stringifiedObject = JSON.stringify(texts);
         // let joiner = textArray.join("*")
         formData.append('template', 'DayDream');
         formData.append('texts', stringifiedObject);
@@ -281,23 +281,41 @@ const handleImageChange11 = (e) => {
 
             console.log(response.data);
 
-            // setTimeout(() => {
-            //   toast.success('Changes saved successfully.');
-            // }, 1000);
-
             if (response.data) {
-                // const data = await response.json();
                 console.log('Files uploaded:', data.files);
-                toast.success('Changes saved successfully.');
+                toast.success('Homepage saved successfully.');
             } else {
                 console.error('Upload failed:', response.statusText);
                 toast.error('Changes Failed. Try again later!');
             }
         } catch (error) {
             console.error('Error uploading files:', error);
-            toast.error('Error uploading files:');
+            toast.error('Error uploading page');
         }
     };
+
+    console.log(storeDetails)
+
+    const getWebsite = async () => {
+      try {
+        const res = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}
+        `);
+        console.log(res.data)
+        if (res.data.template !== 'Day Dream') {
+          // navigate('/dashboard')
+          toast.success(`You have started editing ${res.data.template}`)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(() => {
+      if(storeDetails) {
+        getWebsite()
+      }
+  }, [])
+
 
   return (
     <Transition
