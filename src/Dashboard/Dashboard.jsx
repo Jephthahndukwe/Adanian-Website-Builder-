@@ -48,6 +48,8 @@ const Dashboard = ({imageData}) => {
     const store = useSelector((state) => state.store)
     const { storeDetails } = store
 
+    const [data, setData] = useState(null);
+
     const [savedTemplates, setSavedTemplates] = useState([]);
 
     useEffect(() => {
@@ -107,15 +109,15 @@ const Dashboard = ({imageData}) => {
                             } */}
 
                             {
-                            imageData && imageData.templates && imageData.templates.length > 0 ? (
-                                imageData.templates.map((template, index) => (
+                            data && data && data.length > 0 ? (
+                                data.map((template, index) => (
                                 <div key={index} className="mt-[2rem]">
                                     <img
-                                    src={template.image}
+                                    src={template.selectedImage1}
                                     className="w-[317px] h-[218.75px] fill object-cover transition duration-300 transform hover:scale-105"
                                     />
-                                    <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{template.heading}</h2>
-                                    <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{template.text}</h3>
+                                    {/* <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{template.heading}</h2> */}
+                                    {/* <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{template.text}</h3> */}
                                 </div>
                                 ))
                             ) : (
