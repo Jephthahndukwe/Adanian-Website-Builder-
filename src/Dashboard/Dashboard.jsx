@@ -55,7 +55,7 @@ const Dashboard = () => {
         try {
           // Assuming you have a way to get the user's ID, replace 'userId' with the actual user ID
         //   const userId = id;
-          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/${id}/templates`);
+          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getmywebsites/${id}`);
           setUserTemplates(response.data);
             console.log(response.data)
           if(response.data) {
