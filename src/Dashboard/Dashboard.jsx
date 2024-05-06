@@ -55,6 +55,12 @@ const Dashboard = ({imageData}) => {
         try {
           const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}`);
           setSavedTemplates(response.data);
+          console.log(response.data)
+          if(response.data) {
+            console.log(response.data);
+          } else {
+            console.log('error fetching');
+          }
         } catch (error) {
           console.error('Error fetching saved templates:', error);
         }
