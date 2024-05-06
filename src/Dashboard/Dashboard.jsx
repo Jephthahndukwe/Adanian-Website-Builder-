@@ -41,8 +41,8 @@ const Dashboard = () => {
     }, [])
 
     const logoutHandler = () => {
-        dispatch(logout())
-        navigate('/login')
+        // dispatch(logout())
+        // navigate('/login')
       }
 
     // const store = useSelector((state) => state.store)
