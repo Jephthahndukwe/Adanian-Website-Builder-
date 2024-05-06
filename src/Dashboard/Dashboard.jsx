@@ -10,11 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { googleAuth, logout } from '../../Redux/Action/UserAction';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import imageData from '../Templates/TemplateDashboard/TemplatesMap';
 
 
-const Dashboard = ({imageData}) => {
-  const [show, setShow] = useState(false);
+const Dashboard = () => {
 
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -45,8 +43,8 @@ const Dashboard = ({imageData}) => {
     //     dispatch(logout())
     //   }
 
-    const store = useSelector((state) => state.store)
-    const { storeDetails } = store
+    // const store = useSelector((state) => state.store)
+    // const { storeDetails } = store
 
     const [userTemplates, setUserTemplates] = useState([]);
 
@@ -54,8 +52,8 @@ const Dashboard = ({imageData}) => {
       const fetchUserTemplates = async () => {
         try {
           // Assuming you have a way to get the user's ID, replace 'userId' with the actual user ID
-          const userId = id;
-          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/${userId}/templates`);
+        //   const userId = id;
+          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/${id}/templates`);
           setUserTemplates(response.data);
             console.log(response.data)
           if(response.data) {
