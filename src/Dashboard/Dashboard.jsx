@@ -49,6 +49,22 @@ const Dashboard = () => {
     const store = useSelector((state) => state.store)
     const { storeDetails } = store
 
+    const [savedTemplates, setSavedTemplates] = useState([]);
+
+    useEffect(() => {
+      const fetchSavedTemplates = async () => {
+        try {
+          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}/${id}`);
+          setSavedTemplates(response.data);
+        } catch (error) {
+          console.error('Error fetching saved templates:', error);
+        }
+      };
+  
+      fetchSavedTemplates();
+    }, [id]);
+
+
   return (
     <div>
         <Navbar className='xs:hidden lg:block' />
@@ -72,7 +88,7 @@ const Dashboard = () => {
                         </div>
                         <div className="flex flex-wrap gap-[16px]">
                                 {/* <h1>{storeDetails.nameOfStore}</h1> */}
-                            {
+                            {/* {
                                 TemplateMap.map((index) => (
                                     <div key={index.id}>
                                         <div className="mt-[2rem]">
@@ -82,7 +98,19 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 ))
-                            }
+                            } */}
+
+                            {savedTemplates.length > 0 ? (
+                                    savedTemplates.map((template, index) => (
+                                    <div key={index}>
+                                        <img src={template.image} alt={`Template ${index}`} />
+                                        {/* <h2>{template.heading}</h2> */}
+                                        {/* <p>{template.text}</p> */}
+                                    </div>
+                                    ))
+                                ) : (
+                                    <p>No saved templates found.</p>
+                                )}
                         </div>
                         {/* {
                             show ? <Question show={show} setShow={setShow} /> : null

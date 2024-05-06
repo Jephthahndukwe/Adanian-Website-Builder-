@@ -107,7 +107,10 @@ import TravelBetterEditHome from './Templates/TemplateEditing/Travel Better/Home
 import TravelBetterEditAbout from './Templates/TemplateEditing/Travel Better/Homepage/About'
 import TravelBetterEditPackage from './Templates/TemplateEditing/Travel Better/Homepage/Package'
 import TravelBetterEditBook from './Templates/TemplateEditing/Travel Better/Homepage/Book'
-import Testfile from './Testfile'
+
+
+// EDITING  -  KNOLL WATER
+import KnollWaterEditHome from './Templates/TemplateEditing/Knoll Walters/Homepage/Homepage'
 
 
 
@@ -127,7 +130,6 @@ function App() {
           <Route path='questionfour' element={ <QuestionFour/> } />
           <Route path='questionfive' element={ <QuestionFive/> } />
           <Route path="/preview/:content" element={ <PreviewPage/> } />
-          <Route path='/testfile' element={ <Testfile/> } />
 
 
           {/* DASHBOARD ROUTES */}
@@ -227,6 +229,9 @@ function App() {
         <Route path='travelbettereditabout' element={ <TravelBetterEditAbout/> } />
         <Route path='travelbettereditpackage' element={ <TravelBetterEditPackage /> } />
         <Route path='travelbettereditbook' element={ <TravelBetterEditBook /> } />
+
+        {/* Knoll Walters LLP TEMPLATES */} {/* LEGAL SERVICE */}
+        <Route path='knollwaterEditHome' element={ <KnollWaterEditHome /> } />
       
 
     </Routes>

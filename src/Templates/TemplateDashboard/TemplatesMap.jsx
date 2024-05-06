@@ -49,45 +49,42 @@ const imageData = {
     ],
     'Entertainment': [
       { src: Entertainment1, text: 'Event Planning Company', preview: '/qproductionHome' },
-      { src: Entertainment2, text: 'Club' },
-      { src: Entertainment3, text: 'DJ' },
-      { src: Entertainment4, text: 'Event Venue' },
       // Add more Entertainment images
     ],
-    'Online Store': [
-      { src: OnlineStore1, text: 'Accessories Store' },
-      { src: OnlineStore2, text: 'Electronics Store' },
-      { src: OnlineStore3, text: 'Stationery Store' },
-      { src: OnlineStore4, text: 'T- Shirt Store' },
-      { src: OnlineStore5, text: 'Beauty Shop' },
-      { src: OnlineStore6, text: 'Supermarket' },
-      // Add more online store images
-    ],
-    'Blog': [
-      { src: Blog1, text: 'Personal Blog' },
-      { src: Blog2, text: 'Travel Blog' },
-      { src: Blog3, text: 'Personal Blog' },
-      // Add more Blog images
-    ],
-    'Service Business': [
-      { src: Services1, text: 'Cleaning Company' },
-      { src: Services2, text: 'Home Improvement Company' },
-      { src: Services3, text: 'Recycling Facility' },
-      // Add more restaurant images
-    ],
-    'IT & Technology': [
-      { src: Technology1, text: 'AI Company' },
-      { src: Technology2, text: 'Tech Company' },
-      { src: Technology3, text: 'IT Services Company' },
-      // Add more IT & Technology images
-    ],
-    'HealthCare': [
-      { src: Healthcare1, text: 'Home Healthcare Company' },
-      { src: Healthcare2, text: 'Medical Clinic' },
-      // Add more HealthCare images
-    ],
+    // 'Online Store': [
+    //   { src: OnlineStore1, text: 'Accessories Store' },
+    //   { src: OnlineStore2, text: 'Electronics Store' },
+    //   { src: OnlineStore3, text: 'Stationery Store' },
+    //   { src: OnlineStore4, text: 'T- Shirt Store' },
+    //   { src: OnlineStore5, text: 'Beauty Shop' },
+    //   { src: OnlineStore6, text: 'Supermarket' },
+    //   // Add more online store images
+    // ],
+    // 'Blog': [
+    //   { src: Blog1, text: 'Personal Blog' },
+    //   { src: Blog2, text: 'Travel Blog' },
+    //   { src: Blog3, text: 'Personal Blog' },
+    //   // Add more Blog images
+    // ],
+    // 'Service Business': [
+    //   { src: Services1, text: 'Cleaning Company' },
+    //   { src: Services2, text: 'Home Improvement Company' },
+    //   { src: Services3, text: 'Recycling Facility' },
+    //   // Add more restaurant images
+    // ],
+    // 'IT & Technology': [
+    //   { src: Technology1, text: 'AI Company' },
+    //   { src: Technology2, text: 'Tech Company' },
+    //   { src: Technology3, text: 'IT Services Company' },
+    //   // Add more IT & Technology images
+    // ],
+    // 'HealthCare': [
+    //   { src: Healthcare1, text: 'Home Healthcare Company' },
+    //   { src: Healthcare2, text: 'Medical Clinic' },
+    //   // Add more HealthCare images
+    // ],
     '': [
-      { src: Legal1, text: 'Law Firm', preview: '/knollwaterHome' }
+      { src: Legal1, text: 'Law Firm', edit: '/knollwaterEditHome', preview: '/knollwaterHome' }
     ]
   };
 
