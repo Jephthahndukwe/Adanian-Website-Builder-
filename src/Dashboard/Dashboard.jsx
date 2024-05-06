@@ -48,28 +48,27 @@ const Dashboard = ({imageData}) => {
     const store = useSelector((state) => state.store)
     const { storeDetails } = store
 
-    const [data, setData] = useState(null);
-
-    const [savedTemplates, setSavedTemplates] = useState([]);
+    const [userTemplates, setUserTemplates] = useState([]);
 
     useEffect(() => {
-      const fetchSavedTemplates = async () => {
+      const fetchUserTemplates = async () => {
         try {
-          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}`);
-          setSavedTemplates(response.data);
-          console.log(response.data)
+          // Assuming you have a way to get the user's ID, replace 'userId' with the actual user ID
+          const userId = id;
+          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/${userId}/templates`);
+          setUserTemplates(response.data);
+            console.log(response.data)
           if(response.data) {
             console.log(response.data);
           } else {
-            console.log('error fetching');
+            console.log('Error fetching user templates');
           }
         } catch (error) {
-          console.error('Error fetching saved templates:', error);
+          console.error('Error fetching user templates:', error);
         }
       };
   
-      fetchSavedTemplates();
-
+      fetchUserTemplates();
     }, []);
 
 
@@ -108,23 +107,17 @@ const Dashboard = ({imageData}) => {
                                 ))
                             } */}
 
-                            {
-                            data && data && data.length > 0 ? (
-                                data.map((template, index) => (
-                                <div key={index} className="mt-[2rem]">
+                            {userTemplates.map((template, index) => (
+                                    <div key={index} className="mt-[2rem]">
+                                    {/* Assuming you have an 'image' field in each template object */}
                                     <img
-                                    src={template.selectedImage1}
-                                    className="w-[317px] h-[218.75px] fill object-cover transition duration-300 transform hover:scale-105"
+                                        src={template.image}
+                                        alt={`Template ${index + 1}`}
+                                        className="w-[317px] h-[218.75px] fill object-cover transition duration-300 transform hover:scale-105"
                                     />
-                                    {/* <h2 className="text-[#000] text-[14px] font-[500] mt-[16px]">{template.heading}</h2> */}
-                                    {/* <h3 className='text-[#000] text-[12px] font-[400] mt-2'>{template.text}</h3> */}
-                                </div>
-                                ))
-                            ) : (
-                                // You can render a message or any other fallback content here
-                                <div>No saved templates available.</div>
-                            )
-                            }
+                                    {/* You can add other details of the template here */}
+                                    </div>
+                                ))}
                         </div>
                         {/* {
                             show ? <Question show={show} setShow={setShow} /> : null
