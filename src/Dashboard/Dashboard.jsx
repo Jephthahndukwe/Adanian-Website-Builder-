@@ -54,7 +54,7 @@ const Dashboard = () => {
     useEffect(() => {
       const fetchSavedTemplates = async () => {
         try {
-          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}/${id}`);
+          const response = await axios.get(`https://ayoba.adanianlabs.io/api/user/getwebsite/${storeDetails.nameOfStore}`);
           setSavedTemplates(response.data);
         } catch (error) {
           console.error('Error fetching saved templates:', error);
@@ -62,7 +62,8 @@ const Dashboard = () => {
       };
   
       fetchSavedTemplates();
-    }, [id]);
+
+    }, []);
 
 
   return (
@@ -103,7 +104,7 @@ const Dashboard = () => {
                             {savedTemplates.length > 0 ? (
                                     savedTemplates.map((template, index) => (
                                     <div key={index}>
-                                        <img src={template.image} alt={`Template ${index}`} />
+                                        <img src={template.data.data.images.selectedImage1} alt={`Template ${index}`} />
                                         {/* <h2>{template.heading}</h2> */}
                                         {/* <p>{template.text}</p> */}
                                     </div>
