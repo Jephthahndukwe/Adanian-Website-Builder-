@@ -16,6 +16,7 @@ const Dashboard = () => {
 
     const dispatch = useDispatch();
     const {id} = useParams();
+    const navigate = useNavigate()
 
     
     const getUser = async () => {
@@ -41,6 +42,7 @@ const Dashboard = () => {
 
     const logoutHandler = () => {
         dispatch(logout())
+        navigate('/login')
       }
 
     // const store = useSelector((state) => state.store)
