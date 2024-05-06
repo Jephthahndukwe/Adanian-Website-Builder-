@@ -39,9 +39,9 @@ const Dashboard = () => {
         getUser()
     }, [])
 
-    // const logoutHandler = () => {
-    //     dispatch(logout())
-    //   }
+    const logoutHandler = () => {
+        dispatch(logout())
+      }
 
     // const store = useSelector((state) => state.store)
     // const { storeDetails } = store
@@ -75,7 +75,7 @@ const Dashboard = () => {
         <Navbar className='xs:hidden lg:block' />
         <div className="lg:flex flex-star items-center justify-center m-auto">
             <div className="relative w-[100vw] h-[95vh] flex items-center justify-center overflow-hidden">
-                <Sidebar className='xs:hidden lg:block'/>
+                <Sidebar className='xs:hidden lg:block' logoutHandler={logoutHandler} />
 
                 <div className="h-[100%] lg:px-[2rem] xs:px-[10px] overflow-auto overflow-y-scroll lg:w-[82%] xs:w-[100%] mt-[3rem] mb-[3rem]" style={{ scrollbarWidth: `none`, msOverflowStyle: `none` }}>
                    {/* <h1 className="text-[#000] text-[24px] font-[600]">Welcome back, User Y</h1>                     */}
