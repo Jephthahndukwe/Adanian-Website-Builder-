@@ -38,7 +38,7 @@ const Step3 = ({ option, handleInputChangeStep3, nextStep, prevStep }) => {
     <div>
        <form onSubmit={nextStep}>
             <div style={{ boxShadow: `4px 4px 20px 0px rgba(128, 128, 128, 0.15)`}} className="bg-[#fff] rounded-[24px] lg:w-[1020px] xs:w-[100%] py-[32px] lg:ps-[24px] xs:ps-[10px] xs:pr-[10px] lg:pr-[52px] mt-[36px]">
-                <h3 className="text-[#000] text-[17px] font-[500]">Do you already have an online store?</h3>
+                <h3 className="text-[#000] text-[17px] font-[500]">Do you already have a domain name?</h3>
                 <h3 className="text-[#000] text-[12px] font-[400] mt-2">We’ll set up your Dashboard with tools based on your needs.</h3>
                 <div className="flex">
                 {/* <div className="flex gap-[30px] items-center">
@@ -50,7 +50,7 @@ const Step3 = ({ option, handleInputChangeStep3, nextStep, prevStep }) => {
                     type="text" 
                     value={option}
                     onChange={handleInputChangeStep3}
-                    placeholder="Yes or No" 
+                    placeholder="domainname.com" 
                     required 
                     className="font-[400] text-[14px] lg:w-[940px] xs:w-[100%] h-[1px] py-[10px] outline-none pb-[25px] mt-3" 
                     style={{ color: `rgba(102, 102, 102, 0.80)`, borderBottom: '1px solid #0AADBF' }}
@@ -67,7 +67,7 @@ const Step3 = ({ option, handleInputChangeStep3, nextStep, prevStep }) => {
                 /> */}
                 </div> 
                 <div className="flex justify-between items-center mt-[24px]">
-                    <h3 className="text-[#000] text-[11px] font-[300]">Note: you can edit text</h3>
+                    <h3 className="text-[#000] text-[12px] font-[300]">https://domainname.com.adanianlabs.io</h3>
                     <div className="flex gap-[16px] items-center">
                         <button type="button" onClick={prevStep} className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Previous</button>
                         <button type="submit" className="bg-[#00AABC] rounded-[100px] flex justify-center items-center p-[10px] h-[24px] text-[#fff] text-[12px] font-[400]">Done</button>
