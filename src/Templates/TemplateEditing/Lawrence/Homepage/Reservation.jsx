@@ -112,8 +112,6 @@ const store = useSelector((state) => state.store)
 
             if (response.data) {
                 toast.success('Reservation page saved successfully');
-            } else {
-                toast.error('Failed to save template, Please try again later.');
             }
         } catch (error) {
             console.error('Error uploading files:', error);

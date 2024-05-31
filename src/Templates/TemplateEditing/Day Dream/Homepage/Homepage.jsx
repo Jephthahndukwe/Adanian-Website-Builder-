@@ -284,10 +284,7 @@ const handleImageChange11 = (e) => {
             if (response.data) {
                 console.log('Files uploaded:', data.files);
                 toast.success('Homepage saved successfully.');
-            } else {
-                console.error('Upload failed:', response.statusText);
-                toast.error('Changes Failed. Try again later!');
-            }
+            } 
         } catch (error) {
             console.error('Error uploading files:', error);
             toast.error('Error uploading page');

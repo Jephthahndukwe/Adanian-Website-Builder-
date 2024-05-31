@@ -151,9 +151,6 @@ const Resume = () => {
             if (response.data) {
                 console.log('Files uploaded:', data.files);
                 toast.success('Resume page saved successfully.');
-            } else {
-                console.error('Upload failed:', response.statusText);
-                toast.error('Changes Failed. Try again later!');
             }
         } catch (error) {
             console.error('Error uploading files:', error);

@@ -126,9 +126,6 @@ const handleCancelClick = () => {
         if (response.data) {
             console.log(response.data)
             toast.success('Reservation page saved successfully');
-        } else {
-            console.log(error)
-            toast.error('Failed to save template, Please try again later.');
         }
     } catch (error) {
         console.error('Error uploading files:', error);

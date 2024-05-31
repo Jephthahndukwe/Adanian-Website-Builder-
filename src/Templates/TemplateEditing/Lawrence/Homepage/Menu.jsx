@@ -180,10 +180,7 @@ const store = useSelector((state) => state.store)
         if (response.data) {
             console.log(response.data)
             toast.success('Menu page saved successfully');
-        } else {
-            console.log(error)
-            toast.error('Failed to save template, Please try again later.');
-        }
+        } 
     } catch (error) {
         console.error('Error uploading files:', error);
         toast.error('Failed to save template, Please try again later.');

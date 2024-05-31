@@ -152,9 +152,6 @@ const handleCancelClick = () => {
         if (res.data) {
             console.log(res.data)
             toast.success('Homepage saved successfully');
-        } else {
-            console.log(error)
-            toast.error('Failed to save template, Please try again later.');
         }
     } catch (error) {
         console.error('Error uploading files:', error);

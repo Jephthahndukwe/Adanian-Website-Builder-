@@ -138,9 +138,6 @@ const handleCancelClick = () => {
             const data = await response.json();
             console.log('Files uploaded:', data.files);
                 toast.success('Contact page saved successfully.');
-        } else {
-            console.error('Upload failed:', response.statusText);
-                toast.error('Changes saved successfully.');
         }
     } catch (error) {
         console.error('Error uploading files:', error);
