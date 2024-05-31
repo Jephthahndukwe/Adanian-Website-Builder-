@@ -390,10 +390,10 @@ const handleCancelClick = () => {
 
             console.log(response.data);
 
-            if (response.data) {
+            // if (response.data) {
                 console.log('Files uploaded:', data.files);
                 toast.success('Sales page saved successfully.');
-            }
+            // }
         } catch (error) {
             console.error('Error uploading files:', error);
             toast.error('Error uploading files:');

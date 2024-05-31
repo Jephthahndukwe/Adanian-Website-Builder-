@@ -153,10 +153,10 @@ const Projects = () => {
 
             console.log(response.data);
 
-            if (response.data) {
+            // if (response.data) {
               console.log('Files uploaded:', data.files);
               toast.success('Project page saved successfully.');
-            }
+            // }
         } catch (error) {
             console.error('Error uploading files:', error);
             toast.error('Error saving page:');

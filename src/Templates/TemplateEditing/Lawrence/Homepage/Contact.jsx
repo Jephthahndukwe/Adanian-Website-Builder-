@@ -97,10 +97,10 @@ const handleImageChange = (e) => {
 
         console.log(response.data);
 
-        if (response.data) {
+        // if (response.data) {
             console.log(response.data)
             toast.success('Reservation page saved successfully');
-        }
+        // }
     } catch (error) {
         console.error('Error uploading files:', error);
         toast.error('Failed to save template, Please try again later.');
